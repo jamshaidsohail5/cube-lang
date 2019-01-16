@@ -1,0 +1,22 @@
+# Dot folders
+.*/
+
+# Node
+node_modules
+dist
+*.log
+*.pid
+
+# Gradle
+build
+target
+
+# IntelliJ
+out
+*.iml
+
+# Tests
+temp
+
+# Mac OS X
+.DS_Store
