@@ -41,12 +41,8 @@ define tokenStream
     var tokenizer as tokenizer
 
     function fill(n as int) =
-      while buffer.size <= n
-        tokenizer.next
-        var tokenType as cstNodeType = tokenizer.tokenType
-
-        if tokenType is null then buffer.add(null)
-        else buffer.add(new token(tokenType, tokenizer.tokenText))
-      end
+      while buffer.size <= n ->
+        buffer.add(
+          if tokenizer.next then new token(tokenizer.tokenType, tokenizer.tokenText) else null)
   end
 end

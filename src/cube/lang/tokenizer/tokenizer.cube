@@ -1,55 +1,71 @@
 use cube.lang.cst.cstNodeType
-use java.util.hashMap
-use java.util.map
-use cube.lang.cst.cstNodeType.IDENTIFIER
+use cube.lang.cst.cstNodeType
+use cube.lang.tokenizer.characterType
 
 define tokenizer
-  function create(text as string)
-    charStream = text
-
-    for each tokenType in CstNodeType.values
-      var tokenText as string = tokenType.text
-      if tokenText is not null then symbols.put(tokenText.charAt(0), tokenType)
-    end
-  end
-
+  function create(text as string) = me.text = text
   function tokenType as cstNodeType = tokenType
   function tokenText as string = tokenText
 
-  function next
+  function next as boolean
     tokenType = null
     tokenText = null
+    var c as int
 
-    while index < charStream.length
-      var c as char = charStream.charAt(index++)
-
-      if symbols.containsKey(c) then do
-        tokenType = symbols.get(c)
-        tokenText = Character.toString(c)
-        return
+    while c <- peek != -1 ->
+      match characterType(c)
+        when WHITESPACE then position++
+        when SYMBOL then output symbol
+        when DIGIT then error new unsupportedOperationException
+        when CHARACTER then output identifier
+        else error new unsupportedOperationException
       end
 
-      if Character.isLetter(c) then do
-        var start as int = index - 1
-
-        while index < charStream.length
-          if not Character.isLetter(charStream.charAt(index)) then break loop1
-          index++
-        end
-
-        var name as string = charStream.substring(start, index)
-        tokenType = IDENTIFIER
-        tokenText = name
-        return
-      end
-    end
+    output false
   end
 
   internal
-    let symbols = new map[character, cstNodeType]
-    var charStream as string
-    var index as int
+    var text as string
+    var position as int
     var tokenType as cstNodeType
     var tokenText as string
+
+    function symbol
+      match read
+        when char('(') then reduce(LEFT_PARENTHESIS)
+        when char(')') then reduce(RIGHT_PARENTHESIS)
+        when char(',') then reduce(COMMA)
+        when char('=') then reduce(EQUAL)
+        when char('+') then reduce(PLUS)
+        when char('-') then reduce(MINUS)
+        when char('*') then reduce(ASTERISK)
+        when char('/') then reduce(FORWARD_SLASH)
+        when char('^') then reduce(CARET)
+        when char('~') then reduce(TILDE)
+        when char('!') then reduce(EXCLAMATION_MARK)
+        when char('?') then reduce(QUESTION_MARK)
+        when char(':') then reduce(COLON)
+        else error new unsupportedOperationException
+      end
+
+      output true
+    end
+
+    function identifier
+      var start as int = position++
+      var c as int
+      while c <- peek != -1 and characterType(c) = CHARACTER -> position++
+      tokenType = IDENTIFIER
+      tokenText = text.substring(start, position)
+      output true
+    end
+
+    function reduce(tokenType as cstNodeType)
+      me.tokenType = tokenType
+      me.tokenText = tokenType.text
+    end
+
+    function peek as int = if position < text.length then text.charAt(position) else -1
+    function read as int = text.charAt(position++)
   end
 end

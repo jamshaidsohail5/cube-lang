@@ -1,0 +1,19 @@
+define characterType
+  shared
+    let WHITESPACE = 1
+    let SYMBOL = 2
+    let DIGIT = 3
+    let CHARACTER = 4
+
+    function characterType(n as int) as int
+      if n <= 64 then do
+        if n <= 47 then output if n <= 32 then WHITESPACE else SYMBOL
+        output if n <= 57 then DIGIT else SYMBOL
+      end
+
+      if n <= 96 then output if n <= 90 then CHARACTER else SYMBOL
+      if n <= 122 then output CHARACTER
+      output if n <= 127 then SYMBOL else CHARACTER
+    end
+  end
+end
