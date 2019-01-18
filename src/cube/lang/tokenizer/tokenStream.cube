@@ -1,0 +1,52 @@
+use cube.lang.cst.cstNodeType
+use cube.lang.cst.token
+use java.util.arrayList
+use java.util.list
+
+define tokenStream
+  function create(tokenizer as tokenizer) = me.tokenizer = tokenizer
+
+  function next as token
+    fill(0)
+    output buffer.remove(0)
+  end
+
+  function expect(expected as cstNodeType) as token
+    var token as token = peek(0)
+
+    if token.nodeType != expected then
+      error 'Expected ' + expected + ' not ' + token.nodeType + '.'
+
+    output next
+  end
+
+  function read(expected as cstNodeType)
+    var token as token = peek(0)
+    if token.nodeType != expected then output false
+    next
+    output true
+  end
+
+  function peek(n as int) as token
+    fill(n)
+    output buffer.get(n)
+  end
+
+  shared
+    function tokenStream(text as string) = new tokenStream(new tokenizer(text))
+  end
+
+  internal
+    let buffer = new list[token]
+    var tokenizer as tokenizer
+
+    function fill(n as int) =
+      while buffer.size <= n
+        tokenizer.next
+        var tokenType as cstNodeType = tokenizer.tokenType
+
+        if tokenType is null then buffer.add(null)
+        else buffer.add(new token(tokenType, tokenizer.tokenText))
+      end
+  end
+end

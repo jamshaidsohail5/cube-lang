@@ -1,0 +1,6 @@
+enum operatorType
+  UnaryPrefix
+  UnaryPostfix
+  LeftAssociative
+  RightAssociative
+end

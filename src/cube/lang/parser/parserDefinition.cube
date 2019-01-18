@@ -1,0 +1,35 @@
+use cube.lang.operator
+use cube.lang.cst.cstNodeType
+use cube.lang.parser.elements.binaryExpressionParser
+use cube.lang.parser.elements.unaryPostfixParser
+use cube.lang.parser.elements.unaryPrefixParser
+use java.util.hashMap
+use java.util.map
+
+define parserDefinition[T]
+  function left as map[cstNodeType, leftParser[T]] = left
+  function right as map[cstNodeType, rightParser[T]] = right
+
+  function left(token as cstNodeType, parser as leftParser[T]) as void =
+    left.put(token, parser)
+
+  function right(token as cstNodeType, parser as rightParser[T]) as void =
+    right.put(token, parser)
+
+  function operators(operators as array[operator]) =
+    for each operator in operators -> operator(operator)
+
+  function operator(operator as operator) =
+    match operator.operatorType
+      when UnaryPrefix then left(operator.nodeType, new unaryPrefixParser(operator))
+      when UnaryPostfix then right(operator.nodeType, new unaryPostfixParser(operator))
+
+      when LeftAssociative or RightAssociative then
+        right(operator.nodeType, new binaryExpressionParser(operator))
+    end
+
+  internal
+    let left = new map[cstNodeType, leftParser[T]]
+    let right = new map[cstNodeType, rightParser[T]]
+  end
+end

@@ -1,0 +1,15 @@
+define token
+  function create(nodeType as cstNodeType, text as string)
+    me.nodeType = nodeType
+    me.text = text
+  end
+
+  function nodeType as cstNodeType = nodeType
+  function text as string = text
+  function toString as string = text
+
+  internal
+    var nodeType as cstNodeType
+    var text as string
+  end
+end

@@ -1,0 +1,19 @@
+enum precedence
+  AssignmentPrecedence(1)
+  RelationalPrecedence(2)
+  ConditionalPrecedence(3)
+  AdditivePrecedence(4)
+  MultiplicativePrecedence(5)
+  ExponentPrecedence(6)
+  UnaryPrefixPrecedence(7)
+  UnaryPostfixPrecedence(8)
+  FunctionPrecedence(9)
+
+  function value as int = value
+
+  internal
+    var value as int
+
+    function create(value as int) = me.value = value
+  end
+end

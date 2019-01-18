@@ -1,0 +1,67 @@
+use cube.lang.formatting.format.format
+use cube.lang.parser.parser.parse
+
+define verify
+  function main(args as array[string])
+    System.out.println('Verifying...')
+    verify
+    System.out.println('Failed: ' + (total - passed) + ' / ' + total + '.')
+  end
+
+  internal
+    shared
+      var passed = 0
+      var total = 0
+
+      function verify
+        verify('~!-+a', '(~(!(-(+a))))')
+        verify('a!!!', '(((a!)!)!)')
+        verify('-a * b', '((-a) * b)')
+        verify('!a + b', '((!a) + b)')
+        verify('~a ^ b', '((~a) ^ b)')
+        verify('-a!', '(-(a!))')
+        verify('!a!', '(!(a!))')
+        verify('a = b + c * d ^ e - f / g', '(a = ((b + (c * (d ^ e))) - (f / g)))')
+        verify('a = b = c', '(a = (b = c))')
+        verify('a + b - c', '((a + b) - c)')
+        verify('a * b / c', '((a * b) / c)')
+        verify('a ^ b ^ c', '(a ^ (b ^ c))')
+        verify('a ? b : c ? d : e', '(a ? b : (c ? d : e))')
+        verify('a ? b ? c : d : e', '(a ? (b ? c : d) : e)')
+        verify('a + b ? c * d : e / f', '((a + b) ? (c * d) : (e / f))')
+        verify('a + (b + c) + d', '((a + (b + c)) + d)')
+        verify('a ^ (b + c)', '(a ^ (b + c))')
+        verify('(!a)!', '((!a)!)')
+        verify('a()', 'a()')
+        verify('a(b)', 'a(b)')
+        verify('a(b, c)', 'a(b, c)')
+        verify('a(b)(c)', 'a(b)(c)')
+        verify('a(b) + c(d)', '(a(b) + c(d))')
+        verify('a(b ? c : d, e + f)', 'a((b ? c : d), (e + f))')
+      end
+
+      function verify(text as string, ast as string)
+        try
+          var actual as string = format(parse(text))
+
+          if ast.equals(actual) then do
+            System.out.println(ast)
+            passed++
+          end
+          else do
+            System.out.println('Failed   : ' + text)
+            System.out.println('Expected : ' + ast)
+            System.out.println('Actual   : ' + actual)
+          end
+        catch
+          when e as throwable then do
+            System.out.println('Failed: ' + text)
+            e.printStackTrace(System.out)
+          end
+        end
+
+        total++
+      end
+    end
+  end
+end

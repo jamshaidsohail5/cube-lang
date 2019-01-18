@@ -1,0 +1,3 @@
+interface element
+  function write(s as stringBuilder)
+end

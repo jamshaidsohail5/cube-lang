@@ -1,0 +1,57 @@
+use cube.lang.element
+use cube.lang.operator
+use cube.lang.elements
+use java.util.arrayList
+use java.util.list
+use cube.lang.operator.equal
+
+define elementTranslator as cstTranslator[element]
+  function enter(nodeType as cstNodeType) as elementTranslator
+    var v = new elementTranslator
+    v.nodeType = nodeType
+    output v
+  end
+
+  function start(nodeType as cstNodeType, operator as operator)
+    me.nodeType = nodeType
+    me.operator = operator
+    tokens.clear
+    elements.clear
+  end
+
+  function accept(token as token) as void = tokens.add(token)
+  function accept(element as element) as void = elements.add(element)
+
+  function value as element
+    match nodeType
+      when IDENTIFIER then output new identifier(tokens.get(0).text)
+
+      when ASSIGN then do
+        var name as string = (elements.get(0) as identifier).name
+        output new assign(Equal, name, elements.get(1))
+      end
+
+      when UNARY_EXPRESSION then output new unaryExpression(operator, elements.get(0))
+
+      when BINARY_EXPRESSION then
+        output new binaryExpression(operator, elements.get(0), elements.get(1))
+
+      when FUNCTION_EXPRESSION then
+        output new functionExpression(elements.get(0), elements.get(1) as argumentList)
+
+      when ARGUMENT_LIST then output new argumentList(elements)
+
+      when IF_EXPRESSION then
+        output new ifExpression(elements.get(0), elements.get(1), elements.get(2))
+    end
+
+    error new unsupportedOperationException
+  end
+
+  internal
+    var nodeType as cstNodeType
+    var operator as operator
+    let tokens = new list[token]
+    let elements = new list[element]
+  end
+end

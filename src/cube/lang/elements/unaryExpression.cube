@@ -1,0 +1,27 @@
+use cube.lang.element
+use cube.lang.operator
+use cube.lang.operatorType.unaryPrefix
+
+define unaryExpression as element
+  function create(operator as operator, operand as element)
+    me.operator = operator
+    me.operand = operand
+  end
+
+  function write(s as stringBuilder) =
+    if operator.operatorType = UnaryPrefix then do
+      s.append('(').append(operator.nodeType.text)
+      operand.write(s)
+      s.append(')')
+    end
+    else do
+      s.append('(')
+      operand.write(s)
+      s.append(operator.nodeType.text).append(')')
+    end
+
+  internal
+    var operator as operator
+    var operand as element
+  end
+end

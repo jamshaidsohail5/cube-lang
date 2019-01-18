@@ -1,0 +1,24 @@
+use cube.lang.cst.cstTranslator
+use cube.lang.cst.token
+use cube.lang.parser.parser
+use cube.lang.parser.rightParser
+use cube.lang.precedence.conditionalPrecedence
+use cube.lang.cst.cstNodeType.COLON
+use cube.lang.cst.cstNodeType.IF_EXPRESSION
+
+define ifExpressionParser[T] as rightParser[T]
+  function precedence as int = ConditionalPrecedence.value
+
+  function parse(parser as parser[T], left as T, token as token) as T
+    var body as T = parser.parse
+    parser.tokens.expect(COLON)
+    var elseBody as T = parser.parse(ConditionalPrecedence.value - 1)
+    var v as cstTranslator[T] = parser.translator
+    v.start(IF_EXPRESSION)
+    v.accept(left)
+    v.accept(token)
+    v.accept(body)
+    v.accept(elseBody)
+    output v.value
+  end
+end

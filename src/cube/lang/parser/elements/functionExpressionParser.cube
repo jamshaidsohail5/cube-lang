@@ -1,0 +1,38 @@
+use cube.lang.cst.cstTranslator
+use cube.lang.cst.token
+use cube.lang.parser.parser
+use cube.lang.parser.rightParser
+use cube.lang.tokenizer.tokenStream
+use cube.lang.precedence.functionPrecedence
+use cube.lang.cst.cstNodeType
+
+define functionExpressionParser[T] as rightParser[T]
+  function precedence as int = FunctionPrecedence.value
+
+  function parse(parser as parser[T], left as T, token as token) as T
+    var arguments as T = parseArguments(parser)
+    var v as cstTranslator[T] = parser.translator
+    v.start(FUNCTION_EXPRESSION)
+    v.accept(left)
+    v.accept(token)
+    v.accept(arguments)
+    output v.value
+  end
+
+  internal
+    function parseArguments(parser as parser[T]) as T
+      var tokens as tokenStream = parser.tokens
+      var v as cstTranslator[T] = parser.translator.enter(ARGUMENT_LIST)
+
+      if not tokens.read(RIGHT_PARENTHESIS) then do
+        do
+          v.accept(parser.parse)
+        until not tokens.read(COMMA)
+
+        tokens.expect(RIGHT_PARENTHESIS)
+      end
+
+      output v.value
+    end
+  end
+end

@@ -1,0 +1,11 @@
+use cube.lang.element
+
+define identifier as element
+  function create(name as string) = me.name = name
+  function name as string = name
+  function write(s as stringBuilder) as void = s.append(name)
+
+  internal
+    var name as string
+  end
+end

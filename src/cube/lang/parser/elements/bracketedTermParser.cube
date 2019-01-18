@@ -1,0 +1,12 @@
+use cube.lang.cst.token
+use cube.lang.parser.leftParser
+use cube.lang.parser.parser
+use cube.lang.cst.cstNodeType.RIGHT_PARENTHESIS
+
+define bracketedTermParser[T] as leftParser[T]
+  function parse(parser as parser[T], token as token) as T
+    var expression as T = parser.parse
+    parser.tokens.expect(RIGHT_PARENTHESIS)
+    output expression
+  end
+end

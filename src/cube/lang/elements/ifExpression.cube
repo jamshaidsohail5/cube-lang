@@ -1,0 +1,25 @@
+use cube.lang.element
+
+define ifExpression as element
+  function create(condition as element, body as element, elseBody as element)
+    me.condition = condition
+    me.body = body
+    me.elseBody = elseBody
+  end
+
+  function write(s as stringBuilder)
+    s.append('(')
+    condition.write(s)
+    s.append(' ? ')
+    body.write(s)
+    s.append(' : ')
+    elseBody.write(s)
+    s.append(')')
+  end
+
+  internal
+    var condition as element
+    var body as element
+    var elseBody as element
+  end
+end

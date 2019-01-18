@@ -1,0 +1,3 @@
+define syntaxException as runtimeException
+  function create(message as string) = super(message)
+end

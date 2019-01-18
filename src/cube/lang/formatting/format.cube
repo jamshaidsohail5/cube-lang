@@ -1,0 +1,11 @@
+use cube.lang.element
+
+define format
+  shared
+    function format(e as element) as string
+      var s = new stringBuilder
+      e.write(s)
+      output s.toString
+    end
+  end
+end

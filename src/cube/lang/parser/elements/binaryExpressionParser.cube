@@ -1,0 +1,29 @@
+use cube.lang.operator
+use cube.lang.cst.cstTranslator
+use cube.lang.cst.token
+use cube.lang.parser.parser
+use cube.lang.parser.rightParser
+use cube.lang.operatorType.rightAssociative
+use cube.lang.cst.cstNodeType.BINARY_EXPRESSION
+
+define binaryExpressionParser[T] as rightParser[T]
+  function create(operator as operator) = me.operator = operator
+  function precedence as int = operator.precedence.value
+
+  function parse(parser as parser[T], left as T, token as token) as T
+    var right as T =
+      parser.parse(precedence
+        - if operator.operatorType = RightAssociative then 1 else 0)
+
+    var v as cstTranslator[T] = parser.translator
+    v.start(BINARY_EXPRESSION, operator)
+    v.accept(left)
+    v.accept(token)
+    v.accept(right)
+    output v.value
+  end
+
+  internal
+    var operator as operator
+  end
+end

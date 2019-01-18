@@ -1,11 +1,35 @@
-enum operator
-  field text as string
-  field order as int
+use cube.lang.cst.cstNodeType
+use cube.lang.operatorType
+use cube.lang.precedence
+use cube.lang.cst.cstNodeType
 
-  positive('+', 1)
-  negative('-', 1)
-  multiply('*', 2)
-  divide('/', 2)
-  add('+', 3)
-  subtract('-', 3)
+enum operator
+  Equal(EQUAL, RightAssociative, RelationalPrecedence)
+  Add(PLUS, LeftAssociative, AdditivePrecedence)
+  Subtract(MINUS, LeftAssociative, AdditivePrecedence)
+  Multiply(ASTERISK, LeftAssociative, MultiplicativePrecedence)
+  Divide(FORWARD_SLASH, LeftAssociative, MultiplicativePrecedence)
+  Power(CARET, RightAssociative, ExponentPrecedence)
+  Positive(PLUS, UnaryPrefix, UnaryPrefixPrecedence)
+  Negative(MINUS, UnaryPrefix, UnaryPrefixPrecedence)
+  BinaryNot(TILDE, UnaryPrefix, UnaryPrefixPrecedence)
+  LogicalNot(EXCLAMATION_MARK, UnaryPrefix, UnaryPrefixPrecedence)
+  Factorial(EXCLAMATION_MARK, UnaryPostfix, UnaryPostfixPrecedence)
+
+  function operatorType as operatorType = operatorType
+  function nodeType as cstNodeType = nodeType
+  function precedence as precedence = precedence
+
+  internal
+    var operatorType as operatorType
+    var nodeType as cstNodeType
+    var precedence as precedence
+
+    function create(
+      nodeType as cstNodeType, operatorType as operatorType, precedence as precedence)
+      me.operatorType = operatorType
+      me.nodeType = nodeType
+      me.precedence = precedence
+    end
+  end
 end

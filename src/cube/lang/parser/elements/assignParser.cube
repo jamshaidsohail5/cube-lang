@@ -1,0 +1,20 @@
+use cube.lang.cst.cstTranslator
+use cube.lang.cst.token
+use cube.lang.parser.parser
+use cube.lang.parser.rightParser
+use cube.lang.precedence.assignmentPrecedence
+use cube.lang.cst.cstNodeType.ASSIGN
+
+define assignParser[T] as rightParser[T]
+  function precedence as int = AssignmentPrecedence.value
+
+  function parse(parser as parser[T], left as T, token as token) as T
+    var right as T = parser.parse(AssignmentPrecedence.value - 1)
+    var v as cstTranslator[T] = parser.translator
+    v.start(ASSIGN)
+    v.accept(left)
+    v.accept(token)
+    v.accept(right)
+    output v.value
+  end
+end

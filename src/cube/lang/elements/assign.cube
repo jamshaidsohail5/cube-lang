@@ -1,0 +1,25 @@
+use cube.lang.element
+use cube.lang.operator
+
+define assign as element
+  function create(operator as operator, name as string, right as element)
+    me.operator = operator
+    me.name = name
+    me.right = right
+  end
+
+  function write(s as stringBuilder)
+    s.append('(').append(name).append(' ').append(operator.nodeType.text)
+      .append(
+      ' ')
+
+    right.write(s)
+    s.append(')')
+  end
+
+  internal
+    var operator as operator
+    var name as string
+    var right as element
+  end
+end

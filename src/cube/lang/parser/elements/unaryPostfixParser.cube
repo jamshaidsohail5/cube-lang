@@ -1,0 +1,23 @@
+use cube.lang.operator
+use cube.lang.cst.cstTranslator
+use cube.lang.cst.token
+use cube.lang.parser.parser
+use cube.lang.parser.rightParser
+use cube.lang.cst.cstNodeType.UNARY_EXPRESSION
+
+define unaryPostfixParser[T] as rightParser[T]
+  function create(operator as operator) = me.operator = operator
+  function precedence as int = operator.precedence.value
+
+  function parse(parser as parser[T], left as T, token as token) as T
+    var v as cstTranslator[T] = parser.translator
+    v.start(UNARY_EXPRESSION, operator)
+    v.accept(left)
+    v.accept(token)
+    output v.value
+  end
+
+  internal
+    var operator as operator
+  end
+end

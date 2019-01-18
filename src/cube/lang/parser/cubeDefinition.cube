@@ -1,0 +1,25 @@
+use cube.lang.element
+use cube.lang.operator
+use cube.lang.parser.elements
+use cube.lang.cst.cstNodeType
+
+define cubeDefinition
+  shared
+    function cubeDefinition as parserDefinition[element] = definition
+
+    do
+      definition.left(IDENTIFIER, new identifierParser)
+      definition.operators(Operator.values)
+      definition.right(EQUAL, new assignParser)
+      definition.left(LEFT_PARENTHESIS, new bracketedTermParser)
+      definition.right(LEFT_PARENTHESIS, new functionExpressionParser)
+      definition.right(QUESTION_MARK, new ifExpressionParser)
+    end
+  end
+
+  internal
+    shared
+      let definition = new parserDefinition[element]
+    end
+  end
+end

@@ -1,0 +1,20 @@
+use cube.lang.element
+
+define functionExpression as element
+  function create(target as element, arguments as argumentList)
+    me.target = target
+    me.arguments = arguments
+  end
+
+  function write(s as stringBuilder)
+    target.write(s)
+    s.append('(')
+    arguments.write(s)
+    s.append(')')
+  end
+
+  internal
+    var target as element
+    var arguments as argumentList
+  end
+end
