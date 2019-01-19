@@ -1,5 +1,5 @@
 use cube.lang
-use cube.lang.cst
+use cube.lang.syntax
 use cube.lang.tokenizer.characterType
 use cube.lang.tokenizer.symbol
 

@@ -1,6 +1,0 @@
-use cube.lang.cst
-
-interface rightParser[T]
-  function precedence as int
-  function parse(parser as parser[T], left as T, t0 as token) as T
-end

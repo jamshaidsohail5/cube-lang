@@ -1,6 +1,6 @@
 use cube.lang
-use cube.lang.cst
 use cube.lang.parser.syntaxError
+use cube.lang.syntax
 
 define tokenStream
   function create(tokenizer as tokenizer) = me.tokenizer = tokenizer

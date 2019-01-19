@@ -1,22 +1,23 @@
 use cube.lang
 use cube.lang.elements
 use cube.lang.operator
+use cube.lang.tokenizer
 
-define elementTranslator as cstTranslator[element]
+define elementTranslator as dependencyVisitor[element]
   function enter(nodeType as nodeType) as elementTranslator
     var v = new elementTranslator
     v.nodeType = nodeType
     output v
   end
 
-  function start(nodeType as nodeType, operator as operator)
+  function visit(nodeType as nodeType, operator as operator)
     me.nodeType = nodeType
     me.operator = operator
     elements.clear
   end
 
-  function child(token as token) = nothing
-  function child(element as element) as void = elements.add(element)
+  function visitLeaf(token as token) = nothing
+  function visitDependency(element as element) as void = elements.add(element)
 
   function value as element
     match nodeType

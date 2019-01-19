@@ -1,6 +1,6 @@
-use cube.lang.cst
 use cube.lang.formatting.format
 use cube.lang.parser.cubeParser
+use cube.lang.syntax
 
 define verify
   function main(args as array[string])
@@ -48,10 +48,10 @@ define verify
       function verify(text as string, ast as string)
         try
           var actual as string = format(parse(text))
-          var cst as cstNode = parseCst(text)
+          var root as dependencyNode = dependencyTree(text)
 
           if ast.equals(actual) then do
-            System.out.println(cst)
+            System.out.println(root)
             passed++
           end
           else do

@@ -1,16 +1,17 @@
 use cube.lang
-use cube.lang.cst
 use cube.lang.parser
+use cube.lang.syntax
+use cube.lang.tokenizer
 
-define unaryPrefixParser[T] as leftParser[T]
+define unaryPrefixParser[T] as leftDependencyParser[T]
   function create(operator as operator) = me.operator = operator
 
-  function parse(parser as parser[T], t0 as token) as T
+  function parse(parser as dependencyParser[T], t0 as token) as T
     var operand as T = parser.parse(operator.precedence.value)
-    var v as cstTranslator[T] = parser.translator
-    v.start(NodeType.UnaryExpression, operator)
-    v.child(t0)
-    v.child(operand)
+    var v as dependencyVisitor[T] = parser.visitor
+    v.visit(NodeType.UnaryExpression, operator)
+    v.visitLeaf(t0)
+    v.visitDependency(operand)
     output v.value
   end
 

@@ -1,6 +1,6 @@
-use cube.lang.cst
 use cube.lang.parser
+use cube.lang.tokenizer
 
-define tokenParser[T] as leftParser[T]
-  function parse(parser as parser[T], t0 as token) as T = parser.translator.value(t0)
+define tokenParser[T] as leftDependencyParser[T]
+  function parse(parser as dependencyParser[T], t0 as token) as T = parser.visitor.value(t0)
 end

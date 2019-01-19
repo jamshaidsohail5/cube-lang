@@ -1,5 +1,5 @@
-use cube.lang.cst
 use cube.lang.parser.syntaxError
+use cube.lang.tokenizer
 
 define parserMap[T]
   function add(key as object, parser as T) as void = parsers.put(key, parser)

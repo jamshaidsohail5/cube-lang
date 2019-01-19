@@ -1,31 +1,34 @@
 use cube.lang
-use cube.lang.cst
 use cube.lang.parser.elements
+use cube.lang.syntax
 
 define parserDefinition[T]
-  function left as parserMap[leftParser[T]] = left
-  function right as parserMap[rightParser[T]] = right
-  function left(key as object, parser as leftParser[T]) as void = left.add(key, parser)
-  function right(key as object, parser as rightParser[T]) as void = right.add(key, parser)
-  function token(nodeType as nodeType) as void = left.add(nodeType, new tokenParser)
+  function left as parserMap[leftDependencyParser[T]] = left
+  function right as parserMap[rightDependencyParser[T]] = right
+
+  function leftDependency(key as object, parser as leftDependencyParser[T]) as void =
+    left.add(key, parser)
+
+  function rightDependency(key as object, parser as rightDependencyParser[T]) as void =
+    right.add(key, parser)
+
+  function leaf(nodeType as nodeType) as void = left.add(nodeType, new tokenParser)
 
   function operators(operators as array[operator]) =
     for each operator in operators -> operator(operator)
 
   internal
-    let left = new parserMap[leftParser[T]]
-    let right = new parserMap[rightParser[T]]
+    let left = new parserMap[leftDependencyParser[T]]
+    let right = new parserMap[rightDependencyParser[T]]
 
     function operator(operator as operator)
       var key as object = operator.symbol
       if key is null then key = operator.keyword
 
       match operator.operatorType
-        when UnaryPrefix then left(key, new unaryPrefixParser(operator))
-        when UnaryPostfix then right(key, new unaryPostfixParser(operator))
-
-        when LeftAssociative or RightAssociative or NotAssociative then
-          right(key, new binaryExpressionParser(operator))
+        when UnaryPrefix then leftDependency(key, new unaryPrefixParser(operator))
+        when UnaryPostfix then rightDependency(key, new unaryPostfixParser(operator))
+        else rightDependency(key, new binaryExpressionParser(operator))
       end
     end
   end

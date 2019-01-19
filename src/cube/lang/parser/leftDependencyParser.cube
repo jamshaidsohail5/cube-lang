@@ -1,0 +1,5 @@
+use cube.lang.tokenizer
+
+interface leftDependencyParser[T]
+  function parse(parser as dependencyParser[T], t0 as token) as T
+end

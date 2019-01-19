@@ -1,4 +1,5 @@
 use cube.lang
+use cube.lang.syntax
 
 define keywordToken as token
   function create(keyword as keyword, text as string)
@@ -9,13 +10,11 @@ define keywordToken as token
   function key as keyword = keyword
   function isKeyword(k as keyword) = k == keyword
 
-  protected
-    function write(s as stringBuilder)
-      s.append(nodeType.displayName)
-      s.append(char('('))
-      s.append(keyword.name)
-      s.append(char(')'))
-    end
+  function write(s as stringBuilder)
+    s.append(nodeType.displayName)
+    s.append(char('('))
+    s.append(keyword.name)
+    s.append(char(')'))
   end
 
   internal

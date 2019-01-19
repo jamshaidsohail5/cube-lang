@@ -1,0 +1,22 @@
+use cube.lang
+use cube.lang.tokenizer
+
+define dependencyTreeBuilder as dependencyVisitor[dependencyNode]
+  function enter(nodeType as nodeType) as dependencyTreeBuilder
+    var b = new dependencyTreeBuilder
+    b.visit(nodeType)
+    output b
+  end
+
+  function visit(nodeType as nodeType, operator as operator) =
+    dependencies = new dependencyList(nodeType)
+
+  function visitLeaf(token as token) as void = dependencies.add(token)
+  function visitDependency(node as dependencyNode) as void = dependencies.add(node)
+  function value as dependencyNode = dependencies
+  function value(token as token) as dependencyNode = token
+
+  internal
+    var dependencies as dependencyList
+  end
+end

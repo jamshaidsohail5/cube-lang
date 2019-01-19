@@ -1,0 +1,25 @@
+define dependencyList as dependencyNode
+  function create(nodeType as nodeType) = super(nodeType)
+
+  function add(node as dependencyNode)
+    if node = me then error new unsupportedOperationException
+    children.add(node)
+  end
+
+  function write(s as stringBuilder)
+    s.append(nodeType.displayName)
+    s.append(' [')
+    var length as int = children.size
+
+    for i = 0 to i < length
+      if i > 0 then s.append(char(' '))
+      children.get(i).write(s)
+    end
+
+    s.append(char(']'))
+  end
+
+  internal
+    let children = new list[dependencyNode]
+  end
+end

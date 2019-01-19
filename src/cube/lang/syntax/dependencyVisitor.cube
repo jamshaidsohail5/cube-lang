@@ -1,0 +1,6 @@
+use cube.dependency.tree
+use cube.lang.tokenizer
+
+interface dependencyVisitor[T] as dependencyTreeVisitor[nodeType, token, T]
+  function enter(nodeType as nodeType) as dependencyVisitor[T]
+end

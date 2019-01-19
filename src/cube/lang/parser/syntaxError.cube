@@ -1,5 +1,4 @@
 use cube.lang
-use cube.lang.cst
 use cube.lang.tokenizer
 
 define syntaxError as runtimeException

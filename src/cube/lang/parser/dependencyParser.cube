@@ -1,16 +1,16 @@
-use cube.lang.cst
+use cube.lang.syntax
 use cube.lang.tokenizer
 
-define parser[T]
+define dependencyParser[T]
   function create(
-    definition as parserDefinition[T], translator as cstTranslator[T], tokens as tokenStream)
+    definition as parserDefinition[T], visitor as dependencyVisitor[T], tokens as tokenStream)
     me.leftParsers = definition.left
     me.rightParsers = definition.right
-    me.translator = translator
+    me.visitor = visitor
     me.tokens = tokens
   end
 
-  function translator as cstTranslator[T] = translator
+  function visitor as dependencyVisitor[T] = visitor
   function tokens as tokenStream = tokens
   function parse as T = parse(0)
 
@@ -27,15 +27,15 @@ define parser[T]
   end
 
   internal
-    var leftParsers as parserMap[leftParser[T]]
-    var rightParsers as parserMap[rightParser[T]]
-    var translator as cstTranslator[T]
+    var leftParsers as parserMap[leftDependencyParser[T]]
+    var rightParsers as parserMap[rightDependencyParser[T]]
+    var visitor as dependencyVisitor[T]
     var tokens as tokenStream
 
     function leftPrecedence as int
       var q0 as token = tokens.peek(0)
       if q0 is null then output 0
-      var parser as rightParser[T] = rightParsers.get(q0)
+      var parser as rightDependencyParser[T] = rightParsers.get(q0)
       output if parser is not null then parser.precedence else 0
     end
   end

@@ -1,4 +1,6 @@
-define abstract token as cstNode
+use cube.lang.syntax
+
+define abstract token as dependencyNode
   function create(nodeType as nodeType, text as string)
     super(nodeType)
     me.text = text

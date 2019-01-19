@@ -1,4 +1,4 @@
-use cube.lang.tokenizer
+use cube.lang.syntax
 
 define symbolToken as token
   function create(symbol as symbol, text as string)
@@ -9,13 +9,11 @@ define symbolToken as token
   function key as symbol = symbol
   function isSymbol(s as symbol) = s == symbol
 
-  protected
-    function write(s as stringBuilder)
-      s.append(nodeType.displayName)
-      s.append("('")
-      s.append(symbol.text)
-      s.append("')")
-    end
+  function write(s as stringBuilder)
+    s.append(nodeType.displayName)
+    s.append("('")
+    s.append(symbol.text)
+    s.append("')")
   end
 
   internal

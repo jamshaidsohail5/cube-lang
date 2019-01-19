@@ -1,24 +1,26 @@
 use cube.lang
-use cube.lang.cst
 use cube.lang.parser.elements
+use cube.lang.syntax
 use cube.lang.tokenizer.symbol
 use cube.lang.tokenizer.tokenStream
 
 define cubeParser
   shared
     function parse(text as string) as element = parse(text, new elementTranslator)
-    function parseCst(text as string) as cstNode = parse(text, new cstBuilder)
+
+    function dependencyTree(text as string) as dependencyNode =
+      parse(text, new dependencyTreeBuilder)
 
     do
-      map.token(NodeType.Identifier)
-      map.token(NodeType.Number)
-      map.token(NodeType.ConstantKeyword)
+      map.leaf(NodeType.Identifier)
+      map.leaf(NodeType.Number)
+      map.leaf(NodeType.ConstantKeyword)
       map.operators(Operator.values)
-      map.right(Dot, new dotExpressionParser)
-      map.right(Equal, new assignParser)
-      map.left(LeftParenthesis, new bracketedTermParser)
-      map.right(LeftParenthesis, new functionExpressionParser)
-      map.left(Keyword.`If`, new ifExpressionParser)
+      map.rightDependency(Dot, new dotExpressionParser)
+      map.rightDependency(Equal, new assignParser)
+      map.leftDependency(LeftParenthesis, new bracketedTermParser)
+      map.rightDependency(LeftParenthesis, new functionExpressionParser)
+      map.leftDependency(Keyword.`If`, new ifExpressionParser)
     end
   end
 
@@ -26,8 +28,8 @@ define cubeParser
     shared
       let map = new parserDefinition[_]
 
-      function parse[T](text as string, translator as cstTranslator[T]) as T =
-        new parser(map as parserDefinition[T], translator, tokenStream(text))
+      function parse[T](text as string, translator as dependencyVisitor[T]) as T =
+        new dependencyParser(map as parserDefinition[T], translator, tokenStream(text))
           .parse
     end
   end

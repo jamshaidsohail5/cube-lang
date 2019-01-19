@@ -1,5 +1,5 @@
-use cube.lang.cst
-use cube.lang.cst.nodeType
+use cube.lang.syntax
+use cube.lang.syntax.nodeType
 
 enum keyword
   If('if', Keyword)
