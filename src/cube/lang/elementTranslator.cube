@@ -1,6 +1,6 @@
-use cube.lang
 use cube.lang.elements
 use cube.lang.operator
+use cube.lang.syntax
 use cube.lang.tokenizer
 
 define elementTranslator as dependencyVisitor[element]
