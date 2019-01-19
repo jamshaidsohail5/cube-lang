@@ -16,6 +16,6 @@ define parserMap[T]
   end
 
   internal
-    let parsers = new IMap
+    let parsers = new map
   end
 end

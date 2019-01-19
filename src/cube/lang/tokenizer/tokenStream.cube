@@ -1,4 +1,5 @@
 use cube.lang
+use cube.lang.cst
 use cube.lang.parser.syntaxError
 
 define tokenStream
@@ -38,7 +39,7 @@ define tokenStream
   end
 
   internal
-    let buffer = new IList
+    let buffer = new list
     var tokenizer as tokenizer
 
     function fill(n as int) =

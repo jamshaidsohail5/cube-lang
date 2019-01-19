@@ -1,6 +1,8 @@
 use cube.lang
 use cube.lang.cst
-use cube.lang.tokenizer
+use cube.lang.cst.cstNodeType
+use cube.lang.tokenizer.characterType
+use cube.lang.tokenizer.symbol
 
 define tokenizer
   function create(text as string) = me.text = text

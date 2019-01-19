@@ -1,7 +1,7 @@
 use cube.lang
 
 define argumentList as element
-  function create(arguments as IList) = me.arguments = arguments
+  function create(arguments as IList[element]) = me.arguments = arguments
 
   function write(s as stringBuilder) =
     for i = 0 to i < arguments.size
@@ -10,6 +10,6 @@ define argumentList as element
     end
 
   internal
-    var arguments as IList
+    var arguments as IList[element]
   end
 end
