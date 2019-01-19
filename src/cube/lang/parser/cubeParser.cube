@@ -6,7 +6,7 @@ use cube.lang.tokenizer.tokenStream
 
 define cubeParser
   shared
-    function parse(text as string) as element = parse(text, new elementTranslator)
+    function parse(text as string) as element = parse(text, new elementBuilder)
 
     function dependencyTree(text as string) as dependencyNode =
       parse(text, new dependencyTreeBuilder)

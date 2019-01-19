@@ -3,11 +3,11 @@ use cube.lang.operator
 use cube.lang.syntax
 use cube.lang.tokenizer
 
-define elementTranslator as dependencyVisitor[element]
-  function enter(nodeType as nodeType) as elementTranslator
-    var v = new elementTranslator
-    v.nodeType = nodeType
-    output v
+define elementBuilder as dependencyVisitor[element]
+  function enter(nodeType as nodeType) as elementBuilder
+    var b = new elementBuilder
+    b.nodeType = nodeType
+    output b
   end
 
   function visit(nodeType as nodeType, operator as operator)
