@@ -1,0 +1,30 @@
+use java.util.arrayList
+use java.util.list
+
+define cstNodeList as cstNode
+  function create(nodeType as cstNodeType) = super(nodeType)
+
+  function add(node as cstNode)
+    if node = me then error new unsupportedOperationException
+    children.add(node)
+  end
+
+  protected
+    function write(s as stringBuilder)
+      s.append(nodeType.displayName)
+      s.append(' [')
+      var length as int = children.size
+
+      for i = 0 to i < length
+        if i > 0 then s.append(char(' '))
+        children.get(i).write(s)
+      end
+
+      s.append(char(']'))
+    end
+  end
+
+  internal
+    let children = new list[cstNode]
+  end
+end

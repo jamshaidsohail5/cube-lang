@@ -4,9 +4,9 @@ use cube.lang.tokenizer.tokenStream
 
 define parser[T]
   function create(
-    map as parserMap[T], translator as cstTranslator[T], tokens as tokenStream)
-    me.leftParsers = map.left
-    me.rightParsers = map.right
+    definition as parserDefinition[T], translator as cstTranslator[T], tokens as tokenStream)
+    me.leftParsers = definition.left
+    me.rightParsers = definition.right
     me.translator = translator
     me.tokens = tokens
   end
@@ -16,34 +16,27 @@ define parser[T]
   function parse as T = parse(0)
 
   function parse(rightPrecedence as int) as T
-    var token as token = tokens.next
-    var leftParser as leftParser[T] = leftParsers.get(token.key)
-    if leftParser is null then error new syntaxException("Syntax error near '" + token + "'.")
-    var left as T = leftParser.parse(me, token)
+    var t0 as token = tokens.next
+    var left as T = leftParsers.find(t0).parse(me, t0)
 
     while rightPrecedence < leftPrecedence
-      token = tokens.next
-      var rightParser as rightParser[T] = rightParsers.get(token.key)
-
-      if rightParser is null then
-        error new syntaxException("Syntax error near '" + token + "'.")
-
-      left = rightParser.parse(me, left, token)
+      t0 = tokens.next
+      left = rightParsers.find(t0).parse(me, left, t0)
     end
 
     output left
   end
 
   internal
-    var leftParsers as leftParserMap[T]
-    var rightParsers as rightParserMap[T]
+    var leftParsers as parserMap[leftParser[T]]
+    var rightParsers as parserMap[rightParser[T]]
     var translator as cstTranslator[T]
     var tokens as tokenStream
 
     function leftPrecedence as int
       var q0 as token = tokens.peek(0)
       if q0 is null then output 0
-      var parser as rightParser[T] = rightParsers.get(q0.key)
+      var parser as rightParser[T] = rightParsers.get(q0)
       output if parser is not null then parser.precedence else 0
     end
   end

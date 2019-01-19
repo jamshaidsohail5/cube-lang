@@ -11,4 +11,6 @@ enum cstNodeType
   FUNCTION_EXPRESSION
   ARGUMENT_LIST
   IF_EXPRESSION
+
+  function displayName as string = name.toLowerCase
 end

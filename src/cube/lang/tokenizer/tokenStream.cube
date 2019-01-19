@@ -1,8 +1,8 @@
 use cube.lang.keyword
 use cube.lang.cst
-use cube.lang.parser.syntaxException
 use java.util.arrayList
 use java.util.list
+use cube.lang.parser.syntaxError.expected
 
 define tokenStream
   function create(tokenizer as tokenizer) = me.tokenizer = tokenizer
@@ -15,19 +15,20 @@ define tokenStream
   function expect(s as symbol) as token
     var t as token = next
     if t.isSymbol(s) then output t
-    error new syntaxException("Expected '" + s.text + "' not " + t.nodeType + '.')
+    error expected(s, t)
   end
 
   function expect(k as keyword) as token
     var t as token = next
     if t.isKeyword(k) then output t
-    error new syntaxException("Expected '" + k.text + "' not " + t.nodeType + '.')
+    error expected(k, t)
   end
 
-  function read(s as symbol)
-    if not peek(0).isSymbol(s) then output false
+  function read(s as symbol) as token
+    var q0 as token = peek(0)
+    if not q0.isSymbol(s) then output null
     next
-    output true
+    output q0
   end
 
   function peek(n as int) as token

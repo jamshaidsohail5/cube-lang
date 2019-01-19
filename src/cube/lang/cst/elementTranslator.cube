@@ -15,21 +15,14 @@ define elementTranslator as cstTranslator[element]
   function start(nodeType as cstNodeType, operator as operator)
     me.nodeType = nodeType
     me.operator = operator
-    tokens.clear
     elements.clear
   end
 
-  function accept(token as token) as void = tokens.add(token)
-  function accept(element as element) as void = elements.add(element)
+  function child(token as token) = nothing
+  function child(element as element) as void = elements.add(element)
 
   function value as element
     match nodeType
-      when IDENTIFIER then output new identifier(tokens.get(0).text)
-      when NUMBER then output new constant(Integer.parseInt(tokens.get(0).text))
-
-      when CONSTANT_KEYWORD then
-        output new constant(Boolean.parseBoolean(tokens.get(0).text))
-
       when ASSIGN then do
         var name as string = (elements.get(0) as identifier).name
         output new assign(AssignEqual, name, elements.get(1))
@@ -54,10 +47,19 @@ define elementTranslator as cstTranslator[element]
     error new unsupportedOperationException(nodeType.toString)
   end
 
+  function value(token as token) as element
+    match token.nodeType
+      when IDENTIFIER then output new identifier(token.text)
+      when NUMBER then output new constant(Integer.parseInt(token.text))
+      when CONSTANT_KEYWORD then output new constant(Boolean.parseBoolean(token.text))
+    end
+
+    error new unsupportedOperationException(token.nodeType.toString)
+  end
+
   internal
     var nodeType as cstNodeType
     var operator as operator
-    let tokens = new list[token]
     let elements = new list[element]
   end
 end

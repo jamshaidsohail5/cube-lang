@@ -1,5 +1,8 @@
 use cube.lang.element
 use cube.lang.operator
+use cube.lang.cst.cstBuilder
+use cube.lang.cst.cstNode
+use cube.lang.cst.cstTranslator
 use cube.lang.cst.elementTranslator
 use cube.lang.parser.elements
 use cube.lang.keyword.IF_KEYWORD
@@ -9,10 +12,8 @@ use cube.lang.tokenizer.tokenStream.tokenStream
 
 define cubeParser
   shared
-    function parse(text as string) as element
-      var parser as parser[element] = new parser(map, new elementTranslator, tokenStream(text))
-      output parser.parse
-    end
+    function parse(text as string) as element = parse(text, new elementTranslator)
+    function parseCst(text as string) as cstNode = parse(text, new cstBuilder)
 
     do
       map.token(IDENTIFIER)
@@ -29,7 +30,11 @@ define cubeParser
 
   internal
     shared
-      let map = new parserMap[element]
+      let map = new parserDefinition[_]
+
+      function parse[T](text as string, translator as cstTranslator[T]) as T =
+        new parser(map as parserDefinition[T], translator, tokenStream(text))
+          .parse
     end
   end
 end

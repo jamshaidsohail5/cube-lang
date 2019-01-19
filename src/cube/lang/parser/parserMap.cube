@@ -1,37 +1,23 @@
-use cube.lang.operator
-use cube.lang.cst.cstNodeType
-use cube.lang.parser.elements.binaryExpressionParser
-use cube.lang.parser.elements.tokenParser
-use cube.lang.parser.elements.unaryPostfixParser
-use cube.lang.parser.elements.unaryPrefixParser
+use cube.lang.cst.token
+use java.util.hashMap
+use java.util.map
+use cube.lang.parser.syntaxError.near
 
 define parserMap[T]
-  function left as leftParserMap[T] = left
-  function right as rightParserMap[T] = right
-  function left(key as object, parser as leftParser[T]) as void = left.add(key, parser)
-  function right(key as object, parser as rightParser[T]) as void = right.add(key, parser)
+  function add(key as object, parser as T) as void = parsers.put(key, parser)
 
-  function token(nodeType as cstNodeType) as void =
-    left.add(nodeType, new tokenParser(nodeType))
+  function find(t as token) as T
+    var parser as T = get(t)
+    if parser is null then error near(t)
+    output parser
+  end
 
-  function operators(operators as array[operator]) =
-    for each operator in operators -> operator(operator)
+  function get(t as token) as T
+    var key as object = t.key
+    output if key is not null then parsers.get(key) else null
+  end
 
   internal
-    let left = new leftParserMap[T]
-    let right = new rightParserMap[T]
-
-    function operator(operator as operator)
-      var key as object = operator.symbol
-      if key is null then key = operator.keyword
-
-      match operator.operatorType
-        when UnaryPrefix then left(key, new unaryPrefixParser(operator))
-        when UnaryPostfix then right(key, new unaryPostfixParser(operator))
-
-        when LeftAssociative or RightAssociative or NotAssociative then
-          right(key, new binaryExpressionParser(operator))
-      end
-    end
+    let parsers = new map[object, T]
   end
 end

@@ -8,13 +8,13 @@ use cube.lang.cst.cstNodeType.DOT_EXPRESSION
 define dotExpressionParser[T] as rightParser[T]
   function precedence as int = DotPrecedence.value
 
-  function parse(parser as parser[T], left as T, token as token) as T
+  function parse(parser as parser[T], left as T, t0 as token) as T
     var right as T = parser.parse(precedence)
     var v as cstTranslator[T] = parser.translator
     v.start(DOT_EXPRESSION)
-    v.accept(left)
-    v.accept(token)
-    v.accept(right)
+    v.child(left)
+    v.child(t0)
+    v.child(right)
     output v.value
   end
 end

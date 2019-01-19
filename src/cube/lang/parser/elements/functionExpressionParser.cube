@@ -4,19 +4,21 @@ use cube.lang.parser.parser
 use cube.lang.parser.rightParser
 use cube.lang.tokenizer.tokenStream
 use cube.lang.precedence.functionPrecedence
-use cube.lang.cst.cstNodeType
-use cube.lang.tokenizer.symbol
+use cube.lang.cst.cstNodeType.ARGUMENT_LIST
+use cube.lang.cst.cstNodeType.FUNCTION_EXPRESSION
+use cube.lang.tokenizer.symbol.COMMA
+use cube.lang.tokenizer.symbol.RIGHT_PARENTHESIS
 
 define functionExpressionParser[T] as rightParser[T]
   function precedence as int = FunctionPrecedence.value
 
-  function parse(parser as parser[T], left as T, token as token) as T
+  function parse(parser as parser[T], left as T, t0 as token) as T
     var arguments as T = parseArguments(parser)
     var v as cstTranslator[T] = parser.translator
     v.start(FUNCTION_EXPRESSION)
-    v.accept(left)
-    v.accept(token)
-    v.accept(arguments)
+    v.child(left)
+    v.child(t0)
+    v.child(arguments)
     output v.value
   end
 
@@ -24,13 +26,17 @@ define functionExpressionParser[T] as rightParser[T]
     function parseArguments(parser as parser[T]) as T
       var tokens as tokenStream = parser.tokens
       var v as cstTranslator[T] = parser.translator.enter(ARGUMENT_LIST)
+      var t as token = tokens.read(RIGHT_PARENTHESIS)
 
-      if not tokens.read(RIGHT_PARENTHESIS) then do
+      if t is not null then v.child(t)
+      else do
         do
-          v.accept(parser.parse)
-        until not tokens.read(COMMA)
+          v.child(parser.parse)
+          t = tokens.read(COMMA)
+          if t is not null then v.child(t)
+        until t is null
 
-        tokens.expect(RIGHT_PARENTHESIS)
+        v.child(tokens.expect(RIGHT_PARENTHESIS))
       end
 
       output v.value

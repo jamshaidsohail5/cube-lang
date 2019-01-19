@@ -1,0 +1,15 @@
+use cube.lang.keyword
+use cube.lang.cst.token
+use cube.lang.tokenizer.symbol
+
+define syntaxError as runtimeException
+  shared
+    function expected(s as symbol, t as token) =
+      new syntaxException("Expected '" + s.text + "' not " + t.nodeType + '.')
+
+    function expected(k as keyword, t as token) =
+      new syntaxException("Expected '" + k.text + "' not " + t.nodeType + '.')
+
+    function near(t as token) = new syntaxException("Syntax error near '" + t + "'.")
+  end
+end

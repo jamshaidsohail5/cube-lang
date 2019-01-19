@@ -10,6 +10,15 @@ define keywordToken as token
   function key as keyword = keyword
   function isKeyword(k as keyword) = k == keyword
 
+  protected
+    function write(s as stringBuilder)
+      s.append(nodeType.displayName)
+      s.append(char('('))
+      s.append(keyword.name)
+      s.append(char(')'))
+    end
+  end
+
   internal
     var keyword as keyword
   end

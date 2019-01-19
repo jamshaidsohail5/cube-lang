@@ -10,6 +10,15 @@ define symbolToken as token
   function key as symbol = symbol
   function isSymbol(s as symbol) = s == symbol
 
+  protected
+    function write(s as stringBuilder)
+      s.append(nodeType.displayName)
+      s.append("('")
+      s.append(symbol.text)
+      s.append("')")
+    end
+  end
+
   internal
     var symbol as symbol
   end

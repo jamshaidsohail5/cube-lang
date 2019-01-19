@@ -9,11 +9,11 @@ define unaryPostfixParser[T] as rightParser[T]
   function create(operator as operator) = me.operator = operator
   function precedence as int = operator.precedence.value
 
-  function parse(parser as parser[T], left as T, token as token) as T
+  function parse(parser as parser[T], left as T, t0 as token) as T
     var v as cstTranslator[T] = parser.translator
     v.start(UNARY_EXPRESSION, operator)
-    v.accept(left)
-    v.accept(token)
+    v.child(left)
+    v.child(t0)
     output v.value
   end
 

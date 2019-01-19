@@ -11,7 +11,7 @@ define abstract token as cstNode
     function key as object
   end
 
-  internal
+  protected
     var text as string
   end
 end

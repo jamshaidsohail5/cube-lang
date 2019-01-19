@@ -3,4 +3,13 @@ use cube.lang.cst.cstNodeType.IDENTIFIER
 define identifierToken as token
   function create(text as string) = super(IDENTIFIER, text)
   function key as object = IDENTIFIER
+
+  protected
+    function write(s as stringBuilder)
+      s.append(nodeType.displayName)
+      s.append("('")
+      s.append(text)
+      s.append("')")
+    end
+  end
 end

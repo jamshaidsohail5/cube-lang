@@ -4,7 +4,8 @@ interface cstTranslator[T]
   function enter(nodeType as cstNodeType) as cstTranslator[T]
   function start(nodeType as cstNodeType) as void = start(nodeType, null)
   function start(nodeType as cstNodeType, operator as operator)
-  function accept(token as token)
-  function accept(value as T)
+  function child(token as token)
+  function child(value as T)
   function value as T
+  function value(token as token) as T
 end
