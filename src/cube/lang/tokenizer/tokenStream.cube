@@ -39,7 +39,7 @@ define tokenStream
   end
 
   internal
-    let buffer = new list
+    let buffer = new list[token]
     var tokenizer as tokenizer
 
     function fill(n as int) =

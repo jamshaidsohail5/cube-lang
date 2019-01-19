@@ -22,6 +22,6 @@ define cstNodeList as cstNode
   end
 
   internal
-    let children = new list
+    let children = new list[cstNode]
   end
 end

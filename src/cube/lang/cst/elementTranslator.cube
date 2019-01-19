@@ -57,6 +57,6 @@ define elementTranslator as cstTranslator[element]
   internal
     var nodeType as cstNodeType
     var operator as operator
-    let elements = new list
+    let elements = new list[element]
   end
 end
