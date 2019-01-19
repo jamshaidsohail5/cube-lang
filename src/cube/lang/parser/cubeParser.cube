@@ -28,8 +28,8 @@ define cubeParser
     shared
       let map = new parserDefinition[_]
 
-      function parse[T](text as string, translator as dependencyVisitor[T]) as T =
-        new dependencyParser(map as parserDefinition[T], translator, tokenStream(text))
+      function parse[T](text as string, visitor as dependencyVisitor[T]) as T =
+        new dependencyParser(map as parserDefinition[T], visitor, tokenStream(text))
           .parse
     end
   end
