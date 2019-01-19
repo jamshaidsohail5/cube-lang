@@ -16,14 +16,14 @@ define parser[T]
 
   function parse(rightPrecedence as int) as T
     var t0 as token = tokens.next
-    var left as T = leftParsers.find(t0).parse(me, t0)
+    var value as T = leftParsers.find(t0).parse(me, t0)
 
     while rightPrecedence < leftPrecedence
       t0 = tokens.next
-      left = rightParsers.find(t0).parse(me, left, t0)
+      value = rightParsers.find(t0).parse(me, value, t0)
     end
 
-    output left
+    output value
   end
 
   internal
