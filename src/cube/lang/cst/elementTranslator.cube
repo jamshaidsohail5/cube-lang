@@ -3,13 +3,13 @@ use cube.lang.elements
 use cube.lang.operator
 
 define elementTranslator as cstTranslator[element]
-  function enter(nodeType as cstNodeType) as elementTranslator
+  function enter(nodeType as nodeType) as elementTranslator
     var v = new elementTranslator
     v.nodeType = nodeType
     output v
   end
 
-  function start(nodeType as cstNodeType, operator as operator)
+  function start(nodeType as nodeType, operator as operator)
     me.nodeType = nodeType
     me.operator = operator
     elements.clear
@@ -20,24 +20,24 @@ define elementTranslator as cstTranslator[element]
 
   function value as element
     match nodeType
-      when ASSIGN then do
+      when Assign then do
         var name as string = (elements.get(0) as identifier).name
         output new assign(AssignEqual, name, elements.get(1))
       end
 
-      when UNARY_EXPRESSION then output new unaryExpression(operator, elements.get(0))
+      when UnaryExpression then output new unaryExpression(operator, elements.get(0))
 
-      when BINARY_EXPRESSION then
+      when BinaryExpression then
         output new binaryExpression(operator, elements.get(0), elements.get(1))
 
-      when DOT_EXPRESSION then output new dotExpression(elements.get(0), elements.get(1))
+      when DotExpression then output new dotExpression(elements.get(0), elements.get(1))
 
-      when FUNCTION_EXPRESSION then
+      when FunctionExpression then
         output new functionExpression(elements.get(0), elements.get(1) as argumentList)
 
-      when ARGUMENT_LIST then output new argumentList(elements)
+      when ArgumentList then output new argumentList(elements)
 
-      when IF_EXPRESSION then
+      when IfExpression then
         output new ifExpression(elements.get(0), elements.get(1), elements.get(2))
     end
 
@@ -46,16 +46,16 @@ define elementTranslator as cstTranslator[element]
 
   function value(token as token) as element
     match token.nodeType
-      when IDENTIFIER then output new identifier(token.text)
-      when NUMBER then output new constant(Integer.parseInt(token.text))
-      when CONSTANT_KEYWORD then output new constant(Boolean.parseBoolean(token.text))
+      when Identifier then output new identifier(token.text)
+      when Number then output new constant(Integer.parseInt(token.text))
+      when ConstantKeyword then output new constant(Boolean.parseBoolean(token.text))
     end
 
     error new unsupportedOperationException(token.nodeType.toString)
   end
 
   internal
-    var nodeType as cstNodeType
+    var nodeType as nodeType
     var operator as operator
     let elements = new list[element]
   end

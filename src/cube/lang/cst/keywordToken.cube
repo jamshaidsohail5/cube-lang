@@ -1,9 +1,8 @@
 use cube.lang
-use cube.lang.cst.cstNodeType
 
 define keywordToken as token
   function create(keyword as keyword, text as string)
-    super(KEYWORD, text)
+    super(NodeType.Keyword, text)
     me.keyword = keyword
   end
 

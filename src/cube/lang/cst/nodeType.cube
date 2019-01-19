@@ -1,0 +1,18 @@
+use cube.text.textFunctions
+
+enum nodeType
+  Symbol
+  Keyword
+  ConstantKeyword
+  Identifier
+  Number
+  Assign
+  UnaryExpression
+  BinaryExpression
+  DotExpression
+  FunctionExpression
+  ArgumentList
+  IfExpression
+
+  function displayName as string = camelCase(name)
+end

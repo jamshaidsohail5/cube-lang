@@ -1,18 +1,18 @@
 use cube.lang.cst
-use cube.lang.cst.cstNodeType
+use cube.lang.cst.nodeType
 
 enum keyword
-  IF_KEYWORD('if', KEYWORD)
-  THEN_KEYWORD('then', KEYWORD)
-  ELSE_KEYWORD('else', KEYWORD)
-  AND_KEYWORD('and', KEYWORD)
-  OR_KEYWORD('or', KEYWORD)
-  NOT_KEYWORD('not', KEYWORD)
-  TRUE_KEYWORD('true', CONSTANT_KEYWORD)
-  FALSE_KEYWORD('false', CONSTANT_KEYWORD)
+  If('if', Keyword)
+  Then('then', Keyword)
+  Else('else', Keyword)
+  And('and', Keyword)
+  Or('or', Keyword)
+  Not('not', Keyword)
+  True('true', ConstantKeyword)
+  False('false', ConstantKeyword)
 
   function text as string = text
-  function nodeType as cstNodeType = nodeType
+  function nodeType as nodeType = nodeType
 
   shared
     function keyword(text as string) as keyword = map.get(text)
@@ -24,9 +24,9 @@ enum keyword
 
   internal
     var text as string
-    var nodeType as cstNodeType
+    var nodeType as nodeType
 
-    function create(text as string, nodeType as cstNodeType)
+    function create(text as string, nodeType as nodeType)
       me.text = text
       me.nodeType = nodeType
     end

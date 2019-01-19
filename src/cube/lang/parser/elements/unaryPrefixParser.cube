@@ -1,6 +1,5 @@
 use cube.lang
 use cube.lang.cst
-use cube.lang.cst.cstNodeType
 use cube.lang.parser
 
 define unaryPrefixParser[T] as leftParser[T]
@@ -9,7 +8,7 @@ define unaryPrefixParser[T] as leftParser[T]
   function parse(parser as parser[T], t0 as token) as T
     var operand as T = parser.parse(operator.precedence.value)
     var v as cstTranslator[T] = parser.translator
-    v.start(UNARY_EXPRESSION, operator)
+    v.start(NodeType.UnaryExpression, operator)
     v.child(t0)
     v.child(operand)
     output v.value

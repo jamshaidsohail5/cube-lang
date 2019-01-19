@@ -1,8 +1,6 @@
-use cube.lang.cst.cstNodeType
-
 define identifierToken as token
-  function create(text as string) = super(IDENTIFIER, text)
-  function key as object = IDENTIFIER
+  function create(text as string) = super(NodeType.Identifier, text)
+  function key as object = NodeType.Identifier
 
   protected
     function write(s as stringBuilder)

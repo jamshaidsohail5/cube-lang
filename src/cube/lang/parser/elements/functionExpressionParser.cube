@@ -1,5 +1,4 @@
 use cube.lang.cst
-use cube.lang.cst.cstNodeType
 use cube.lang.parser
 use cube.lang.precedence
 use cube.lang.tokenizer
@@ -11,7 +10,7 @@ define functionExpressionParser[T] as rightParser[T]
   function parse(parser as parser[T], left as T, t0 as token) as T
     var arguments as T = parseArguments(parser)
     var v as cstTranslator[T] = parser.translator
-    v.start(FUNCTION_EXPRESSION)
+    v.start(NodeType.FunctionExpression)
     v.child(left)
     v.child(t0)
     v.child(arguments)
@@ -21,18 +20,18 @@ define functionExpressionParser[T] as rightParser[T]
   internal
     function parseArguments(parser as parser[T]) as T
       var tokens as tokenStream = parser.tokens
-      var v as cstTranslator[T] = parser.translator.enter(ARGUMENT_LIST)
-      var t as token = tokens.read(RIGHT_PARENTHESIS)
+      var v as cstTranslator[T] = parser.translator.enter(NodeType.ArgumentList)
+      var t as token = tokens.read(RightParenthesis)
 
       if t is not null then v.child(t)
       else do
         do
           v.child(parser.parse)
-          t = tokens.read(COMMA)
+          t = tokens.read(Comma)
           if t is not null then v.child(t)
         until t is null
 
-        v.child(tokens.expect(RIGHT_PARENTHESIS))
+        v.child(tokens.expect(RightParenthesis))
       end
 
       output v.value

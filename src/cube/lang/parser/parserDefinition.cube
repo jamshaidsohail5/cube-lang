@@ -7,7 +7,7 @@ define parserDefinition[T]
   function right as parserMap[rightParser[T]] = right
   function left(key as object, parser as leftParser[T]) as void = left.add(key, parser)
   function right(key as object, parser as rightParser[T]) as void = right.add(key, parser)
-  function token(nodeType as cstNodeType) as void = left.add(nodeType, new tokenParser)
+  function token(nodeType as nodeType) as void = left.add(nodeType, new tokenParser)
 
   function operators(operators as array[operator]) =
     for each operator in operators -> operator(operator)

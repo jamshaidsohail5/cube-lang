@@ -1,30 +1,29 @@
-use cube.lang.keyword
 use cube.lang.operatorType
 use cube.lang.precedence
 use cube.lang.tokenizer
 use cube.lang.tokenizer.symbol
 
 enum operator
-  LogicalAnd(AND_KEYWORD, LeftAssociative, LogicalAndPrecedence)
-  LogicalOr(OR_KEYWORD, LeftAssociative, LogicalOrPrecedence)
-  BinaryAnd(AND_KEYWORD, LeftAssociative, BinaryAndPrecedence)
-  BinaryOr(OR_KEYWORD, LeftAssociative, BinaryOrPrecedence)
-  BinaryXor(CARET, LeftAssociative, BinaryXorPrecedence)
-  IncrementPostfix(PLUS_PLUS, UnaryPostfix, UnaryPostfixPrecedence)
-  DecrementPostfix(MINUS_MINUS, UnaryPostfix, UnaryPostfixPrecedence)
-  Positive(PLUS, UnaryPrefix, UnaryPrefixPrecedence)
-  Negative(MINUS, UnaryPrefix, UnaryPrefixPrecedence)
-  IncrementPrefix(PLUS_PLUS, UnaryPrefix, UnaryPrefixPrecedence)
-  DecrementPrefix(MINUS_MINUS, UnaryPrefix, UnaryPrefixPrecedence)
-  BinaryNot(TILDE, UnaryPrefix, UnaryPrefixPrecedence)
-  LogicalNot(NOT_KEYWORD, UnaryPrefix, UnaryPrefixPrecedence)
-  Multiply(ASTERISK, LeftAssociative, MultiplicativePrecedence)
-  Divide(FORWARD_SLASH, LeftAssociative, MultiplicativePrecedence)
-  Add(PLUS, LeftAssociative, AdditivePrecedence)
-  Subtract(MINUS, LeftAssociative, AdditivePrecedence)
-  Less(LESS, NotAssociative, RelationalPrecedence)
-  AssignEqual(EQUAL, RightAssociative, AssignmentPrecedence)
-  LeftArrow(LEFT_ARROW, RightAssociative, AssignmentPrecedence)
+  LogicalAnd(Keyword.`And`, LeftAssociative, LogicalAndPrecedence)
+  LogicalOr(Keyword.`Or`, LeftAssociative, LogicalOrPrecedence)
+  BinaryAnd(Keyword.`And`, LeftAssociative, BinaryAndPrecedence)
+  BinaryOr(Keyword.`Or`, LeftAssociative, BinaryOrPrecedence)
+  BinaryXor(Caret, LeftAssociative, BinaryXorPrecedence)
+  IncrementPostfix(PlusPlus, UnaryPostfix, UnaryPostfixPrecedence)
+  DecrementPostfix(MinusMinus, UnaryPostfix, UnaryPostfixPrecedence)
+  Positive(Plus, UnaryPrefix, UnaryPrefixPrecedence)
+  Negative(Minus, UnaryPrefix, UnaryPrefixPrecedence)
+  IncrementPrefix(PlusPlus, UnaryPrefix, UnaryPrefixPrecedence)
+  DecrementPrefix(MinusMinus, UnaryPrefix, UnaryPrefixPrecedence)
+  BinaryNot(Tilde, UnaryPrefix, UnaryPrefixPrecedence)
+  LogicalNot(Keyword.`Not`, UnaryPrefix, UnaryPrefixPrecedence)
+  Multiply(Asterisk, LeftAssociative, MultiplicativePrecedence)
+  Divide(ForwardSlash, LeftAssociative, MultiplicativePrecedence)
+  Add(Plus, LeftAssociative, AdditivePrecedence)
+  Subtract(Minus, LeftAssociative, AdditivePrecedence)
+  Less(LessSymbol, NotAssociative, RelationalPrecedence)
+  AssignEqual(Equal, RightAssociative, AssignmentPrecedence)
+  LeftArrow(LeftArrowSymbol, RightAssociative, AssignmentPrecedence)
 
   function operatorType as operatorType = operatorType
   function symbol as symbol = symbol

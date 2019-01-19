@@ -2,8 +2,8 @@ use cube.lang
 use cube.lang.tokenizer
 
 define abstract cstNode
-  function create(nodeType as cstNodeType) = me.nodeType = nodeType
-  function nodeType as cstNodeType = nodeType
+  function create(nodeType as nodeType) = me.nodeType = nodeType
+  function nodeType as nodeType = nodeType
   function isSymbol(s as symbol) = false
   function isKeyword(k as keyword) = false
 
@@ -14,7 +14,7 @@ define abstract cstNode
   end
 
   protected
-    var nodeType as cstNodeType
+    var nodeType as nodeType
 
     abstract
       function write(s as stringBuilder)

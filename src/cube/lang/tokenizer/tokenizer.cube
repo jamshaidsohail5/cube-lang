@@ -1,12 +1,11 @@
 use cube.lang
 use cube.lang.cst
-use cube.lang.cst.cstNodeType
 use cube.lang.tokenizer.characterType
 use cube.lang.tokenizer.symbol
 
 define tokenizer
   function create(text as string) = me.text = text
-  function tokenType as cstNodeType = tokenType
+  function tokenType as nodeType = tokenType
   function tokenText as string = tokenText
   function symbol as symbol = symbol
   function keyword as keyword = keyword
@@ -29,7 +28,7 @@ define tokenizer
   internal
     var text as string
     var position as int
-    var tokenType as cstNodeType
+    var tokenType as nodeType
     var tokenText as string
     var symbol as symbol
     var keyword as keyword
@@ -39,7 +38,7 @@ define tokenizer
       var c as int
       while c <- peek != -1 and characterType(c) = DIGIT -> position++
       tokenText = text.substring(start, position)
-      tokenType = NUMBER
+      tokenType = NodeType.Number
       output true
     end
 
@@ -51,7 +50,7 @@ define tokenizer
       keyword = Keyword.keyword(tokenText)
 
       tokenType
-        = if keyword is not null then keyword.nodeType else IDENTIFIER
+        = if keyword is not null then keyword.nodeType else NodeType.Identifier
 
       output true
     end
@@ -60,57 +59,57 @@ define tokenizer
       var c as int = read
 
       match c
-        when char('.') then reduce(DOT)
-        when char('(') then reduce(LEFT_PARENTHESIS)
-        when char(')') then reduce(RIGHT_PARENTHESIS)
-        when char(',') then reduce(COMMA)
-        when char('=') then reduce(EQUAL)
+        when char('.') then reduce(Dot)
+        when char('(') then reduce(LeftParenthesis)
+        when char(')') then reduce(RightParenthesis)
+        when char(',') then reduce(Comma)
+        when char('=') then reduce(Equal)
 
         when char('+') then if peek = char('+') then do
           read
-          reduce(PLUS_PLUS)
-        end else reduce(PLUS)
+          reduce(PlusPlus)
+        end else reduce(Plus)
 
         when char('-') then
           match peek
             when char('-') then do
               read
-              reduce(MINUS_MINUS)
+              reduce(MinusMinus)
             end
 
             when char('>') then do
               read
-              reduce(RIGHT_ARROW)
+              reduce(RightArrowSymbol)
             end
 
-            else reduce(MINUS)
+            else reduce(Minus)
           end
 
-        when char('*') then reduce(ASTERISK)
-        when char('/') then reduce(FORWARD_SLASH)
-        when char('^') then reduce(CARET)
-        when char('~') then reduce(TILDE)
+        when char('*') then reduce(Asterisk)
+        when char('/') then reduce(ForwardSlash)
+        when char('^') then reduce(Caret)
+        when char('~') then reduce(Tilde)
 
         when char('<') then
           match peek
             when char('-') then do
               read
-              reduce(LEFT_ARROW)
+              reduce(LeftArrowSymbol)
             end
 
             when char('=') then do
               read
-              reduce(LESS_EQUAL)
+              reduce(LessEqual)
             end
 
-            else reduce(LESS)
+            else reduce(LessSymbol)
           end
 
         when char('>') then
           if peek = char('=') then do
             read
-            reduce(GREATER_EQUAL)
-          end else reduce(GREATER)
+            reduce(GreaterEqual)
+          end else reduce(GreaterSymbol)
 
         else error new unsupportedOperationException(
           "Unrecognized character '" + c as char + "' unicode " + c + '.')
@@ -120,7 +119,7 @@ define tokenizer
     end
 
     function reduce(symbol as symbol)
-      me.tokenType = SYMBOL
+      me.tokenType = NodeType.Symbol
       me.tokenText = symbol.text
       me.symbol = symbol
     end

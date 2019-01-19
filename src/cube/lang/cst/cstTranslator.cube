@@ -1,9 +1,9 @@
 use cube.lang
 
 interface cstTranslator[T]
-  function enter(nodeType as cstNodeType) as cstTranslator[T]
-  function start(nodeType as cstNodeType) as void = start(nodeType, null)
-  function start(nodeType as cstNodeType, operator as operator)
+  function enter(nodeType as nodeType) as cstTranslator[T]
+  function start(nodeType as nodeType) as void = start(nodeType, null)
+  function start(nodeType as nodeType, operator as operator)
   function child(token as token)
   function child(value as T)
   function value as T

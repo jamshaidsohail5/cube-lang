@@ -1,9 +1,8 @@
-use cube.lang.cst.cstNodeType
 use cube.lang.tokenizer
 
 define symbolToken as token
   function create(symbol as symbol, text as string)
-    super(SYMBOL, text)
+    super(NodeType.Symbol, text)
     me.symbol = symbol
   end
 

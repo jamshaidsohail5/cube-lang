@@ -1,7 +1,5 @@
 use cube.lang
 use cube.lang.cst
-use cube.lang.cst.cstNodeType
-use cube.lang.keyword
 use cube.lang.parser.elements
 use cube.lang.tokenizer.symbol
 use cube.lang.tokenizer.tokenStream
@@ -12,15 +10,15 @@ define cubeParser
     function parseCst(text as string) as cstNode = parse(text, new cstBuilder)
 
     do
-      map.token(IDENTIFIER)
-      map.token(NUMBER)
-      map.token(CONSTANT_KEYWORD)
+      map.token(NodeType.Identifier)
+      map.token(NodeType.Number)
+      map.token(NodeType.ConstantKeyword)
       map.operators(Operator.values)
-      map.right(DOT, new dotExpressionParser)
-      map.right(EQUAL, new assignParser)
-      map.left(LEFT_PARENTHESIS, new bracketedTermParser)
-      map.right(LEFT_PARENTHESIS, new functionExpressionParser)
-      map.left(IF_KEYWORD, new ifExpressionParser)
+      map.right(Dot, new dotExpressionParser)
+      map.right(Equal, new assignParser)
+      map.left(LeftParenthesis, new bracketedTermParser)
+      map.right(LeftParenthesis, new functionExpressionParser)
+      map.left(Keyword.`If`, new ifExpressionParser)
     end
   end
 

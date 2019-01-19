@@ -1,6 +1,5 @@
 use cube.lang
 use cube.lang.cst
-use cube.lang.cst.cstNodeType
 use cube.lang.operatorType
 use cube.lang.parser
 
@@ -14,7 +13,7 @@ define binaryExpressionParser[T] as rightParser[T]
         - if operator.operatorType = RightAssociative then 1 else 0)
 
     var v as cstTranslator[T] = parser.translator
-    v.start(BINARY_EXPRESSION, operator)
+    v.start(NodeType.BinaryExpression, operator)
     v.child(left)
     v.child(t0)
     v.child(right)

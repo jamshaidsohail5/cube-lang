@@ -1,13 +1,13 @@
 use cube.lang
 
 define cstBuilder as cstTranslator[cstNode]
-  function enter(nodeType as cstNodeType) as cstTranslator[cstNode]
+  function enter(nodeType as nodeType) as cstTranslator[cstNode]
     var b = new cstBuilder
     b.start(nodeType)
     output b
   end
 
-  function start(nodeType as cstNodeType, operator as operator) =
+  function start(nodeType as nodeType, operator as operator) =
     me.nodes = new cstNodeList(nodeType)
 
   function child(token as token) as void = nodes.add(token)

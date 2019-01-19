@@ -1,6 +1,5 @@
 use cube.lang
 use cube.lang.cst
-use cube.lang.cst.cstNodeType
 use cube.lang.parser
 
 define unaryPostfixParser[T] as rightParser[T]
@@ -9,7 +8,7 @@ define unaryPostfixParser[T] as rightParser[T]
 
   function parse(parser as parser[T], left as T, t0 as token) as T
     var v as cstTranslator[T] = parser.translator
-    v.start(UNARY_EXPRESSION, operator)
+    v.start(NodeType.UnaryExpression, operator)
     v.child(left)
     v.child(t0)
     output v.value

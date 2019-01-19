@@ -1,6 +1,5 @@
+use cube.lang
 use cube.lang.cst
-use cube.lang.cst.cstNodeType
-use cube.lang.keyword
 use cube.lang.parser
 use cube.lang.precedence
 use cube.lang.tokenizer
@@ -10,12 +9,12 @@ define ifExpressionParser[T] as leftParser[T]
     var tokens as tokenStream = parser.tokens
     var precedence as int = ConditionalPrecedence.value - 1
     var condition as T = parser.parse(precedence)
-    tokens.expect(THEN_KEYWORD)
+    tokens.expect(Keyword.`Then`)
     var body as T = parser.parse
-    tokens.expect(ELSE_KEYWORD)
+    tokens.expect(Keyword.`Else`)
     var elseBody as T = parser.parse(precedence)
     var v as cstTranslator[T] = parser.translator
-    v.start(IF_EXPRESSION)
+    v.start(NodeType.IfExpression)
     v.child(condition)
     v.child(body)
     v.child(elseBody)

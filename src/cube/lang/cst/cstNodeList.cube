@@ -1,5 +1,5 @@
 define cstNodeList as cstNode
-  function create(nodeType as cstNodeType) = super(nodeType)
+  function create(nodeType as nodeType) = super(nodeType)
 
   function add(node as cstNode)
     if node = me then error new unsupportedOperationException

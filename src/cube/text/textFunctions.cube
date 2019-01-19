@@ -1,0 +1,15 @@
+define textFunctions
+  shared
+    function camelCase(s as string) as string
+      var n as int = s.length
+      if n < 2 then output s
+      var c0 as char = s.charAt(0)
+      var c1 as char = s.charAt(1)
+
+      output if c0 >= char('A') and c0 <= char('Z')
+        and not (c1 >= char('A') and c1 <= char('Z')) then
+        Character.toLowerCase(c0) + s.substring(1) else
+        s
+    end
+  end
+end
