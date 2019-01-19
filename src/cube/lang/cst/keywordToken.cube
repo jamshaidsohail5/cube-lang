@@ -1,0 +1,16 @@
+use cube.lang.keyword
+use cube.lang.cst.cstNodeType.KEYWORD
+
+define keywordToken as token
+  function create(keyword as keyword, text as string)
+    super(KEYWORD, text)
+    me.keyword = keyword
+  end
+
+  function key as keyword = keyword
+  function isKeyword(k as keyword) = k == keyword
+
+  internal
+    var keyword as keyword
+  end
+end

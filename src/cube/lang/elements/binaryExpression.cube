@@ -11,7 +11,7 @@ define binaryExpression as element
   function write(s as stringBuilder)
     s.append('(')
     left.write(s)
-    s.append(' ').append(operator.nodeType.text).append(' ')
+    s.append(' ').append(operator.symbol.text).append(' ')
     right.write(s)
     s.append(')')
   end

@@ -10,14 +10,14 @@ define unaryExpression as element
 
   function write(s as stringBuilder) =
     if operator.operatorType = UnaryPrefix then do
-      s.append('(').append(operator.nodeType.text)
+      s.append('(').append(operator.symbol.text)
       operand.write(s)
       s.append(')')
     end
     else do
       s.append('(')
       operand.write(s)
-      s.append(operator.nodeType.text).append(')')
+      s.append(operator.symbol.text).append(')')
     end
 
   internal

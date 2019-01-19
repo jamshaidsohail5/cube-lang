@@ -1,5 +1,6 @@
-use cube.lang.cst.cstNodeType
-use cube.lang.cst.token
+use cube.lang.keyword
+use cube.lang.cst
+use cube.lang.parser.syntaxException
 use java.util.arrayList
 use java.util.list
 
@@ -11,18 +12,20 @@ define tokenStream
     output buffer.remove(0)
   end
 
-  function expect(expected as cstNodeType) as token
-    var token as token = peek(0)
-
-    if token.nodeType != expected then
-      error 'Expected ' + expected + ' not ' + token.nodeType + '.'
-
-    output next
+  function expect(s as symbol) as token
+    var t as token = next
+    if t.isSymbol(s) then output t
+    error new syntaxException("Expected '" + s.text + "' not " + t.nodeType + '.')
   end
 
-  function read(expected as cstNodeType)
-    var token as token = peek(0)
-    if token.nodeType != expected then output false
+  function expect(k as keyword) as token
+    var t as token = next
+    if t.isKeyword(k) then output t
+    error new syntaxException("Expected '" + k.text + "' not " + t.nodeType + '.')
+  end
+
+  function read(s as symbol)
+    if not peek(0).isSymbol(s) then output false
     next
     output true
   end
@@ -41,8 +44,21 @@ define tokenStream
     var tokenizer as tokenizer
 
     function fill(n as int) =
-      while buffer.size <= n ->
-        buffer.add(
-          if tokenizer.next then new token(tokenizer.tokenType, tokenizer.tokenText) else null)
+      while buffer.size <= n
+        var p as token = null
+
+        if tokenizer.next then do
+          var text as string = tokenizer.tokenText
+          var t as cstNodeType = tokenizer.tokenType
+
+          match t
+            when SYMBOL then p = new symbolToken(tokenizer.symbol, text)
+            when KEYWORD then p = new keywordToken(tokenizer.keyword, text)
+            else p = new token(t, text)
+          end
+        end
+
+        buffer.add(p)
+      end
   end
 end

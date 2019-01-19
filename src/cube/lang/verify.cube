@@ -26,9 +26,9 @@ define verify
         verify('a + b - c', '((a + b) - c)')
         verify('a * b / c', '((a * b) / c)')
         verify('a ^ b ^ c', '(a ^ (b ^ c))')
-        verify('a ? b : c ? d : e', '(a ? b : (c ? d : e))')
-        verify('a ? b ? c : d : e', '(a ? (b ? c : d) : e)')
-        verify('a + b ? c * d : e / f', '((a + b) ? (c * d) : (e / f))')
+        verify('if a then b else if c then d else e', '(a ? b : (c ? d : e))')
+        verify('if a then if b then c else d else e', '(a ? (b ? c : d) : e)')
+        verify('if a + b then c * d else e / f', '((a + b) ? (c * d) : (e / f))')
         verify('a + (b + c) + d', '((a + (b + c)) + d)')
         verify('a ^ (b + c)', '(a ^ (b + c))')
         verify('(!a)!', '((!a)!)')
@@ -37,7 +37,7 @@ define verify
         verify('a(b, c)', 'a(b, c)')
         verify('a(b)(c)', 'a(b)(c)')
         verify('a(b) + c(d)', '(a(b) + c(d))')
-        verify('a(b ? c : d, e + f)', 'a((b ? c : d), (e + f))')
+        verify('a(if b then c else d, e + f)', 'a((b ? c : d), (e + f))')
       end
 
       function verify(text as string, ast as string)

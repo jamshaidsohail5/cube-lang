@@ -9,9 +9,8 @@ define assign as element
   end
 
   function write(s as stringBuilder)
-    s.append('(').append(name).append(' ').append(operator.nodeType.text)
-      .append(
-      ' ')
+    s.append('(').append(name).append(' ').append(operator.symbol.text)
+      .append(' ')
 
     right.write(s)
     s.append(')')

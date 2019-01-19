@@ -1,7 +1,10 @@
 use cube.lang.element
 use cube.lang.operator
 use cube.lang.parser.elements
-use cube.lang.cst.cstNodeType
+use cube.lang.keyword.IF_KEYWORD
+use cube.lang.cst.cstNodeType.IDENTIFIER
+use cube.lang.cst.symbol.EQUAL
+use cube.lang.cst.symbol.LEFT_PARENTHESIS
 
 define cubeDefinition
   shared
@@ -13,7 +16,7 @@ define cubeDefinition
       definition.right(EQUAL, new assignParser)
       definition.left(LEFT_PARENTHESIS, new bracketedTermParser)
       definition.right(LEFT_PARENTHESIS, new functionExpressionParser)
-      definition.right(QUESTION_MARK, new ifExpressionParser)
+      definition.left(IF_KEYWORD, new ifExpressionParser)
     end
   end
 

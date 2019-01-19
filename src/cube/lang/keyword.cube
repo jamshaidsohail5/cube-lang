@@ -1,0 +1,34 @@
+use cube.lang.cst.cstNodeType
+use java.util.treeMap
+use cube.lang.cst.cstNodeType.KEYWORD
+
+enum keyword
+  IF_KEYWORD('if', KEYWORD)
+  THEN_KEYWORD('then', KEYWORD)
+  ELSE_KEYWORD('else', KEYWORD)
+
+  function text as string = text
+  function nodeType as cstNodeType = nodeType
+
+  shared
+    function keyword(text as string) as keyword = map.get(text)
+
+    do
+      for each k in values -> map.put(k.text, k)
+    end
+  end
+
+  internal
+    var text as string
+    var nodeType as cstNodeType
+
+    function create(text as string, nodeType as cstNodeType)
+      me.text = text
+      me.nodeType = nodeType
+    end
+
+    shared
+      let map = new treeMap[string, keyword]
+    end
+  end
+end

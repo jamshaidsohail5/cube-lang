@@ -1,23 +1,30 @@
+use cube.lang.keyword
 use cube.lang.cst.cstNodeType
-use cube.lang.cst.cstNodeType
+use cube.lang.cst.symbol
+use cube.lang.cst.cstNodeType.IDENTIFIER
+use cube.lang.cst.cstNodeType.SYMBOL
+use cube.lang.cst.symbol
 use cube.lang.tokenizer.characterType
 
 define tokenizer
   function create(text as string) = me.text = text
   function tokenType as cstNodeType = tokenType
   function tokenText as string = tokenText
+  function symbol as symbol = symbol
+  function keyword as keyword = keyword
 
   function next as boolean
     tokenType = null
     tokenText = null
+    symbol = null
     var c as int
 
     while c <- peek != -1 ->
       match characterType(c)
         when WHITESPACE then position++
-        when SYMBOL then output symbol
+        when SYMBOL_CHARACTER then output readSymbol
         when DIGIT then error new unsupportedOperationException
-        when CHARACTER then output identifier
+        when CHARACTER then output identifierOrKeyword
         else error new unsupportedOperationException
       end
 
@@ -29,8 +36,23 @@ define tokenizer
     var position as int
     var tokenType as cstNodeType
     var tokenText as string
+    var symbol as symbol
+    var keyword as keyword
 
-    function symbol
+    function identifierOrKeyword
+      var start as int = position++
+      var c as int
+      while c <- peek != -1 and characterType(c) = CHARACTER -> position++
+      tokenText = text.substring(start, position)
+      keyword = Keyword.keyword(tokenText)
+
+      tokenType
+        = if keyword is not null then keyword.nodeType else IDENTIFIER
+
+      output true
+    end
+
+    function readSymbol
       match read
         when char('(') then reduce(LEFT_PARENTHESIS)
         when char(')') then reduce(RIGHT_PARENTHESIS)
@@ -51,18 +73,10 @@ define tokenizer
       output true
     end
 
-    function identifier
-      var start as int = position++
-      var c as int
-      while c <- peek != -1 and characterType(c) = CHARACTER -> position++
-      tokenType = IDENTIFIER
-      tokenText = text.substring(start, position)
-      output true
-    end
-
-    function reduce(tokenType as cstNodeType)
-      me.tokenType = tokenType
-      me.tokenText = tokenType.text
+    function reduce(symbol as symbol)
+      me.tokenType = SYMBOL
+      me.tokenText = symbol.text
+      me.symbol = symbol
     end
 
     function peek as int = if position < text.length then text.charAt(position) else -1

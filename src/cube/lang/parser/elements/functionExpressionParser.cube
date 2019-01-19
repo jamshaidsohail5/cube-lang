@@ -5,6 +5,7 @@ use cube.lang.parser.rightParser
 use cube.lang.tokenizer.tokenStream
 use cube.lang.precedence.functionPrecedence
 use cube.lang.cst.cstNodeType
+use cube.lang.cst.symbol
 
 define functionExpressionParser[T] as rightParser[T]
   function precedence as int = FunctionPrecedence.value

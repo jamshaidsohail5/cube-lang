@@ -1,5 +1,4 @@
 use cube.lang.element
-use cube.lang.cst.cstNodeType
 use cube.lang.cst.cstTranslator
 use cube.lang.cst.elementTranslator
 use cube.lang.cst.token
@@ -23,16 +22,13 @@ define parser[T]
 
   function parse(rightPrecedence as int) as T
     var token as token = tokens.next
-    var leftParser as leftParser[T] = leftParsers.get(token.nodeType)
-
-    if leftParser is null then
-      error new syntaxException("Failed to parse '" + token.text + "'.")
-
+    var leftParser as leftParser[T] = leftParsers.get(token.key)
+    if leftParser is null then error new syntaxException("Syntax error near '" + token + "'.")
     var left as T = leftParser.parse(me, token)
 
     while rightPrecedence < leftPrecedence
       token = tokens.next
-      var rightParser as rightParser[T] = rightParsers.get(token.nodeType)
+      var rightParser as rightParser[T] = rightParsers.get(token.key)
       left = rightParser.parse(me, left, token)
     end
 
@@ -49,15 +45,15 @@ define parser[T]
   end
 
   internal
-    var rightParsers as map[cstNodeType, rightParser[T]]
-    var leftParsers as map[cstNodeType, leftParser[T]]
+    var rightParsers as map[object, rightParser[T]]
+    var leftParsers as map[object, leftParser[T]]
     var translator as cstTranslator[T]
     var tokens as tokenStream
 
     function leftPrecedence as int
       var q0 as token = tokens.peek(0)
       if q0 is null then output 0
-      var parser as rightParser = rightParsers.get(q0.nodeType)
+      var parser as rightParser = rightParsers.get(q0.key)
       output if parser is not null then parser.precedence else 0
     end
   end

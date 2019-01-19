@@ -1,0 +1,15 @@
+use cube.lang.cst.cstNodeType.SYMBOL
+
+define symbolToken as token
+  function create(symbol as symbol, text as string)
+    super(SYMBOL, text)
+    me.symbol = symbol
+  end
+
+  function key as symbol = symbol
+  function isSymbol(s as symbol) = s == symbol
+
+  internal
+    var symbol as symbol
+  end
+end

@@ -1,31 +1,11 @@
 enum cstNodeType
-  LEFT_PARENTHESIS('(')
-  RIGHT_PARENTHESIS(')')
-  COMMA(',')
-  EQUAL('=')
-  PLUS('+')
-  MINUS('-')
-  ASTERISK('*')
-  FORWARD_SLASH('/')
-  CARET('^')
-  TILDE('~')
-  EXCLAMATION_MARK('!')
-  QUESTION_MARK('?')
-  COLON(':')
+  SYMBOL
   IDENTIFIER
+  KEYWORD
   ASSIGN
   UNARY_EXPRESSION
   BINARY_EXPRESSION
   FUNCTION_EXPRESSION
   ARGUMENT_LIST
   IF_EXPRESSION
-
-  function text as string = text
-
-  internal
-    var text as string
-
-    function create = me.text = null
-    function create(text as string) = me.text = text
-  end
 end

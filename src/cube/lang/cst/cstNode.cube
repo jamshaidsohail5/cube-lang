@@ -1,0 +1,12 @@
+use cube.lang.keyword
+
+define abstract cstNode
+  function create(nodeType as cstNodeType) = me.nodeType = nodeType
+  function nodeType as cstNodeType = nodeType
+  function isSymbol(s as symbol) = false
+  function isKeyword(k as keyword) = false
+
+  protected
+    var nodeType as cstNodeType
+  end
+end
