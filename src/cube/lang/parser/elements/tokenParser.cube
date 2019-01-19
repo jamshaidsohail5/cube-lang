@@ -1,0 +1,20 @@
+use cube.lang.cst.cstNodeType
+use cube.lang.cst.cstTranslator
+use cube.lang.cst.token
+use cube.lang.parser.leftParser
+use cube.lang.parser.parser
+
+define tokenParser[T] as leftParser[T]
+  function create(nodeType as cstNodeType) = me.nodeType = nodeType
+
+  function parse(parser as parser[T], token as token) as T
+    var v as cstTranslator[T] = parser.translator
+    v.start(nodeType)
+    v.accept(token)
+    output v.value
+  end
+
+  internal
+    var nodeType as cstNodeType
+  end
+end

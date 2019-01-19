@@ -1,0 +1,35 @@
+use cube.lang.element
+use cube.lang.operator
+use cube.lang.cst.elementTranslator
+use cube.lang.parser.elements
+use cube.lang.keyword.IF_KEYWORD
+use cube.lang.cst.cstNodeType
+use cube.lang.tokenizer.symbol
+use cube.lang.tokenizer.tokenStream.tokenStream
+
+define cubeParser
+  shared
+    function parse(text as string) as element
+      var parser as parser[element] = new parser(map, new elementTranslator, tokenStream(text))
+      output parser.parse
+    end
+
+    do
+      map.token(IDENTIFIER)
+      map.token(NUMBER)
+      map.token(CONSTANT_KEYWORD)
+      map.operators(Operator.values)
+      map.right(DOT, new dotExpressionParser)
+      map.right(EQUAL, new assignParser)
+      map.left(LEFT_PARENTHESIS, new bracketedTermParser)
+      map.right(LEFT_PARENTHESIS, new functionExpressionParser)
+      map.left(IF_KEYWORD, new ifExpressionParser)
+    end
+  end
+
+  internal
+    shared
+      let map = new parserMap[element]
+    end
+  end
+end

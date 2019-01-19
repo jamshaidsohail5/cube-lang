@@ -1,5 +1,5 @@
 use cube.lang.formatting.format.format
-use cube.lang.parser.parser.parse
+use cube.lang.parser.cubeParser.parse
 
 define verify
   function main(args as array[string])
@@ -14,24 +14,28 @@ define verify
       var total = 0
 
       function verify
-        verify('~!-+a', '(~(!(-(+a))))')
-        verify('a!!!', '(((a!)!)!)')
+        verify('~++-+a', '(~(++(-(+a))))')
+        verify('a--++--', '(((a--)++)--)')
         verify('-a * b', '((-a) * b)')
-        verify('!a + b', '((!a) + b)')
-        verify('~a ^ b', '((~a) ^ b)')
-        verify('-a!', '(-(a!))')
-        verify('!a!', '(!(a!))')
-        verify('a = b + c * d ^ e - f / g', '(a = ((b + (c * (d ^ e))) - (f / g)))')
+        verify('++a + b', '((++a) + b)')
+        verify('--a < b', '((--a) < b)')
+        verify('-a++', '(-(a++))')
+        verify('--a++', '(--(a++))')
+        verify('a = b + c * d.e - f / g', '(a = ((b + (c * (d.e))) - (f / g)))')
         verify('a = b = c', '(a = (b = c))')
-        verify('a + b - c', '((a + b) - c)')
-        verify('a * b / c', '((a * b) / c)')
-        verify('a ^ b ^ c', '(a ^ (b ^ c))')
+        verify('a <- b <- c', '(a <- (b <- c))')
+        verify('4 + 2 - 3', '((4 + 2) - 3)')
+        verify('4 * 2 / 3', '((4 * 2) / 3)')
+
+        verify(
+          'true and false or false and true', '((true and false) or (false and true))')
+
         verify('if a then b else if c then d else e', '(a ? b : (c ? d : e))')
         verify('if a then if b then c else d else e', '(a ? (b ? c : d) : e)')
         verify('if a + b then c * d else e / f', '((a + b) ? (c * d) : (e / f))')
         verify('a + (b + c) + d', '((a + (b + c)) + d)')
-        verify('a ^ (b + c)', '(a ^ (b + c))')
-        verify('(!a)!', '((!a)!)')
+        verify('a <- (b + c)', '(a <- (b + c))')
+        verify('(--a)++', '((--a)++)')
         verify('a()', 'a()')
         verify('a(b)', 'a(b)')
         verify('a(b, c)', 'a(b, c)')

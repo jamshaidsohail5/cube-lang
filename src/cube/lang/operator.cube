@@ -1,33 +1,55 @@
-use cube.lang.cst.symbol
+use cube.lang.tokenizer.symbol
+use cube.lang.keyword
 use cube.lang.operatorType
 use cube.lang.precedence
-use cube.lang.cst.symbol
+use cube.lang.tokenizer.symbol
 
 enum operator
-  Equal(EQUAL, RightAssociative, RelationalPrecedence)
-  Add(PLUS, LeftAssociative, AdditivePrecedence)
-  Subtract(MINUS, LeftAssociative, AdditivePrecedence)
-  Multiply(ASTERISK, LeftAssociative, MultiplicativePrecedence)
-  Divide(FORWARD_SLASH, LeftAssociative, MultiplicativePrecedence)
-  Power(CARET, RightAssociative, ExponentPrecedence)
+  LogicalAnd(AND_KEYWORD, LeftAssociative, LogicalAndPrecedence)
+  LogicalOr(OR_KEYWORD, LeftAssociative, LogicalOrPrecedence)
+  BinaryAnd(AND_KEYWORD, LeftAssociative, BinaryAndPrecedence)
+  BinaryOr(OR_KEYWORD, LeftAssociative, BinaryOrPrecedence)
+  BinaryXor(CARET, LeftAssociative, BinaryXorPrecedence)
+  IncrementPostfix(PLUS_PLUS, UnaryPostfix, UnaryPostfixPrecedence)
+  DecrementPostfix(MINUS_MINUS, UnaryPostfix, UnaryPostfixPrecedence)
   Positive(PLUS, UnaryPrefix, UnaryPrefixPrecedence)
   Negative(MINUS, UnaryPrefix, UnaryPrefixPrecedence)
+  IncrementPrefix(PLUS_PLUS, UnaryPrefix, UnaryPrefixPrecedence)
+  DecrementPrefix(MINUS_MINUS, UnaryPrefix, UnaryPrefixPrecedence)
   BinaryNot(TILDE, UnaryPrefix, UnaryPrefixPrecedence)
-  LogicalNot(EXCLAMATION_MARK, UnaryPrefix, UnaryPrefixPrecedence)
-  Factorial(EXCLAMATION_MARK, UnaryPostfix, UnaryPostfixPrecedence)
+  LogicalNot(NOT_KEYWORD, UnaryPrefix, UnaryPrefixPrecedence)
+  Multiply(ASTERISK, LeftAssociative, MultiplicativePrecedence)
+  Divide(FORWARD_SLASH, LeftAssociative, MultiplicativePrecedence)
+  Add(PLUS, LeftAssociative, AdditivePrecedence)
+  Subtract(MINUS, LeftAssociative, AdditivePrecedence)
+  Less(LESS, NotAssociative, RelationalPrecedence)
+  AssignEqual(EQUAL, RightAssociative, AssignmentPrecedence)
+  LeftArrow(LEFT_ARROW, RightAssociative, AssignmentPrecedence)
 
   function operatorType as operatorType = operatorType
   function symbol as symbol = symbol
+  function keyword as keyword = keyword
   function precedence as precedence = precedence
+  function text as string = if symbol is not null then symbol.text else keyword.text
 
   internal
     var operatorType as operatorType
     var symbol as symbol
+    var keyword as keyword
     var precedence as precedence
 
     function create(symbol as symbol, operatorType as operatorType, precedence as precedence)
       me.operatorType = operatorType
       me.symbol = symbol
+      me.keyword = null
+      me.precedence = precedence
+    end
+
+    function create(
+      keyword as keyword, operatorType as operatorType, precedence as precedence)
+      me.operatorType = operatorType
+      me.symbol = null
+      me.keyword = keyword
       me.precedence = precedence
     end
   end

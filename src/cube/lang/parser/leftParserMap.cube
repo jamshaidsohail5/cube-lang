@@ -1,0 +1,13 @@
+use java.util.hashMap
+use java.util.map
+
+define leftParserMap[T]
+  function add(key as object, parser as leftParser[T]) as void = parsers.put(key, parser)
+
+  function get(key as object) as leftParser[T] =
+    if key is not null then parsers.get(key) else null
+
+  internal
+    let parsers = new map[object, leftParser[T]]
+  end
+end

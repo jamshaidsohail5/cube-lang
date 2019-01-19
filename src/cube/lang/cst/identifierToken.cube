@@ -1,0 +1,6 @@
+use cube.lang.cst.cstNodeType.IDENTIFIER
+
+define identifierToken as token
+  function create(text as string) = super(IDENTIFIER, text)
+  function key as object = IDENTIFIER
+end

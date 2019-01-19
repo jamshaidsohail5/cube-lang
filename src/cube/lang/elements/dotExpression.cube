@@ -1,9 +1,7 @@
 use cube.lang.element
-use cube.lang.operator
 
-define binaryExpression as element
-  function create(operator as operator, left as element, right as element)
-    me.operator = operator
+define dotExpression as element
+  function create(left as element, right as element)
     me.left = left
     me.right = right
   end
@@ -11,13 +9,12 @@ define binaryExpression as element
   function write(s as stringBuilder)
     s.append('(')
     left.write(s)
-    s.append(' ').append(operator.text).append(' ')
+    s.append('.')
     right.write(s)
     s.append(')')
   end
 
   internal
-    var operator as operator
     var left as element
     var right as element
   end

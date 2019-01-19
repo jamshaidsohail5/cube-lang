@@ -3,4 +3,5 @@ enum operatorType
   UnaryPostfix
   LeftAssociative
   RightAssociative
+  NotAssociative
 end

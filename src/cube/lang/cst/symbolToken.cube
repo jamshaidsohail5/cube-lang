@@ -1,3 +1,4 @@
+use cube.lang.tokenizer.symbol
 use cube.lang.cst.cstNodeType.SYMBOL
 
 define symbolToken as token

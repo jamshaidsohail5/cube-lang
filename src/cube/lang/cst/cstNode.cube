@@ -1,4 +1,5 @@
 use cube.lang.keyword
+use cube.lang.tokenizer.symbol
 
 define abstract cstNode
   function create(nodeType as cstNodeType) = me.nodeType = nodeType

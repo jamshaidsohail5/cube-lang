@@ -1,0 +1,10 @@
+use cube.lang.element
+
+define constant as element
+  function create(value as object) = me.value = value
+  function write(s as stringBuilder) as void = s.append(value)
+
+  internal
+    var value as object
+  end
+end

@@ -1,0 +1,20 @@
+use cube.lang.cst.cstTranslator
+use cube.lang.cst.token
+use cube.lang.parser.parser
+use cube.lang.parser.rightParser
+use cube.lang.precedence.dotPrecedence
+use cube.lang.cst.cstNodeType.DOT_EXPRESSION
+
+define dotExpressionParser[T] as rightParser[T]
+  function precedence as int = DotPrecedence.value
+
+  function parse(parser as parser[T], left as T, token as token) as T
+    var right as T = parser.parse(precedence)
+    var v as cstTranslator[T] = parser.translator
+    v.start(DOT_EXPRESSION)
+    v.accept(left)
+    v.accept(token)
+    v.accept(right)
+    output v.value
+  end
+end

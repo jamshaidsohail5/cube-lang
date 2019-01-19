@@ -1,10 +1,8 @@
 use cube.lang.keyword
 use cube.lang.cst.cstNodeType
-use cube.lang.cst.symbol
-use cube.lang.cst.cstNodeType.IDENTIFIER
-use cube.lang.cst.cstNodeType.SYMBOL
-use cube.lang.cst.symbol
+use cube.lang.cst.cstNodeType
 use cube.lang.tokenizer.characterType
+use cube.lang.tokenizer.symbol
 
 define tokenizer
   function create(text as string) = me.text = text
@@ -14,16 +12,13 @@ define tokenizer
   function keyword as keyword = keyword
 
   function next as boolean
-    tokenType = null
-    tokenText = null
-    symbol = null
     var c as int
 
     while c <- peek != -1 ->
       match characterType(c)
         when WHITESPACE then position++
         when SYMBOL_CHARACTER then output readSymbol
-        when DIGIT then error new unsupportedOperationException
+        when DIGIT then output readNumber
         when CHARACTER then output identifierOrKeyword
         else error new unsupportedOperationException
       end
@@ -39,6 +34,15 @@ define tokenizer
     var symbol as symbol
     var keyword as keyword
 
+    function readNumber
+      var start as int = position++
+      var c as int
+      while c <- peek != -1 and characterType(c) = DIGIT -> position++
+      tokenText = text.substring(start, position)
+      tokenType = NUMBER
+      output true
+    end
+
     function identifierOrKeyword
       var start as int = position++
       var c as int
@@ -53,21 +57,63 @@ define tokenizer
     end
 
     function readSymbol
-      match read
+      var c as int = read
+
+      match c
+        when char('.') then reduce(DOT)
         when char('(') then reduce(LEFT_PARENTHESIS)
         when char(')') then reduce(RIGHT_PARENTHESIS)
         when char(',') then reduce(COMMA)
         when char('=') then reduce(EQUAL)
-        when char('+') then reduce(PLUS)
-        when char('-') then reduce(MINUS)
+
+        when char('+') then if peek = char('+') then do
+          read
+          reduce(PLUS_PLUS)
+        end else reduce(PLUS)
+
+        when char('-') then
+          match peek
+            when char('-') then do
+              read
+              reduce(MINUS_MINUS)
+            end
+
+            when char('>') then do
+              read
+              reduce(RIGHT_ARROW)
+            end
+
+            else reduce(MINUS)
+          end
+
         when char('*') then reduce(ASTERISK)
         when char('/') then reduce(FORWARD_SLASH)
         when char('^') then reduce(CARET)
         when char('~') then reduce(TILDE)
-        when char('!') then reduce(EXCLAMATION_MARK)
-        when char('?') then reduce(QUESTION_MARK)
-        when char(':') then reduce(COLON)
-        else error new unsupportedOperationException
+
+        when char('<') then
+          match peek
+            when char('-') then do
+              read
+              reduce(LEFT_ARROW)
+            end
+
+            when char('=') then do
+              read
+              reduce(LESS_EQUAL)
+            end
+
+            else reduce(LESS)
+          end
+
+        when char('>') then
+          if peek = char('=') then do
+            read
+            reduce(GREATER_EQUAL)
+          end else reduce(GREATER)
+
+        else error new unsupportedOperationException(
+          "Unrecognized character '" + c as char + "' unicode " + c + '.')
       end
 
       output true

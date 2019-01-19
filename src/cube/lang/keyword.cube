@@ -1,11 +1,16 @@
 use cube.lang.cst.cstNodeType
 use java.util.treeMap
-use cube.lang.cst.cstNodeType.KEYWORD
+use cube.lang.cst.cstNodeType
 
 enum keyword
   IF_KEYWORD('if', KEYWORD)
   THEN_KEYWORD('then', KEYWORD)
   ELSE_KEYWORD('else', KEYWORD)
+  AND_KEYWORD('and', KEYWORD)
+  OR_KEYWORD('or', KEYWORD)
+  NOT_KEYWORD('not', KEYWORD)
+  TRUE_KEYWORD('true', CONSTANT_KEYWORD)
+  FALSE_KEYWORD('false', CONSTANT_KEYWORD)
 
   function text as string = text
   function nodeType as cstNodeType = nodeType

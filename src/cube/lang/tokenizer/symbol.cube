@@ -1,17 +1,23 @@
 enum symbol
+  DOT('.')
   LEFT_PARENTHESIS('(')
   RIGHT_PARENTHESIS(')')
   COMMA(',')
   EQUAL('=')
   PLUS('+')
+  PLUS_PLUS('++')
   MINUS('-')
+  MINUS_MINUS('--')
   ASTERISK('*')
   FORWARD_SLASH('/')
   CARET('^')
   TILDE('~')
-  EXCLAMATION_MARK('!')
-  QUESTION_MARK('?')
-  COLON(':')
+  LESS('<')
+  LEFT_ARROW('<-')
+  LESS_EQUAL('<=')
+  GREATER('>')
+  RIGHT_ARROW('->')
+  GREATER_EQUAL('>=')
 
   function text as string = text
 

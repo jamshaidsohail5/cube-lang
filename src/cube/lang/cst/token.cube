@@ -1,12 +1,15 @@
-define token as cstNode
+define abstract token as cstNode
   function create(nodeType as cstNodeType, text as string)
     super(nodeType)
     me.text = text
   end
 
-  function key as object = nodeType
   function text as string = text
   function toString as string = text
+
+  abstract
+    function key as object
+  end
 
   internal
     var text as string

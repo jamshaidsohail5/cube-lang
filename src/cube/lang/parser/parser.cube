@@ -1,17 +1,12 @@
-use cube.lang.element
 use cube.lang.cst.cstTranslator
-use cube.lang.cst.elementTranslator
 use cube.lang.cst.token
 use cube.lang.tokenizer.tokenStream
-use java.util.map
-use cube.lang.parser.cubeDefinition.cubeDefinition
-use cube.lang.tokenizer.tokenStream.tokenStream
 
 define parser[T]
   function create(
-    definition as parserDefinition[T], translator as cstTranslator[T], tokens as tokenStream)
-    me.leftParsers = definition.left
-    me.rightParsers = definition.right
+    map as parserMap[T], translator as cstTranslator[T], tokens as tokenStream)
+    me.leftParsers = map.left
+    me.rightParsers = map.right
     me.translator = translator
     me.tokens = tokens
   end
@@ -29,31 +24,26 @@ define parser[T]
     while rightPrecedence < leftPrecedence
       token = tokens.next
       var rightParser as rightParser[T] = rightParsers.get(token.key)
+
+      if rightParser is null then
+        error new syntaxException("Syntax error near '" + token + "'.")
+
       left = rightParser.parse(me, left, token)
     end
 
     output left
   end
 
-  shared
-    function parse(text as string) as element
-      var parser as parser[element] =
-        new parser(cubeDefinition, new elementTranslator, tokenStream(text))
-
-      output parser.parse
-    end
-  end
-
   internal
-    var rightParsers as map[object, rightParser[T]]
-    var leftParsers as map[object, leftParser[T]]
+    var leftParsers as leftParserMap[T]
+    var rightParsers as rightParserMap[T]
     var translator as cstTranslator[T]
     var tokens as tokenStream
 
     function leftPrecedence as int
       var q0 as token = tokens.peek(0)
       if q0 is null then output 0
-      var parser as rightParser = rightParsers.get(q0.key)
+      var parser as rightParser[T] = rightParsers.get(q0.key)
       output if parser is not null then parser.precedence else 0
     end
   end

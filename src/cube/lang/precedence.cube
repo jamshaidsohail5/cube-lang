@@ -1,13 +1,18 @@
 enum precedence
-  AssignmentPrecedence(1)
-  RelationalPrecedence(2)
-  ConditionalPrecedence(3)
-  AdditivePrecedence(4)
-  MultiplicativePrecedence(5)
-  ExponentPrecedence(6)
-  UnaryPrefixPrecedence(7)
-  UnaryPostfixPrecedence(8)
-  FunctionPrecedence(9)
+  ConditionalPrecedence(1)
+  AssignmentPrecedence(2)
+  LogicalOrPrecedence(3)
+  LogicalAndPrecedence(4)
+  BinaryOrPrecedence(5)
+  BinaryXorPrecedence(6)
+  BinaryAndPrecedence(7)
+  RelationalPrecedence(8)
+  AdditivePrecedence(9)
+  MultiplicativePrecedence(10)
+  DotPrecedence(11)
+  UnaryPrefixPrecedence(12)
+  UnaryPostfixPrecedence(13)
+  FunctionPrecedence(14)
 
   function value as int = value
 

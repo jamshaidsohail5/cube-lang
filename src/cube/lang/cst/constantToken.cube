@@ -1,0 +1,4 @@
+define constantToken as token
+  function create(nodeType as cstNodeType, text as string) = super(nodeType, text)
+  function key as object = nodeType
+end

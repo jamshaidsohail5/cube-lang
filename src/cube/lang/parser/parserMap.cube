@@ -1,0 +1,37 @@
+use cube.lang.operator
+use cube.lang.cst.cstNodeType
+use cube.lang.parser.elements.binaryExpressionParser
+use cube.lang.parser.elements.tokenParser
+use cube.lang.parser.elements.unaryPostfixParser
+use cube.lang.parser.elements.unaryPrefixParser
+
+define parserMap[T]
+  function left as leftParserMap[T] = left
+  function right as rightParserMap[T] = right
+  function left(key as object, parser as leftParser[T]) as void = left.add(key, parser)
+  function right(key as object, parser as rightParser[T]) as void = right.add(key, parser)
+
+  function token(nodeType as cstNodeType) as void =
+    left.add(nodeType, new tokenParser(nodeType))
+
+  function operators(operators as array[operator]) =
+    for each operator in operators -> operator(operator)
+
+  internal
+    let left = new leftParserMap[T]
+    let right = new rightParserMap[T]
+
+    function operator(operator as operator)
+      var key as object = operator.symbol
+      if key is null then key = operator.keyword
+
+      match operator.operatorType
+        when UnaryPrefix then left(key, new unaryPrefixParser(operator))
+        when UnaryPostfix then right(key, new unaryPostfixParser(operator))
+
+        when LeftAssociative or RightAssociative or NotAssociative then
+          right(key, new binaryExpressionParser(operator))
+      end
+    end
+  end
+end
