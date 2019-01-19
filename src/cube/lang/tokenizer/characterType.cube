@@ -1,19 +1,19 @@
 define characterType
   shared
-    let WHITESPACE = 1
-    let SYMBOL_CHARACTER = 2
-    let DIGIT = 3
-    let CHARACTER = 4
+    let Whitespace = 1
+    let Symbol = 2
+    let Digit = 3
+    let Character = 4
 
     function characterType(n as int) as int
       if n <= 64 then do
-        if n <= 47 then output if n <= 32 then WHITESPACE else SYMBOL_CHARACTER
-        output if n <= 57 then DIGIT else SYMBOL_CHARACTER
+        if n <= 47 then output if n <= 32 then Whitespace else Symbol
+        output if n <= 57 then Digit else Symbol
       end
 
-      if n <= 96 then output if n <= 90 then CHARACTER else SYMBOL_CHARACTER
-      if n <= 122 then output CHARACTER
-      output if n <= 127 then SYMBOL_CHARACTER else CHARACTER
+      if n <= 96 then output if n <= 90 then Character else Symbol
+      if n <= 122 then output Character
+      output if n <= 127 then Symbol else Character
     end
   end
 end

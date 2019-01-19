@@ -35,7 +35,7 @@ define elementTranslator as cstTranslator[element]
       when FunctionExpression then
         output new functionExpression(elements.get(0), elements.get(1) as argumentList)
 
-      when ArgumentList then output new argumentList(elements)
+      when Arguments then output new argumentList(elements)
 
       when IfExpression then
         output new ifExpression(elements.get(0), elements.get(1), elements.get(2))

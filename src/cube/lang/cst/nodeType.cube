@@ -11,7 +11,7 @@ enum nodeType
   BinaryExpression
   DotExpression
   FunctionExpression
-  ArgumentList
+  Arguments
   IfExpression
 
   function displayName as string = camelCase(name)

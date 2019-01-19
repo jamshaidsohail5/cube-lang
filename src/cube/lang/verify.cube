@@ -51,7 +51,6 @@ define verify
           var cst as cstNode = parseCst(text)
 
           if ast.equals(actual) then do
-            System.out.println(ast)
             System.out.println(cst)
             passed++
           end

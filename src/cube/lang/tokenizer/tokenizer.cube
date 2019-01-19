@@ -15,10 +15,10 @@ define tokenizer
 
     while c <- peek != -1 ->
       match characterType(c)
-        when WHITESPACE then position++
-        when SYMBOL_CHARACTER then output readSymbol
-        when DIGIT then output readNumber
-        when CHARACTER then output identifierOrKeyword
+        when Whitespace then position++
+        when Symbol then output readSymbol
+        when Digit then output readNumber
+        when Character then output identifierOrKeyword
         else error new unsupportedOperationException
       end
 
@@ -36,7 +36,7 @@ define tokenizer
     function readNumber
       var start as int = position++
       var c as int
-      while c <- peek != -1 and characterType(c) = DIGIT -> position++
+      while c <- peek != -1 and characterType(c) = Digit -> position++
       tokenText = text.substring(start, position)
       tokenType = NodeType.Number
       output true
@@ -45,7 +45,7 @@ define tokenizer
     function identifierOrKeyword
       var start as int = position++
       var c as int
-      while c <- peek != -1 and characterType(c) = CHARACTER -> position++
+      while c <- peek != -1 and characterType(c) = Character -> position++
       tokenText = text.substring(start, position)
       keyword = Keyword.keyword(tokenText)
 
