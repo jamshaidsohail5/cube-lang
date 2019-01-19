@@ -1,7 +1,5 @@
-use cube.lang.cst.token
-use java.util.hashMap
-use java.util.map
-use cube.lang.parser.syntaxError.near
+use cube.lang.cst
+use cube.lang.parser.syntaxError
 
 define parserMap[T]
   function add(key as object, parser as T) as void = parsers.put(key, parser)
@@ -18,6 +16,6 @@ define parserMap[T]
   end
 
   internal
-    let parsers = new map[object, T]
+    let parsers = new IMap
   end
 end

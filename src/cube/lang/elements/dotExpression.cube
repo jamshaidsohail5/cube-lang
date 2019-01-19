@@ -1,4 +1,4 @@
-use cube.lang.element
+use cube.lang
 
 define dotExpression as element
   function create(left as element, right as element)

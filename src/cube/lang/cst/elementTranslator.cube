@@ -1,9 +1,5 @@
-use cube.lang.element
+use cube.lang
 use cube.lang.operator
-use cube.lang.elements
-use java.util.arrayList
-use java.util.list
-use cube.lang.operator.assignEqual
 
 define elementTranslator as cstTranslator[element]
   function enter(nodeType as cstNodeType) as elementTranslator
@@ -60,6 +56,6 @@ define elementTranslator as cstTranslator[element]
   internal
     var nodeType as cstNodeType
     var operator as operator
-    let elements = new list[element]
+    let elements = new IList
   end
 end

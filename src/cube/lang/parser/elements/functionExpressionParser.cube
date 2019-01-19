@@ -1,13 +1,9 @@
-use cube.lang.cst.cstTranslator
-use cube.lang.cst.token
-use cube.lang.parser.parser
-use cube.lang.parser.rightParser
-use cube.lang.tokenizer.tokenStream
-use cube.lang.precedence.functionPrecedence
-use cube.lang.cst.cstNodeType.ARGUMENT_LIST
-use cube.lang.cst.cstNodeType.FUNCTION_EXPRESSION
-use cube.lang.tokenizer.symbol.COMMA
-use cube.lang.tokenizer.symbol.RIGHT_PARENTHESIS
+use cube.lang.cst
+use cube.lang.cst.cstNodeType
+use cube.lang.parser
+use cube.lang.precedence
+use cube.lang.tokenizer
+use cube.lang.tokenizer.symbol
 
 define functionExpressionParser[T] as rightParser[T]
   function precedence as int = FunctionPrecedence.value

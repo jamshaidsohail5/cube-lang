@@ -1,4 +1,4 @@
-use cube.lang.element
+use cube.lang
 
 define identifier as element
   function create(name as string) = me.name = name

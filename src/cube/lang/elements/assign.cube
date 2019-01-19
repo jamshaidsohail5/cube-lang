@@ -1,5 +1,4 @@
-use cube.lang.element
-use cube.lang.operator
+use cube.lang
 
 define assign as element
   function create(operator as operator, name as string, right as element)

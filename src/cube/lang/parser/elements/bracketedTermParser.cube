@@ -1,7 +1,6 @@
-use cube.lang.cst.token
-use cube.lang.parser.leftParser
-use cube.lang.parser.parser
-use cube.lang.tokenizer.symbol.RIGHT_PARENTHESIS
+use cube.lang.cst
+use cube.lang.parser
+use cube.lang.tokenizer.symbol
 
 define bracketedTermParser[T] as leftParser[T]
   function parse(parser as parser[T], t0 as token) as T

@@ -1,6 +1,3 @@
-use java.util.arrayList
-use java.util.list
-
 define cstNodeList as cstNode
   function create(nodeType as cstNodeType) = super(nodeType)
 
@@ -25,6 +22,6 @@ define cstNodeList as cstNode
   end
 
   internal
-    let children = new list[cstNode]
+    let children = new IList
   end
 end

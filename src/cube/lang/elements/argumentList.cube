@@ -1,8 +1,7 @@
-use cube.lang.element
-use java.util.list
+use cube.lang
 
 define argumentList as element
-  function create(arguments as list[element]) = me.arguments = arguments
+  function create(arguments as IList) = me.arguments = arguments
 
   function write(s as stringBuilder) =
     for i = 0 to i < arguments.size
@@ -11,6 +10,6 @@ define argumentList as element
     end
 
   internal
-    var arguments as list[element]
+    var arguments as IList
   end
 end

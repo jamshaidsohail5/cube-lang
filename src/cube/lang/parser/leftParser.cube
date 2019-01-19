@@ -1,4 +1,4 @@
-use cube.lang.cst.token
+use cube.lang.cst
 
 interface leftParser[T]
   function parse(parser as parser[T], t0 as token) as T

@@ -1,9 +1,6 @@
-use cube.lang.operator
-use cube.lang.cst.cstNodeType
-use cube.lang.parser.elements.binaryExpressionParser
-use cube.lang.parser.elements.tokenParser
-use cube.lang.parser.elements.unaryPostfixParser
-use cube.lang.parser.elements.unaryPrefixParser
+use cube.lang
+use cube.lang.cst
+use cube.lang.parser.elements
 
 define parserDefinition[T]
   function left as parserMap[leftParser[T]] = left

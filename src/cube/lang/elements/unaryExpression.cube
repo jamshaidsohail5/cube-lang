@@ -1,6 +1,5 @@
-use cube.lang.element
-use cube.lang.operator
-use cube.lang.operatorType.unaryPrefix
+use cube.lang
+use cube.lang.operatorType
 
 define unaryExpression as element
   function create(operator as operator, operand as element)

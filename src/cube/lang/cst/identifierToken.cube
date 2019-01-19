@@ -1,4 +1,4 @@
-use cube.lang.cst.cstNodeType.IDENTIFIER
+use cube.lang.cst.cstNodeType
 
 define identifierToken as token
   function create(text as string) = super(IDENTIFIER, text)

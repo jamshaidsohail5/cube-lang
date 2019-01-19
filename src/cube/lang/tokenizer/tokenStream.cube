@@ -1,8 +1,5 @@
-use cube.lang.keyword
-use cube.lang.cst
-use java.util.arrayList
-use java.util.list
-use cube.lang.parser.syntaxError.expected
+use cube.lang
+use cube.lang.parser.syntaxError
 
 define tokenStream
   function create(tokenizer as tokenizer) = me.tokenizer = tokenizer
@@ -41,7 +38,7 @@ define tokenStream
   end
 
   internal
-    let buffer = new list[token]
+    let buffer = new IList
     var tokenizer as tokenizer
 
     function fill(n as int) =

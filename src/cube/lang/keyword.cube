@@ -1,6 +1,4 @@
-use cube.lang.cst.cstNodeType
-use java.util.treeMap
-use cube.lang.cst.cstNodeType
+use cube.lang.cst
 
 enum keyword
   IF_KEYWORD('if', KEYWORD)
@@ -33,7 +31,7 @@ enum keyword
     end
 
     shared
-      let map = new treeMap[string, keyword]
+      let map = new sortedMap
     end
   end
 end

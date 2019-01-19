@@ -1,4 +1,4 @@
-use cube.lang.element
+use cube.lang
 
 define ifExpression as element
   function create(condition as element, body as element, elseBody as element)

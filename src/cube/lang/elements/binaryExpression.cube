@@ -1,5 +1,4 @@
-use cube.lang.element
-use cube.lang.operator
+use cube.lang
 
 define binaryExpression as element
   function create(operator as operator, left as element, right as element)

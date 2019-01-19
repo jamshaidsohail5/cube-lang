@@ -1,8 +1,5 @@
-use cube.lang.tokenizer.symbol
-use cube.lang.keyword
-use cube.lang.operatorType
-use cube.lang.precedence
-use cube.lang.tokenizer.symbol
+use cube.lang
+use cube.lang.tokenizer
 
 enum operator
   LogicalAnd(AND_KEYWORD, LeftAssociative, LogicalAndPrecedence)

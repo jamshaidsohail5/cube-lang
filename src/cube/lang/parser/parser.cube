@@ -1,6 +1,5 @@
-use cube.lang.cst.cstTranslator
-use cube.lang.cst.token
-use cube.lang.tokenizer.tokenStream
+use cube.lang.cst
+use cube.lang.tokenizer
 
 define parser[T]
   function create(

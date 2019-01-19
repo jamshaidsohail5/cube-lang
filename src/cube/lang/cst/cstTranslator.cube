@@ -1,4 +1,4 @@
-use cube.lang.operator
+use cube.lang
 
 interface cstTranslator[T]
   function enter(nodeType as cstNodeType) as cstTranslator[T]

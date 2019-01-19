@@ -1,9 +1,7 @@
-use cube.lang.cst.cstTranslator
-use cube.lang.cst.token
-use cube.lang.parser.parser
-use cube.lang.parser.rightParser
-use cube.lang.precedence.assignmentPrecedence
-use cube.lang.cst.cstNodeType.ASSIGN
+use cube.lang.cst
+use cube.lang.cst.cstNodeType
+use cube.lang.parser
+use cube.lang.precedence
 
 define assignParser[T] as rightParser[T]
   function precedence as int = AssignmentPrecedence.value

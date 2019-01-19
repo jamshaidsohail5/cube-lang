@@ -1,4 +1,4 @@
-use cube.lang.cst.token
+use cube.lang.cst
 
 interface rightParser[T]
   function precedence as int

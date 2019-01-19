@@ -1,5 +1,5 @@
-use cube.lang.keyword
-use cube.lang.cst.cstNodeType.KEYWORD
+use cube.lang
+use cube.lang.cst.cstNodeType
 
 define keywordToken as token
   function create(keyword as keyword, text as string)

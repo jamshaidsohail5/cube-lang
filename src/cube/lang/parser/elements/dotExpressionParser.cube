@@ -1,9 +1,7 @@
-use cube.lang.cst.cstTranslator
-use cube.lang.cst.token
-use cube.lang.parser.parser
-use cube.lang.parser.rightParser
-use cube.lang.precedence.dotPrecedence
-use cube.lang.cst.cstNodeType.DOT_EXPRESSION
+use cube.lang.cst
+use cube.lang.cst.cstNodeType
+use cube.lang.parser
+use cube.lang.precedence
 
 define dotExpressionParser[T] as rightParser[T]
   function precedence as int = DotPrecedence.value

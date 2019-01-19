@@ -1,9 +1,7 @@
-use cube.lang.operator
-use cube.lang.cst.cstTranslator
-use cube.lang.cst.token
-use cube.lang.parser.parser
-use cube.lang.parser.rightParser
-use cube.lang.cst.cstNodeType.UNARY_EXPRESSION
+use cube.lang
+use cube.lang.cst
+use cube.lang.cst.cstNodeType
+use cube.lang.parser
 
 define unaryPostfixParser[T] as rightParser[T]
   function create(operator as operator) = me.operator = operator

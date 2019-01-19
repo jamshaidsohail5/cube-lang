@@ -1,11 +1,7 @@
-use cube.lang.cst.cstTranslator
-use cube.lang.cst.token
-use cube.lang.parser.parser
-use cube.lang.parser.leftParser
-use cube.lang.tokenizer.tokenStream
-use cube.lang.precedence
-use cube.lang.cst.cstNodeType
-use cube.lang.keyword
+use cube.lang
+use cube.lang.cst
+use cube.lang.parser
+use cube.lang.tokenizer
 
 define ifExpressionParser[T] as leftParser[T]
   function parse(parser as parser[T], t0 as token) as T

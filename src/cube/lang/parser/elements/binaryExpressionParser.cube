@@ -1,10 +1,8 @@
-use cube.lang.operator
-use cube.lang.cst.cstTranslator
-use cube.lang.cst.token
-use cube.lang.parser.parser
-use cube.lang.parser.rightParser
-use cube.lang.operatorType.rightAssociative
-use cube.lang.cst.cstNodeType.BINARY_EXPRESSION
+use cube.lang
+use cube.lang.cst
+use cube.lang.cst.cstNodeType
+use cube.lang.operatorType
+use cube.lang.parser
 
 define binaryExpressionParser[T] as rightParser[T]
   function create(operator as operator) = me.operator = operator

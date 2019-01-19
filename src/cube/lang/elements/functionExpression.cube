@@ -1,4 +1,4 @@
-use cube.lang.element
+use cube.lang
 
 define functionExpression as element
   function create(target as element, arguments as argumentList)

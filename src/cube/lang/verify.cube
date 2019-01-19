@@ -1,7 +1,6 @@
-use cube.lang.cst.cstNode
-use cube.lang.formatting.format.format
-use cube.lang.parser.cubeParser.parse
-use cube.lang.parser.cubeParser.parseCst
+use cube.lang.cst
+use cube.lang.formatting.format
+use cube.lang.parser.cubeParser
 
 define verify
   function main(args as array[string])
