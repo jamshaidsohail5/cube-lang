@@ -1,9 +1,6 @@
-use cube.lang
-
 interface dependencyTreeVisitor[N, L, V]
   function enter(nodeType as N) as dependencyTreeVisitor[N, L, V]
-  function visit(nodeType as N) as void = visit(nodeType, null)
-  function visit(nodeType as N, operator as operator)
+  function visit(nodeType as N)
   function visitLeaf(leaf as L)
   function visitDependency(value as V)
   function value as V

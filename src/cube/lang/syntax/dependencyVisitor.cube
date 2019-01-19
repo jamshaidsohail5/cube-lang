@@ -1,6 +1,12 @@
 use cube.dependency.tree
+use cube.lang
 use cube.lang.tokenizer
 
-interface dependencyVisitor[T] as dependencyTreeVisitor[nodeType, token, T]
-  function enter(nodeType as nodeType) as dependencyVisitor[T]
+define abstract dependencyVisitor[T] as dependencyTreeVisitor[nodeType, token, T]
+  function visit(nodeType as nodeType) as void = visit(nodeType, null)
+
+  abstract
+    function visit(nodeType as nodeType, operator as operator)
+    function enter(nodeType as nodeType) as dependencyVisitor[T]
+  end
 end
