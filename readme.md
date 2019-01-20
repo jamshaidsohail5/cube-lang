@@ -1,4 +1,4 @@
-<img align="left" height="150" src="https://upload.wikimedia.org/wikipedia/commons/c/c3/Lambda-letter-lowercase-symbol-Garamond.svg">
+<img align="left" height="100" src="https://upload.wikimedia.org/wikipedia/commons/c/c3/Lambda-letter-lowercase-symbol-Garamond.svg">
 
 # The Cube Programming Language
 
