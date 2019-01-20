@@ -7,14 +7,8 @@ define abstract dependencyNode
   function isSymbol(s as symbol) = false
   function isKeyword(k as keyword) = false
 
-  function toString as string
-    var s = new stringBuilder
-    write(s)
-    output s.toString
-  end
-
   abstract
-    function write(s as stringBuilder)
+    function write(writer as dependencyWriter, depth as int)
   end
 
   protected

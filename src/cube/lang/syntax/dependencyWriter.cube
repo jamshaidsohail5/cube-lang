@@ -1,0 +1,13 @@
+define dependencyWriter
+  function s as stringBuilder = s
+  function toString as string = s.toString
+
+  function lineBreak(depth as int)
+    s.append(char('\n'))
+    for i = 0 to i < depth * 2 -> s.append(char(' '))
+  end
+
+  internal
+    let s = new stringBuilder
+  end
+end

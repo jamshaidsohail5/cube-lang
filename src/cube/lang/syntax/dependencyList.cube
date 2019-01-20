@@ -6,17 +6,25 @@ define dependencyList as dependencyNode
     children.add(node)
   end
 
-  function write(s as stringBuilder)
-    s.append(nodeType.displayName)
-    s.append(' [')
+  function write(writer as dependencyWriter, depth as int)
+    var s as stringBuilder = writer.s
+    s.append(nodeType.displayName).append(' {')
     var length as int = children.size
+    var depth2 as int = depth + 1
 
-    for i = 0 to i < length
-      if i > 0 then s.append(char(' '))
-      children.get(i).write(s)
+    if length = 1 then do
+      s.append(char(' '))
+      children.get(0).write(writer, depth2)
+      s.append(char(' '))
     end
+    else
+      for each child in children
+        writer.lineBreak(depth2)
+        child.write(writer, depth2)
+      end
 
-    s.append(char(']'))
+    writer.lineBreak(depth)
+    s.append(char('}'))
   end
 
   internal

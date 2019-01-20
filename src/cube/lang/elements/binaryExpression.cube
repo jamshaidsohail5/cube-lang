@@ -7,14 +7,6 @@ define binaryExpression as element
     me.right = right
   end
 
-  function write(s as stringBuilder)
-    s.append('(')
-    left.write(s)
-    s.append(' ').append(operator.text).append(' ')
-    right.write(s)
-    s.append(')')
-  end
-
   internal
     var operator as operator
     var left as element

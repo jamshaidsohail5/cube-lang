@@ -1,73 +1,38 @@
 use cube.lang.formatting.format
 use cube.lang.parser.cubeParser
-use cube.lang.syntax
+use cube.repository
 
 define verify
   function main(args as array[string])
     System.out.println('Verifying...')
-    verify
+    var r1 = new localRepository(repoPath, 'cube')
+    var r2 = new localRepository(repoPath, 'tree')
+    compare(r1, r2)
     System.out.println('Failed: ' + (total - passed) + ' / ' + total + '.')
   end
 
   internal
     shared
+      var repoPath as string = '../cube-parser/test/data'
       var passed = 0
       var total = 0
 
-      function verify
-        verify('~++-+a', '(~(++(-(+a))))')
-        verify('a--++--', '(((a--)++)--)')
-        verify('-a * b', '((-a) * b)')
-        verify('++a + b', '((++a) + b)')
-        verify('--a < b', '((--a) < b)')
-        verify('-a++', '(-(a++))')
-        verify('--a++', '(--(a++))')
-        verify('a = b + c * d.e - f / g', '(a = ((b + (c * (d.e))) - (f / g)))')
-        verify('a = b = c', '(a = (b = c))')
-        verify('a <- b <- c', '(a <- (b <- c))')
-        verify('4 + 2 - 3', '((4 + 2) - 3)')
-        verify('4 * 2 / 3', '((4 * 2) / 3)')
+      function compare(r1 as localRepository, r2 as localRepository) =
+        for each path in r1.sources
+          var cube as string = r1.read(path)
+          var actual as string = r2.read(path)
+          var expected as string = format(dependencyTree(cube))
 
-        verify(
-          'true and false or false and true', '((true and false) or (false and true))')
-
-        verify('if a then b else if c then d else e', '(a ? b : (c ? d : e))')
-        verify('if a then if b then c else d else e', '(a ? (b ? c : d) : e)')
-        verify('if a + b then c * d else e / f', '((a + b) ? (c * d) : (e / f))')
-        verify('a + (b + c) + d', '((a + (b + c)) + d)')
-        verify('a <- (b + c)', '(a <- (b + c))')
-        verify('(--a)++', '((--a)++)')
-        verify('a()', 'a()')
-        verify('a(b)', 'a(b)')
-        verify('a(b, c)', 'a(b, c)')
-        verify('a(b)(c)', 'a(b)(c)')
-        verify('a(b) + c(d)', '(a(b) + c(d))')
-        verify('a(if b then c else d, e + f)', 'a((b ? c : d), (e + f))')
-      end
-
-      function verify(text as string, ast as string)
-        try
-          var actual as string = format(parse(text))
-          var root as dependencyNode = dependencyTree(text)
-
-          if ast.equals(actual) then do
-            System.out.println(root)
-            passed++
-          end
+          if expected.equals(actual) then passed++
           else do
-            System.out.println('Failed   : ' + text)
-            System.out.println('Expected : ' + ast)
+            System.out.println(path)
+            System.out.println('Failed   : ' + cube)
+            System.out.println('Expected : ' + expected)
             System.out.println('Actual   : ' + actual)
           end
-        catch
-          when e as throwable then do
-            System.out.println('Failed: ' + text)
-            e.printStackTrace(System.out)
-          end
-        end
 
-        total++
-      end
+          total++
+        end
     end
   end
 end

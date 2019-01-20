@@ -1,0 +1,14 @@
+define repositoryFile
+  function create(path as path, name as string)
+    me.path = path
+    me.name = name
+  end
+
+  function path as path = path
+  function name as string = name
+
+  internal
+    var path as path
+    var name as string
+  end
+end

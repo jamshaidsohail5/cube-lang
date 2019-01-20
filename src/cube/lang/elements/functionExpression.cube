@@ -6,13 +6,6 @@ define functionExpression as element
     me.arguments = arguments
   end
 
-  function write(s as stringBuilder)
-    target.write(s)
-    s.append('(')
-    arguments.write(s)
-    s.append(')')
-  end
-
   internal
     var target as element
     var arguments as argumentList

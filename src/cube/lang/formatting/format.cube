@@ -1,11 +1,11 @@
-use cube.lang
+use cube.lang.syntax
 
 define format
   shared
-    function format(e as element) as string
-      var s = new stringBuilder
-      e.write(s)
-      output s.toString
+    function format(e as dependencyNode) as string
+      var writer = new dependencyWriter
+      e.write(writer, 0)
+      output writer.toString
     end
   end
 end

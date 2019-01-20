@@ -1,0 +1,29 @@
+define localRepository
+  function create(path as string) = create(path, 'cube')
+
+  function create(path as string, extension as string)
+    me.path = Paths.get(path)
+    me.extension = extension
+    Files.walk(me.path).forEach(me.addFile)
+  end
+
+  function read(name as string) = new string(Files.readAllBytes(map.get(name).path))
+  function sources as iterable[string] = map.keySet
+
+  internal
+    var path as path
+    var extension as string
+    let map = new map[string, repositoryFile]
+
+    function addFile(p as path)
+      var path as string = me.path.relativize(p).toString
+      var i as int = path.lastIndexOf(char('.'))
+      if i < 1 then return
+
+      if path.substring(i + 1).equals(extension) then do
+        var name as string = path.substring(0, i)
+        map.put(name, new repositoryFile(p, name))
+      end
+    end
+  end
+end

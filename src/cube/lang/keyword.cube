@@ -1,5 +1,6 @@
 use cube.lang.syntax
 use cube.lang.syntax.nodeType
+use cube.text.textFunctions
 
 enum keyword
   If('if', Keyword)
@@ -13,6 +14,7 @@ enum keyword
 
   function text as string = text
   function nodeType as nodeType = nodeType
+  function displayName as string = camelCase(name)
 
   shared
     function keyword(text as string) as keyword = map.get(text)

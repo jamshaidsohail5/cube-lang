@@ -7,14 +7,6 @@ define assign as element
     me.right = right
   end
 
-  function write(s as stringBuilder)
-    s.append('(').append(name).append(' ').append(operator.symbol.text)
-      .append(' ')
-
-    right.write(s)
-    s.append(')')
-  end
-
   internal
     var operator as operator
     var name as string

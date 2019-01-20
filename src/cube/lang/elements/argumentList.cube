@@ -3,12 +3,6 @@ use cube.lang
 define argumentList as element
   function create(arguments as IList[element]) = me.arguments = arguments
 
-  function write(s as stringBuilder) =
-    for i = 0 to i < arguments.size
-      arguments.get(i).write(s)
-      if i < arguments.size - 1 then s.append(', ')
-    end
-
   internal
     var arguments as IList[element]
   end

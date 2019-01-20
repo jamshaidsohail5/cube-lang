@@ -7,16 +7,6 @@ define ifExpression as element
     me.elseBody = elseBody
   end
 
-  function write(s as stringBuilder)
-    s.append('(')
-    condition.write(s)
-    s.append(' ? ')
-    body.write(s)
-    s.append(' : ')
-    elseBody.write(s)
-    s.append(')')
-  end
-
   internal
     var condition as element
     var body as element

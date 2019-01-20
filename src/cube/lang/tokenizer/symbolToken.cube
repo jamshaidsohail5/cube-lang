@@ -9,12 +9,10 @@ define symbolToken as token
   function key as symbol = symbol
   function isSymbol(s as symbol) = s == symbol
 
-  function write(s as stringBuilder)
-    s.append(nodeType.displayName)
-    s.append("('")
-    s.append(symbol.text)
-    s.append("')")
-  end
+  function write(writer as dependencyWriter, depth as int) as void =
+    writer.s.append(nodeType.displayName).append("('").append(symbol.text)
+      .append(
+      "')")
 
   internal
     var symbol as symbol

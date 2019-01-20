@@ -4,10 +4,7 @@ define identifierToken as token
   function create(text as string) = super(NodeType.Identifier, text)
   function key as object = NodeType.Identifier
 
-  function write(s as stringBuilder)
-    s.append(nodeType.displayName)
-    s.append("('")
-    s.append(text)
-    s.append("')")
-  end
+  function write(writer as dependencyWriter, depth as int) as void =
+    writer.s.append(nodeType.displayName).append("('").append(text)
+      .append("')")
 end
