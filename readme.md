@@ -1,3 +1,5 @@
+<img align="left" height="150" src="https://upload.wikimedia.org/wikipedia/commons/c/c3/Lambda-letter-lowercase-symbol-Garamond.svg">
+
 # The Cube Programming Language
 
 **Cube** is a modern, high-level language with a combined functional and object-oriented programming style. The language's core philosophy is to support efficient code, by enabling developers to write and test short intuitive programs with an emphasis on readability.
