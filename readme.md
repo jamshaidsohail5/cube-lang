@@ -9,3 +9,5 @@ Cube uses a flexible [dependency grammar](https://en.wikipedia.org/wiki/Dependen
 Conceptual [pseudocode](https://www.youtube.com/watch?v=gcQMBK53UjI) is used in Computer Science both for education and design, and is used to communciate the details of how algorithms work, independently of any specific programming language.
 
 [![pseudocode](https://img.youtube.com/vi/gcQMBK53UjI/0.jpg)](https://www.youtube.com/watch?v=gcQMBK53UjI "pseudocode")
+
+*Introduction to Algorithms by Joseph Dugan*.
