@@ -4,7 +4,7 @@
 
 ## Algorithms and Pseudocode
 
-Conceptual [pseudocode](https://www.youtube.com/watch?v=gcQMBK53UjI) is a fundamental tool used in Computer Science both for education and design, and is used to communciate the details of how algorithms work, independently of any specific programming language.
+Conceptual [pseudocode](https://www.youtube.com/watch?v=gcQMBK53UjI) is a fundamental tool used in Computer Science for both education and design, and is used to communciate the details of how algorithms work, independently of any specific programming language.
 
 Cube uses a flexible [dependency grammar](https://en.wikipedia.org/wiki/Dependency_grammar) inspired by pseudocode, and shares a common syntax with other pseudocode-inspired languages such as [SQL](https://en.wikipedia.org/wiki/Select_(SQL)), [Lua](https://en.wikipedia.org/wiki/Lua_(programming_language)) and [Julia](https://en.wikibooks.org/wiki/Introducing_Julia/Controlling_the_flow).
 
