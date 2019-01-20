@@ -8,7 +8,7 @@
 
 Conceptual [pseudocode](https://www.youtube.com/watch?v=gcQMBK53UjI) is a fundamental tool used in Computer Science for both education and design and is used to explain how algorithms work, independently of any specific programming language.
 
-Cube uses a flexible [dependency grammar](https://en.wikipedia.org/wiki/Dependency_grammar) inspired by pseudocode and shares a common syntax with other pseudocode-inspired languages, including [SQL](https://en.wikipedia.org/wiki/Select_(SQL)), [Lua](https://en.wikipedia.org/wiki/Lua_(programming_language)) and [Ruby](https://github.com/ThibaultJanBeyer/cheatsheets/blob/master/Ruby-Cheatsheet.md).
+Cube uses a flexible [dependency grammar](https://en.wikipedia.org/wiki/Dependency_grammar) inspired by pseudocode and shares a common syntax with other pseudocode-inspired languages, including [Lua](https://en.wikipedia.org/wiki/Lua_(programming_language)), [Ruby](https://github.com/ThibaultJanBeyer/cheatsheets/blob/master/Ruby-Cheatsheet.md) and [SQL](https://en.wikipedia.org/wiki/Select_(SQL)).
 
 [![pseudocode](https://img.youtube.com/vi/gcQMBK53UjI/0.jpg)](https://www.youtube.com/watch?v=gcQMBK53UjI "pseudocode")
 
