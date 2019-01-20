@@ -8,7 +8,8 @@ define verify
     var r1 = new localRepository(repoPath, 'cube')
     var r2 = new localRepository(repoPath, 'tree')
     compare(r1, r2)
-    System.out.println('Failed: ' + (total - passed) + ' / ' + total + '.')
+    System.out.println('Passed: ' + passed + ' / ' + total)
+    System.out.println('Failed: ' + (total - passed))
   end
 
   internal
@@ -20,15 +21,24 @@ define verify
       function compare(r1 as localRepository, r2 as localRepository) =
         for each path in r1.sources
           var cube as string = r1.read(path)
-          var actual as string = r2.read(path)
-          var expected as string = format(dependencyTree(cube))
+          var expected as string = r2.read(path)
 
-          if expected.equals(actual) then passed++
-          else do
-            System.out.println(path)
-            System.out.println('Failed   : ' + cube)
-            System.out.println('Expected : ' + expected)
-            System.out.println('Actual   : ' + actual)
+          try
+            var actual as string = format(dependencyTree(cube))
+
+            if actual.equals(expected) then passed++
+            else do
+              System.out.println(path)
+              System.out.println('Failed   : ' + cube)
+              System.out.println('Expected : ' + expected)
+              System.out.println('Actual   : ' + actual)
+            end
+          catch
+            when e as exception then do
+              System.out.println(path)
+              System.out.println('Failed   : ' + cube)
+              e.printStackTrace(System.out)
+            end
           end
 
           total++
