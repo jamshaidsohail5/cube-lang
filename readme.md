@@ -10,4 +10,4 @@ Cube uses a flexible [dependency grammar](https://en.wikipedia.org/wiki/Dependen
 
 [![pseudocode](https://img.youtube.com/vi/gcQMBK53UjI/0.jpg)](https://www.youtube.com/watch?v=gcQMBK53UjI "pseudocode")
 
-*Introduction to Algorithms by Joseph Dugan*.
+*[Introduction to Algorithms](https://www.youtube.com/watch?v=gcQMBK53UjI) by Joseph Dugan*.
