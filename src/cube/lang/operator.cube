@@ -22,6 +22,9 @@ enum operator
   Add(Plus, LeftAssociative, AdditivePrecedence)
   Subtract(Minus, LeftAssociative, AdditivePrecedence)
   Less(LessSymbol, NotAssociative, RelationalPrecedence)
+  LessOrEqual(LessEqual, NotAssociative, RelationalPrecedence)
+  Greater(GreaterSymbol, NotAssociative, RelationalPrecedence)
+  GreaterOrEqual(GreaterEqual, NotAssociative, RelationalPrecedence)
   AssignEqual(Equal, RightAssociative, AssignmentPrecedence)
   LeftArrow(LeftArrowSymbol, RightAssociative, AssignmentPrecedence)
 
