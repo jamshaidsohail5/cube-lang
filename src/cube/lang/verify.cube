@@ -8,7 +8,7 @@ define verify
     var r1 = new localRepository(repoPath, 'cube')
     var r2 = new localRepository(repoPath, 'tree')
     compare(r1, r2)
-    System.out.println('Passed: ' + passed + ' / ' + total)
+    System.out.println('Passed ' + passed + '/' + total + ' parser tests.')
     System.out.println('Failed: ' + (total - passed))
   end
 

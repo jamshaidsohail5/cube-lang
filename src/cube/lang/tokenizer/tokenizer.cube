@@ -44,8 +44,8 @@ define tokenizer
 
     function identifierOrKeyword
       var start as int = position++
-      var c as int
-      while c <- peek != -1 and characterType(c) = Character -> position++
+      var c as int, t as int
+      while c <- peek != -1 and (t <- characterType(c) = Character or t = Digit) -> position++
       tokenText = text.substring(start, position)
       keyword = Keyword.keyword(tokenText)
 
