@@ -10,7 +10,7 @@ Most computer programs describe algorithms, which are sets of instructions that 
 
 Cube is inspired by [pseudocode](https://www.youtube.com/watch?v=gcQMBK53UjI), a fundamental concept in Computer Science for both education and design that is used to explain how algorithms work, independently of any specific programming language.
 
-What makes pseudocode so powerful is that any computer program, even a highly complex one, can be easily described using a combination of simple mathematical notation and basic operations. Programs written in pseudocode are more understandable because they use conventional words to describe instructions (such as **if**, **while**, **do** and **end**) and avoid complex grammar or unfamilar symbols.
+What makes pseudocode so powerful is that any computer program, even a highly complex one, can be easily described using a combination of simple mathematical notation and basic operations. Programs written in pseudocode are easier to understand because they use conventional words to describe instructions (such as **if**, **while**, **do** and **end**) and avoid complex grammar or unfamilar symbols.
 
 Compared to programming languages that have more complex syntax, this is easier for humans to read, but more challenging for machines to process. Cube uses a flexible [dependency grammar](https://en.wikipedia.org/wiki/Dependency_grammar) inspired by pseudocode, and shares its readable coding style with other similarly-inspired languages, including [Basic](https://en.wikipedia.org/wiki/BASIC), [Lua](https://en.wikipedia.org/wiki/Lua_(programming_language)), [Ruby](https://github.com/ThibaultJanBeyer/cheatsheets/blob/master/Ruby-Cheatsheet.md) and [SQL](https://en.wikipedia.org/wiki/Select_(SQL)).
 
