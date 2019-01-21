@@ -6,7 +6,7 @@
 
 ## Inspiration
 
-Most computer programs describe algorithms, which are set of instructions that when executed provide the solution to a specific problem. Simple, clear programs are highly valued in the programming community, as they promote reuse and are far easier to update and mantain, compared to more complex programs that may solve the same problem.
+Most computer programs describe algorithms, which sets of instructions that when executed provide the solution to a specific problem. Simple, clear programs are highly valued in the programming community, as they promote reuse and are far easier to update and mantain, compared to more complex programs that may solve the same problem.
 
 Cube is inpsired by [pseudocode](https://www.youtube.com/watch?v=gcQMBK53UjI), a fundamental concept in Computer Science for both education and design, that is used to explain how algorithms work, independently of any specific programming language.
 
