@@ -2,7 +2,7 @@
 
 # The Cube Programming Language
 
-**Cube** is a modern, high-level language with a combined functional and object-oriented programming style. The language's core philosophy is to support efficient code, by enabling developers to write short intuitive programs with a clear and readable syntax.
+**Cube** is a modern, high-level language that combines functional and object-oriented programming. The language's core philosophy is to support efficient code, by enabling developers to write short intuitive programs with a clear and readable syntax.
 
 ## Algorithms and Pseudocode
 
