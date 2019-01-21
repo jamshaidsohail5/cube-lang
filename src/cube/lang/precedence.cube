@@ -9,10 +9,10 @@ enum precedence
   RelationalPrecedence(8)
   AdditivePrecedence(9)
   MultiplicativePrecedence(10)
-  DotPrecedence(11)
-  UnaryPrefixPrecedence(12)
-  UnaryPostfixPrecedence(13)
-  FunctionPrecedence(14)
+  UnaryPrefixPrecedence(11)
+  UnaryPostfixPrecedence(12)
+  FunctionPrecedence(13)
+  DotPrecedence(14)
 
   function value as int = value
 

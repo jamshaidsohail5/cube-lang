@@ -54,7 +54,7 @@ define tokenStream
             when Symbol then p = new symbolToken(tokenizer.symbol, text)
             when Keyword then p = new keywordToken(tokenizer.keyword, text)
             when Identifier then p = new identifierToken(text)
-            when Number or ConstantKeyword then p = new constantToken(t, text)
+            when Number or ConstantKeyword or QuotedString then p = new constantToken(t, text)
             else error new unsupportedOperationException(t.toString)
           end
         end

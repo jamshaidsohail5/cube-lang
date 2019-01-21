@@ -13,7 +13,9 @@ define tokenizer
   function next as boolean
     var c as int
 
-    while c <- peek != -1 ->
+    while c <- peek != -1
+      if c = char("'") or c = char('"') then output readQuotedString(c)
+
       match characterType(c)
         when Whitespace then position++
         when Symbol then output readSymbol
@@ -21,6 +23,7 @@ define tokenizer
         when Character then output identifierOrKeyword
         else error new unsupportedOperationException
       end
+    end
 
     output false
   end
@@ -55,6 +58,15 @@ define tokenizer
       output true
     end
 
+    function readQuotedString(q as int)
+      var start as int = position++
+      var c as int
+      while c <- peek != -1 and c != q -> position++
+      tokenText = text.substring(start, ++position)
+      tokenType = NodeType.QuotedString
+      output true
+    end
+
     function readSymbol
       var c as int = read
 
@@ -62,13 +74,44 @@ define tokenizer
         when char('.') then reduce(Dot)
         when char('(') then reduce(LeftParenthesis)
         when char(')') then reduce(RightParenthesis)
+        when char('{') then reduce(LeftCurlyBracket)
+        when char('}') then reduce(RightCurlyBracket)
+        when char('[') then reduce(LeftSquareBracket)
+        when char(']') then reduce(RightSquareBracket)
         when char(',') then reduce(Comma)
-        when char('=') then reduce(Equal)
 
-        when char('+') then if peek = char('+') then do
-          read
-          reduce(PlusPlus)
-        end else reduce(Plus)
+        when char('=') then
+          if peek = char('=') then do
+            read
+            reduce(EqualEqual)
+          end else reduce(Equal)
+
+        when char('+') then
+          match peek
+            when char('+') then do
+              read
+              reduce(PlusPlus)
+            end
+
+            when char('=') then do
+              read
+              reduce(PlusEqual)
+            end
+
+            else reduce(Plus)
+          end
+
+        when char('!') then
+          if peek = char('=') then do
+            read
+            reduce(ExclamationEqual)
+          end else reduce(Exclamation)
+
+        when char('%') then
+          if peek = char('%') then do
+            read
+            reduce(PercentEqual)
+          end else reduce(Percent)
 
         when char('-') then
           match peek
@@ -77,9 +120,9 @@ define tokenizer
               reduce(MinusMinus)
             end
 
-            when char('>') then do
+            when char('=') then do
               read
-              reduce(RightArrowSymbol)
+              reduce(MinusEqual)
             end
 
             else reduce(Minus)

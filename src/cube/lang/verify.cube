@@ -7,42 +7,66 @@ define verify
     System.out.println('Verifying...')
     var r1 = new localRepository(repoPath, 'cube')
     var r2 = new localRepository(repoPath, 'tree')
-    compare(r1, r2)
-    System.out.println('Passed ' + passed + '/' + total + ' parser tests.')
-    System.out.println('Failed: ' + (total - passed))
+    var n = 0, f = 0
+
+    for each path in r1.sources
+      if not verify(r1, r2, path, false) then do
+        var length as int = r1.read(path).length
+
+        if minLength = 0 or length < minLength then do
+          minLength = length
+          minArgPath = path
+        end
+
+        f++
+      end
+
+      n++
+    end
+
+    System.out.println('Passed ' + (n - f) + '/' + n + ' parser tests.')
+    System.out.println('Failed: ' + f)
+    if f > 0 then verify(r1, r2, minArgPath, true)
   end
 
   internal
     shared
       var repoPath as string = '../cube-parser/test/data'
-      var passed = 0
-      var total = 0
+      var minLength as int
+      var minArgPath as string
 
-      function compare(r1 as localRepository, r2 as localRepository) =
-        for each path in r1.sources
-          var cube as string = r1.read(path)
-          var expected as string = r2.read(path)
+      function verify(
+        r1 as localRepository, r2 as localRepository, path as string, verbose as boolean)
+        var cube as string = r1.read(path)
+        var expected as string = r2.read(path)
 
-          try
-            var actual as string = format(dependencyTree(cube))
-
-            if actual.equals(expected) then passed++
-            else do
-              System.out.println(path)
-              System.out.println('Failed   : ' + cube)
-              System.out.println('Expected : ' + expected)
-              System.out.println('Actual   : ' + actual)
-            end
-          catch
-            when e as exception then do
-              System.out.println(path)
-              System.out.println('Failed   : ' + cube)
-              e.printStackTrace(System.out)
-            end
-          end
-
-          total++
+        if verbose then do
+          System.out.println
+          System.out.println(path)
+          System.out.println(cube)
+          System.out.println
+          System.out.println('expected:')
+          System.out.println(expected)
+          System.out.println
+          System.out.println('actual:')
         end
+
+        try
+          var actual as string = format(dependencyTree(cube))
+
+          if not actual.equals(expected) then do
+            if verbose then System.out.println(actual)
+            output false
+          end
+        catch
+          when e as exception then do
+            if verbose then e.printStackTrace(System.out)
+            output false
+          end
+        end
+
+        output true
+      end
     end
   end
 end
