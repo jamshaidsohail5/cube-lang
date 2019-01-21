@@ -8,7 +8,7 @@
 
 Most computer programs describe algorithms, which are set of instructions that when executed provide the solution to a specific problem. Simple, clear programs are highly valued in the programming community, as they promote reuse and are far easier to update and mantain, compared to more complex programs that may solve the same problem.
 
-[Pseudocode](https://www.youtube.com/watch?v=gcQMBK53UjI) is a fundamental concept in Computer Science for both education and design, and is used to explain how algorithms work, independently of any specific programming language.
+Cube is inpsired by [pseudocode](https://www.youtube.com/watch?v=gcQMBK53UjI), a fundamental concept in Computer Science for both education and design, that is used to explain how algorithms work, independently of any specific programming language.
 
 What makes pseudocode so powerful is that any computer program, even a highly complex one, can be easily described using a combination of simple mathematical notation and basic operations. Programs written in pseudocode are readable because they use conventional words to describe programs (such as **if**, **while**, **do** and **end**) and avoid complex grammar or unclear symbols.
 
