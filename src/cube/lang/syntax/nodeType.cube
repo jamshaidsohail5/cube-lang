@@ -7,12 +7,13 @@ enum nodeType
   Identifier
   Number
   Assign
+  BracketedTerm
   UnaryExpression
   BinaryExpression
   DotExpression
+  IfExpression
   FunctionExpression
   Arguments
-  IfExpression
 
   function displayName as string = camelCase(name)
 end

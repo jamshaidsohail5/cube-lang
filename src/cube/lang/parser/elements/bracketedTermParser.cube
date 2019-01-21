@@ -1,11 +1,17 @@
 use cube.lang.parser
+use cube.lang.syntax
 use cube.lang.tokenizer
 use cube.lang.tokenizer.symbol
 
 define bracketedTermParser[T] as leftDependencyParser[T]
   function parse(parser as dependencyParser[T], t0 as token) as T
-    var expression as T = parser.parse
-    parser.tokens.expect(RightParenthesis)
-    output expression
+    var term as T = parser.parse
+    var t2 as token = parser.tokens.expect(RightParenthesis)
+    var v as dependencyVisitor[T] = parser.visitor
+    v.visit(NodeType.BracketedTerm)
+    v.visitLeaf(t0)
+    v.visitDependency(term)
+    v.visitLeaf(t2)
+    output v.value
   end
 end
