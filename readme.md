@@ -4,7 +4,7 @@
 
 **Cube** is a modern, high-level language that combines functional and object-oriented programming. The language's core philosophy is to support efficient code, by enabling developers to write short intuitive programs with a clear and readable syntax.
 
-## Algorithms and Pseudocode
+## Inspiration
 
 [Pseudocode](https://www.youtube.com/watch?v=gcQMBK53UjI) is a fundamental concept in Computer Science for both education and design, and is used to explain how algorithms work, independently of any specific programming language.
 
