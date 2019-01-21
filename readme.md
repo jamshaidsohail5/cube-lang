@@ -14,4 +14,4 @@ Compared to programming languages that have more complex syntax, this is easier 
 
 [![pseudocode](https://img.youtube.com/vi/gcQMBK53UjI/0.jpg)](https://www.youtube.com/watch?v=gcQMBK53UjI "pseudocode")
 
-*Introduction to Algorithms by Joseph Dugan* ([video](https://www.youtube.com/watch?v=gcQMBK53UjI)).
+*Introduction to Algorithms* by Joseph Dugan ([video](https://www.youtube.com/watch?v=gcQMBK53UjI)).
