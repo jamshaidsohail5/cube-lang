@@ -10,7 +10,7 @@
 
 What makes pseudocode so powerful is that any computer program, even a highly complex one, can be described using combination of simple mathematical notation and basic operations. Programs written in pseudocode avoid unnecessary punctuation and unclear symbols, and use conventional words to describe programs (such as **if**, **while**, **do** and **end**).
 
-Compared to programming languages that have more complex syntax, this is easier for humans to read, but more challenging for machines to process. Cube uses a flexible [dependency grammar](https://en.wikipedia.org/wiki/Dependency_grammar) inspired by pseudocode and shares readable coding style with other pseudocode-inspired languages, including [Lua](https://en.wikipedia.org/wiki/Lua_(programming_language)), [Ruby](https://github.com/ThibaultJanBeyer/cheatsheets/blob/master/Ruby-Cheatsheet.md) and [SQL](https://en.wikipedia.org/wiki/Select_(SQL)).
+Compared to programming languages that have more complex syntax, this is easier for humans to read, but more challenging for machines to process. Cube uses a flexible [dependency grammar](https://en.wikipedia.org/wiki/Dependency_grammar) inspired by pseudocode and shares readable coding style with other similarly-inspired languages, including [Lua](https://en.wikipedia.org/wiki/Lua_(programming_language)), [Ruby](https://github.com/ThibaultJanBeyer/cheatsheets/blob/master/Ruby-Cheatsheet.md) and [SQL](https://en.wikipedia.org/wiki/Select_(SQL)).
 
 [![pseudocode](https://img.youtube.com/vi/gcQMBK53UjI/0.jpg)](https://www.youtube.com/watch?v=gcQMBK53UjI "pseudocode")
 
