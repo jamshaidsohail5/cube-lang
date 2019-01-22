@@ -117,6 +117,17 @@ end
 function factorial(n as int) = if n < 1 then 1 else n * factorial(n - 1)
 ```
 
+### Loops
+
+```lua
+function cluster(data as dataset)
+  for i = 0 to i < data.size, j = 0 to i
+    let p = measure(data(i, j))
+	  if distance(p) > maxZero then matrix(i, j) = log(p)
+  end
+end
+```
+
 ### Iteration
 
 ```lua
@@ -132,7 +143,7 @@ interface IConnection
 end
 ```
 
-### Set-based invocation (declarative)
+### Set-based invocation
 
 ```lua
 close each connection in connectionList
