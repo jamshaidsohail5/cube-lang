@@ -123,6 +123,15 @@ function factorial(n as int) = if n < 1 then 1 else n * factorial(n - 1)
 for each c in connectionList -> print(c.timeout)
 ```
 
+```lua
+### Interfaces
+
+interface IConnection
+  field timeout as long
+  function close
+end
+```
+
 ### Set-based invocation (declarative)
 
 ```lua
