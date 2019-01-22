@@ -7,7 +7,7 @@
 **Contents**
 
 * [Examples](#examples)
-* [Motiviation](#motiviation)
+* [Motivation](#motivation)
 * [Integrated Language Features](#integrated-language-features)
 * [Algorithms and Pseudocode](#algorithms-and-pseudocode)
 
@@ -125,7 +125,7 @@ function benchmark(codeBlock as () -> void) as interval
 end
 ```
 
-## Motiviation
+## Motivation
 
 Cube is primarily inspired by [pseudocode](https://www.youtube.com/watch?v=gcQMBK53UjI), a fundamental concept in Computer Science for both education and software design, that is used to explain how algorithms work, independently of any specific programming language.
 
