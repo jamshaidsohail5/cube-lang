@@ -44,7 +44,7 @@ test 'convert celsius to fahrenheit'
 end
 ```
 
-### Metadata for microservices
+### Metadata
 
 ```lua
 [path('webapp/hello')]
