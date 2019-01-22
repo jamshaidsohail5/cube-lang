@@ -81,7 +81,7 @@ let cities = {
 
 ```sql
 let hashtags =
-  select city, '#{lowecase(tag)}'
+  select city, '#{lowercase(tag)}'
   from city in cities join tag in city.tags
 ```
 
