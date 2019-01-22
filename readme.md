@@ -83,8 +83,8 @@ let cities = {
 
 ```sql
 let hashtags =
-  select city, '#' + lowercase(tag)
-  from city in cities join tag in city.tags
+  select '#' + lowercase(tag)
+  from c in cities join tag in c.tags
 ```
 
 ### Functional Reduce
