@@ -156,6 +156,14 @@ define node[T]
 end
 ```
 
+### Generic type constraints
+
+```lua
+function totalArea[T as shape](shapes as list[T])
+  output sum(s.area) from s in shapes
+end
+```
+
 ### Pattern matching
 
 ```lua
