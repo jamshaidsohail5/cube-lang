@@ -167,10 +167,10 @@ define node[T]
 end
 ```
 
-### Generic type constraints
+### Type constraints
 
 ```lua
-function totalArea[T as shape](shapes as list[T])
+function totalArea[T >= shape](shapes as list[T])
   output sum(s.area) from s in shapes
 end
 ```
