@@ -51,7 +51,7 @@ public static void normalizeLogArray(double[] array) {
 
 In Cube, the same Java function can be written in a more readable way, using integrated language support for set-based data updates.
 
-```sql
+```lua
 function normalize(d as array[double])
   let v = max(d) + log(sum(exp(a - max(d)))) from a in d
   update a in d
