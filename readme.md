@@ -18,6 +18,47 @@ A second source of inspiration is [dependency grammar](https://en.wikipedia.org/
 
 This simplifies the creation of domain specific languages, and enables [polyglot programming](https://www.graalvm.org/docs/reference-manual/polyglot), which combines the best features of different languages (such as functional programming and SQL over collections) into easily readable programs.
 
+## Integrated Language Features
+
+Common programming tasks often involve searching or updating data structures such as sets, lists and maps. However, many programming languages do not include high-level support for both functional programing and the ability to easily modify set-based data structures. To solve these problems, programmers may have to use software libraries outside of their language, or write longer code using loops or lower-level iteration.
+
+Cube provides language support for frequently occurring operations over basic data structures. For an example of how integrated language features help with code readability, consider trying to write a function that implements a simple mathematical algorithm for vector normalization. In pure Java, we can use loops to write a function to normalize an array of probabilities in-place.
+
+```java
+public static void normalizeLogArray(double[] array) {
+  double max = Double.NEGATIVE_INFINITY;
+  for (double d : array) {
+    if (d > max) max = d;
+  }
+
+  double expSum = 0;
+  for (double d: array) {
+    expSum += Math.exp(d - max);
+  }
+  double logExpSum = max + Math.log(expSum);
+
+  if (Double.isInfinite(logExpSum)) {
+    for (int i = 0; i < array.length; i++) {
+      array[i] = 1.0 / array.length;
+    }
+  } else {
+    for (int i = 0; i < array.length; i++) {
+      array[i] = Math.exp(array[i] - logSumExp);
+    }
+  }
+}
+```
+
+In Cube, the same Java function can be written in a more readable way, using integrated language support for set-based data updates.
+
+```sql
+function normalize(d as array[double])
+  let v = max(d) + log(sum(exp(a - max(d)))) from a in d
+  update a in d
+  set a = if v is infinite then 1.0 / d.length else exp(a - v)
+end
+```
+
 ## Algorithms and Pseudocode
 
 [![pseudocode](https://img.youtube.com/vi/gcQMBK53UjI/0.jpg)](https://www.youtube.com/watch?v=gcQMBK53UjI "pseudocode")
