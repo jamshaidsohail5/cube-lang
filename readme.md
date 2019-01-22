@@ -80,9 +80,9 @@ let cities = {
 ### Functional Map
 
 ```sql
-select city, tag
-from city in cities join tag in city.tags
-where tag = 'Japan'
+let hashtags =
+  select city, '#{lowecase(tag)}'
+  from city in cities join tag in city.tags
 ```
 
 ### Functional Reduce
