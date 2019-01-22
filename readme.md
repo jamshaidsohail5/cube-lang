@@ -10,7 +10,7 @@ Cube is primarily inspired by [pseudocode](https://www.youtube.com/watch?v=gcQMB
 
 Most computer programs describe algorithms, which are sets of instructions that are executed to provide the solution to a specific problem. In software development, clear programs that are simple to modify and test are highly valued by the programming community, compared to more complex programs that may solve the same problem.
 
-What makes pseudocode so powerful is the idea that any computer program, even a highly complex one, can be described using a combination of simple mathematical notation and basic operations. Programs written in pseudocode are easier to understand because they use conventional words to describe instructions (such as **if**, **while**, **do** and **end**) and avoid complex grammar or unfamiliar symbols.
+What makes pseudocode so powerful is the idea that any computer program, even a highly complex one, can be described using a combination of simple mathematical notation and basic operations. Programs written in pseudocode are easier to understand because they use conventional words to describe instructions (such as `if`, `while`, `do` and `end`) and avoid complex grammar or unfamiliar symbols.
 
 Compared to programming languages that have more complex syntax, this is easier for humans to read, but more challenging for machines to process. Cube shares its readable coding style with other similarly-inspired languages, including [Basic](https://en.wikipedia.org/wiki/BASIC), [Lua](https://en.wikipedia.org/wiki/Lua_(programming_language)), [Ruby](https://github.com/ThibaultJanBeyer/cheatsheets/blob/master/Ruby-Cheatsheet.md) and [SQL](https://en.wikipedia.org/wiki/Select_(SQL)).
 
@@ -20,7 +20,7 @@ This simplifies the creation of domain specific languages, and enables [polyglot
 
 ## Integrated Language Features
 
-Common programming tasks often involve searching or updating data structures such as sets, lists and maps. However, many programming languages do not include high-level support for both functional programing and the ability to easily modify set-based data structures. To solve these problems, programmers may have to use software libraries outside of their language, or write longer code using loops or lower-level iteration.
+Common programming tasks often involve searching or updating data structures such as sets, lists and graphs. However, many programming languages do not include high-level support for both functional programing and the ability to easily modify set-based data structures. To solve these problems, programmers may have to use software libraries outside of their language, or write longer code using loops or lower-level iteration.
 
 Cube provides language support for frequently occurring operations over basic data structures. For an example of how integrated language features help with code readability, consider trying to write a function that implements a simple mathematical algorithm for vector normalization.
 
