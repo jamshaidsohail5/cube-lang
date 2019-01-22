@@ -119,17 +119,23 @@ function factorial(n as int) = if n < 1 then 1 else n * factorial(n - 1)
 
 ### Iteration
 
+```lua
 for each c in connectionList -> print(c.timeout)
+```
 
 ### Set-based invocation (declarative)
 
+```lua
 close each connection in connectionList
+```
 
 ### Set-based update
 
+```lua
 update c in collectionList
 set c.timeout = 1000
 where c is not null
+```
 
 ### Generics
 
