@@ -18,7 +18,7 @@ Although Cube isn't publicly available yet as we are still working on the parser
 ### Hello world
 
 ```lua
-print('hello world')
+print('hola!')
 ```
 
 ### Object-oriented programming
