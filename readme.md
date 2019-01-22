@@ -37,7 +37,7 @@ end
 ### Unit testing with negative tests
 
 ```lua
-test 'convert celsius to fahrenheit'
+test('convert celsius to fahrenheit')
   let x = new temperature(celsius = 5)
   x.fahrenheit should be 41
   x.increaseTemperature(-5) should error '-5 is not a valid temperature.'
