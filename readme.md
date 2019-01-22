@@ -121,9 +121,9 @@ function factorial(n as int) = if n < 1 then 1 else n * factorial(n - 1)
 
 ```lua
 function cluster(data as dataset)
-  for i = 0 to i < data.size, j = 0 to i
+  for i = 1 to i < data.size, j = 1 to i
     let p = measure(data(i, j))
-	  if distance(p) > maxZero then matrix(i, j) = log(p)
+    if distance(p) > maxZero then matrix(i, j) = log(p)
   end
 end
 ```
