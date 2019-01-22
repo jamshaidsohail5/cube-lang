@@ -89,7 +89,9 @@ let hashtags =
   from c in cities join tag in c.tags
 ```
 
-### Functional reduce [left fold](https://en.wikipedia.org/wiki/Fold_(higher-order_function)).
+### Functional reduce
+
+[Left fold](https://en.wikipedia.org/wiki/Fold_(higher-order_function)).
 
 ```lua
 let a = [1, 2, 3, 4, 5]
