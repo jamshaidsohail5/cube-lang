@@ -158,7 +158,7 @@ set c.timeout = 1000
 where c is not null
 ```
 
-### Generics with recursion
+### Generics
 
 ```lua
 define node[T]
