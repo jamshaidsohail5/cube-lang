@@ -203,7 +203,7 @@ define hello as agent
 end 
 
 test('hello agent')
-  let group = new AgentGroup
+  let group = new agentGroup
   let agent = group.add[HelloAgent]
 
   send 'hello' to agent
