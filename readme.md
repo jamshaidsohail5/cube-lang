@@ -77,10 +77,33 @@ let cities = {
 }
 ```
 
+### Functional Map
+
 ```sql
 select city, tag
 from city in cities join tag in city.tags
 where tag = 'Japan'
+```
+
+### Functional Reduce
+
+```lua
+let a = [1, 2, 3, 4, 5]
+
+with v = 0
+reduce a + e from e in a
+
+v should be (15)
+```
+
+### Higher-order functions with lambdas
+
+```lua
+function benchmark(codeBlock as () -> void) as interval
+  let startTime = now
+  codeBlock()
+  output now - startTime
+end
 ```
 
 ### Recursion and type inference
@@ -113,27 +136,6 @@ define node[T]
   field children = new list[node[T]]
   function countNodes = sum(c.countNodes) from c in children
 end
-```
-
-### Higher-order functions with lambdas
-
-```lua
-function benchmark(codeBlock as () -> void) as interval
-  let startTime = now
-  codeBlock()
-  output now - startTime
-end
-```
-
-### Functional Reduce
-
-```lua
-let a = [1, 2, 3, 4, 5]
-
-with v = 0
-reduce a + e from e in a
-
-v should be (15)
 ```
 
 ## Motivation
