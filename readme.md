@@ -91,9 +91,8 @@ let hashtags =
 
 ### Functional reduce
 
-[Left fold](https://en.wikipedia.org/wiki/Fold_(higher-order_function)).
-
 ```lua
+-- sum the values in an array using a left fold
 let a = [1, 2, 3, 4, 5]
 
 with v = 0
