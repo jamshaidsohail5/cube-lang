@@ -69,10 +69,10 @@ from time in buffer where time > 0
 ```lua
 let cities = {
   'Tokyo': {
-      tags: ['Asia', 'Japan' ]
+      tags: ['Asia', 'Japan']
   },
   'London': {
-    tags: ['Europe', 'UK' ]
+    tags: ['Europe', 'UK']
   }
 }
 ```
@@ -155,7 +155,7 @@ public static void normalizeLogArray(double[] array) {
   }
 
   double sumExp = 0;
-  for (double d: array) {
+  for (double d : array) {
     sumExp += Math.exp(d - max);
   }
   double logSumExp = max + Math.log(sumExp);
