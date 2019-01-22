@@ -192,7 +192,7 @@ function describe(p as point)
 end
 ```
 
-### Concurrent programming using actors
+### Concurrent programming with actors
 
 ```lua
 define hello as actor
