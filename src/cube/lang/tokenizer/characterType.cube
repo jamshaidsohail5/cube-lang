@@ -15,5 +15,7 @@ define characterType
       if n <= 122 then output Character
       output if n <= 127 then Symbol else Character
     end
+
+    function digit(n as int) as boolean = n >= char('0') and n <= char('9')
   end
 end

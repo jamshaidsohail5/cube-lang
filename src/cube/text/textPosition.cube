@@ -1,0 +1,13 @@
+define textPosition
+  function create(line as int, column as int)
+    me.line = line
+    me.column = column
+  end
+
+  function toString as string = 'Line ' + line + ', column ' + column
+
+  internal
+    var line as int
+    var column as int
+  end
+end

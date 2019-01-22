@@ -1,6 +1,7 @@
 use cube.lang
 use cube.lang.parser.syntaxError
 use cube.lang.syntax
+use cube.text
 
 define tokenStream
   function create(tokenizer as tokenizer) = me.tokenizer = tokenizer
@@ -44,22 +45,23 @@ define tokenStream
 
     function fill(n as int) =
       while buffer.size <= n
-        var p as token = null
+        var o as token = null
 
         if tokenizer.next then do
           var text as string = tokenizer.tokenText
           var t as nodeType = tokenizer.tokenType
+          var p as textPosition = tokenizer.tokenPosition
 
           match t
-            when Symbol then p = new symbolToken(tokenizer.symbol, text)
-            when Keyword then p = new keywordToken(tokenizer.keyword, text)
-            when Identifier then p = new identifierToken(text)
-            when Number or ConstantKeyword or QuotedString then p = new constantToken(t, text)
+            when Symbol then o = new symbolToken(tokenizer.symbol, text, p)
+            when Keyword then o = new keywordToken(tokenizer.keyword, text, p)
+            when Identifier then o = new identifierToken(text, p)
+            when Number or ConstantKeyword or QuotedString then o = new constantToken(t, text, p)
             else error new unsupportedOperationException(t.toString)
           end
         end
 
-        buffer.add(p)
+        buffer.add(o)
       end
   end
 end

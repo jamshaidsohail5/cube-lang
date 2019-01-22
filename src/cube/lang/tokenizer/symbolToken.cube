@@ -1,8 +1,9 @@
 use cube.lang.syntax
+use cube.text
 
 define symbolToken as token
-  function create(symbol as symbol, text as string)
-    super(NodeType.Symbol, text)
+  function create(symbol as symbol, text as string, position as textPosition)
+    super(NodeType.Symbol, text, position)
     me.symbol = symbol
   end
 

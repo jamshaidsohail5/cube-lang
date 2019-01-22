@@ -1,12 +1,15 @@
 use cube.lang.syntax
+use cube.text
 
 define abstract token as dependencyNode
-  function create(nodeType as nodeType, text as string)
+  function create(nodeType as nodeType, text as string, position as textPosition)
     super(nodeType)
     me.text = text
+    me.position = position
   end
 
   function text as string = text
+  function position as textPosition = position
   function toString as string = text
 
   abstract
@@ -15,5 +18,9 @@ define abstract token as dependencyNode
 
   protected
     var text as string
+  end
+
+  internal
+    var position as textPosition
   end
 end

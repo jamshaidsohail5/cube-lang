@@ -1,0 +1,20 @@
+use cube.lang.parser
+use cube.lang.syntax
+use cube.lang.tokenizer
+use cube.lang.tokenizer.symbol
+
+define arrayExpressionParser[T] as leftDependencyParser[T]
+  function parse(parser as dependencyParser[T], t0 as token) as T
+    var tokens as tokenStream = parser.tokens
+    var v as dependencyVisitor[T] = parser.visitor.enter(NodeType.ArrayExpression)
+    v.visitLeaf(t0)
+    var q0 as token
+
+    while not q0 = tokens.peek(0).isSymbol(RightSquareBracket) ->
+      if q0.isSymbol(Comma) then v.visitLeaf(tokens.next)
+      else v.visitDependency(parser.parse)
+
+    v.visitLeaf(tokens.next)
+    output v.value
+  end
+end

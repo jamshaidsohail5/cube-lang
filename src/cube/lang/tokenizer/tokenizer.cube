@@ -2,9 +2,15 @@ use cube.lang
 use cube.lang.syntax
 use cube.lang.tokenizer.characterType
 use cube.lang.tokenizer.symbol
+use cube.text
 
 define tokenizer
-  function create(text as string) = me.text = text
+  function create(text as string)
+    me.text = text
+    me.length = text.length
+  end
+
+  function tokenPosition = new textPosition(tokenLine, tokenColumn)
   function tokenType as nodeType = tokenType
   function tokenText as string = tokenText
   function symbol as symbol = symbol
@@ -17,8 +23,8 @@ define tokenizer
       if c = char("'") or c = char('"') then output readQuotedString(c)
 
       match characterType(c)
-        when Whitespace then position++
-        when Symbol then output readSymbol
+        when Whitespace then skip
+        when Symbol then output readLeadingSymbol
         when Digit then output readNumber
         when Character then output identifierOrKeyword
         else error new unsupportedOperationException
@@ -30,26 +36,57 @@ define tokenizer
 
   internal
     var text as string
-    var position as int
+    var offset as int
+    var length as int
+    var line = 1
+    var column = 1
+    var tokenLine as int
+    var tokenColumn as int
     var tokenType as nodeType
     var tokenText as string
     var symbol as symbol
     var keyword as keyword
 
     function readNumber
-      var start as int = position++
+      startToken
       var c as int
-      while c <- peek != -1 and characterType(c) = Digit -> position++
-      tokenText = text.substring(start, position)
+      var start as int = read
+      c = readDigits
+
+      if c = char('.') then do
+        skip
+        c = readDigits
+      end
+
+      if c = char('e') or c = char('E') then do
+        skip
+        c = peek
+        if c = char('+') or c = char('-') then skip
+        c = readDigits
+
+        if c = char('.') then do
+          skip
+          readDigits
+        end
+      end
+
+      tokenText = text.substring(start, offset)
       tokenType = NodeType.Number
       output true
     end
 
+    function readDigits as int
+      var c as int
+      while digit(c <- peek) -> skip
+      output c
+    end
+
     function identifierOrKeyword
-      var start as int = position++
+      startToken
+      var start as int = read
       var c as int, t as int
-      while c <- peek != -1 and (t <- characterType(c) = Character or t = Digit) -> position++
-      tokenText = text.substring(start, position)
+      while c <- peek != -1 and (t <- characterType(c) = Character or t = Digit) -> skip
+      tokenText = text.substring(start, offset)
       keyword = Keyword.keyword(tokenText)
 
       tokenType
@@ -59,19 +96,22 @@ define tokenizer
     end
 
     function readQuotedString(q as int)
-      var start as int = position++
+      var start as int = read
       var c as int
-      while c <- peek != -1 and c != q -> position++
-      tokenText = text.substring(start, ++position)
+      while c <- peek != -1 and c != q -> skip
+      skip
+      tokenText = text.substring(start, offset)
       tokenType = NodeType.QuotedString
       output true
     end
 
-    function readSymbol
-      var c as int = read
+    function readLeadingSymbol
+      startToken
+      var c1 as int = peek
+      var c2 as int = peek(1)
 
-      match c
-        when char('.') then reduce(Dot)
+      match c1
+        when char('.') then if characterType(c2) = Digit then readNumber else reduce(Dot)
         when char('(') then reduce(LeftParenthesis)
         when char(')') then reduce(RightParenthesis)
         when char('{') then reduce(LeftCurlyBracket)
@@ -79,53 +119,20 @@ define tokenizer
         when char('[') then reduce(LeftSquareBracket)
         when char(']') then reduce(RightSquareBracket)
         when char(',') then reduce(Comma)
-
-        when char('=') then
-          if peek = char('=') then do
-            read
-            reduce(EqualEqual)
-          end else reduce(Equal)
+        when char('=') then if c2 = char('=') then reduce2(EqualEqual) else reduce(Equal)
 
         when char('+') then
-          match peek
-            when char('+') then do
-              read
-              reduce(PlusPlus)
-            end
-
-            when char('=') then do
-              read
-              reduce(PlusEqual)
-            end
-
-            else reduce(Plus)
+          match c2
+            when char('+') then reduce2(PlusPlus)
+            when char('=') then reduce2(PlusEqual)
+            else if c2 = char('.') or characterType(c2) = Digit then readNumber else reduce(Plus)
           end
 
-        when char('!') then
-          if peek = char('=') then do
-            read
-            reduce(ExclamationEqual)
-          end else reduce(Exclamation)
-
-        when char('%') then
-          if peek = char('%') then do
-            read
-            reduce(PercentEqual)
-          end else reduce(Percent)
-
         when char('-') then
-          match peek
-            when char('-') then do
-              read
-              reduce(MinusMinus)
-            end
-
-            when char('=') then do
-              read
-              reduce(MinusEqual)
-            end
-
-            else reduce(Minus)
+          match c2
+            when char('-') then reduce2(MinusMinus)
+            when char('=') then reduce2(MinusEqual)
+            else if c2 = char('.') or characterType(c2) = Digit then readNumber else reduce(Minus)
           end
 
         when char('*') then reduce(Asterisk)
@@ -134,40 +141,68 @@ define tokenizer
         when char('~') then reduce(Tilde)
 
         when char('<') then
-          match peek
-            when char('-') then do
-              read
-              reduce(LeftArrowSymbol)
-            end
-
-            when char('=') then do
-              read
-              reduce(LessEqual)
-            end
-
+          match c2
+            when char('-') then reduce2(LeftArrowSymbol)
+            when char('=') then reduce2(LessEqual)
             else reduce(LessSymbol)
           end
 
         when char('>') then
-          if peek = char('=') then do
-            read
-            reduce(GreaterEqual)
-          end else reduce(GreaterSymbol)
+          if c2 = char('=') then reduce2(GreaterEqual) else reduce(GreaterSymbol)
 
+        when char('!') then
+          if c2 = char('=') then reduce2(ExclamationEqual) else reduce(Exclamation)
+
+        when char('%') then if c2 = char('%') then reduce2(PercentEqual) else reduce(Percent)
         else error new unsupportedOperationException(
-          "Unrecognized character '" + c as char + "' unicode " + c + '.')
+          "Unrecognized character '" + c1 as char + "' unicode " + c1 + '.')
       end
 
       output true
     end
 
+    function startToken
+      me.tokenLine = line
+      me.tokenColumn = column
+    end
+
     function reduce(symbol as symbol)
+      skip
       me.tokenType = NodeType.Symbol
       me.tokenText = symbol.text
       me.symbol = symbol
     end
 
-    function peek as int = if position < text.length then text.charAt(position) else -1
-    function read as int = text.charAt(position++)
+    function reduce2(symbol as symbol)
+      skip
+      skip
+      me.tokenType = NodeType.Symbol
+      me.tokenText = symbol.text
+      me.symbol = symbol
+    end
+
+    function peek as int = if offset < length then text.charAt(offset) else -1
+
+    function peek(n as int) as int
+      var o as int = offset + n
+      output if o < length then text.charAt(o) else -1
+    end
+
+    function skip as void =
+      if text.charAt(offset++) = char('\n') then do
+        line++
+        column = 1
+      end else column++
+
+    function read as int
+      var o as int = offset
+
+      if text.charAt(offset++) = char('\n') then do
+        line++
+        column = 1
+      end else column++
+
+      output o
+    end
   end
 end

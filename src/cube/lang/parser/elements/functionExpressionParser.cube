@@ -21,19 +21,13 @@ define functionExpressionParser[T] as rightDependencyParser[T]
       var tokens as tokenStream = parser.tokens
       var v as dependencyVisitor[T] = parser.visitor.enter(NodeType.Arguments)
       v.visitLeaf(t0)
-      var t as token = tokens.read(RightParenthesis)
+      var q0 as token
 
-      if t is not null then v.visitLeaf(t)
-      else do
-        do
-          v.visitDependency(parser.parse)
-          t = tokens.read(Comma)
-          if t is not null then v.visitLeaf(t)
-        until t is null
+      while not q0 = tokens.peek(0).isSymbol(RightParenthesis) ->
+        if q0.isSymbol(Comma) then v.visitLeaf(tokens.next)
+        else v.visitDependency(parser.parse)
 
-        v.visitLeaf(tokens.expect(RightParenthesis))
-      end
-
+      v.visitLeaf(tokens.next)
       output v.value
     end
   end

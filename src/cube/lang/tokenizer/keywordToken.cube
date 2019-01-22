@@ -1,9 +1,10 @@
 use cube.lang
 use cube.lang.syntax
+use cube.text
 
 define keywordToken as token
-  function create(keyword as keyword, text as string)
-    super(NodeType.Keyword, text)
+  function create(keyword as keyword, text as string, position as textPosition)
+    super(NodeType.Keyword, text, position)
     me.keyword = keyword
   end
 

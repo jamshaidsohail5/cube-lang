@@ -1,7 +1,10 @@
 use cube.lang.syntax
+use cube.text
 
 define constantToken as token
-  function create(nodeType as nodeType, text as string) = super(nodeType, text)
+  function create(nodeType as nodeType, text as string, position as textPosition) =
+    super(nodeType, text, position)
+
   function key as object = nodeType
 
   function write(writer as dependencyWriter, depth as int) as void =

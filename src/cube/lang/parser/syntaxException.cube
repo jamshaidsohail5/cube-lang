@@ -1,3 +1,6 @@
+use cube.text
+
 define syntaxException as runtimeException
-  function create(message as string) = super(message)
+  function create(position as textPosition, message as string) =
+    super(position + ': ' + message)
 end
