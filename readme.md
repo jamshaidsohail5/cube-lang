@@ -77,6 +77,8 @@ let cities = {
     tags: ['Europe', 'UK']
   }
 }
+
+citie('Tokyo').tags.length should be 2
 ```
 
 ### Functional Map
@@ -95,7 +97,7 @@ let a = [1, 2, 3, 4, 5]
 with v = 0
 reduce a + e from e in a
 
-v should be (15)
+v should be 15
 ```
 
 ### Higher-order functions with lambdas
