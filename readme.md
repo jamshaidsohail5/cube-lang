@@ -192,6 +192,24 @@ function describe(p as point)
 end
 ```
 
+### Concurrent programming using actors
+
+```lua
+define hello as actor
+  function receive 
+    match when 'hello' then print('hi!')
+    else print('sorry?')
+  end
+end 
+
+test('hello actor')
+  let group = new ActorGroup
+  let actor = group.addActor[HelloActor]
+  send 'hello' to actor
+  send 'hola!' to actor
+end
+```
+
 ### Exception handling
 
 ```lua
