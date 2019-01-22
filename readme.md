@@ -25,7 +25,7 @@ print('hello world')
 
 ```lua
 define temperature(celsius as double)
-  function fahrenheit = celsius * 9 / 5 + 32
+  field fahrenheit = celsius * 9 / 5 + 32
 
   function increaseTemperature(amount as double)
     if amount <= 0 then error '{amount} is not a valid temperature.'
