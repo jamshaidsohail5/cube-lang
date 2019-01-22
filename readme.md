@@ -4,7 +4,9 @@
 
 **Cube** is a modern, high-level language that combines functional and object-oriented programming with type safety. The language's core philosophy is to support efficient code, by enabling developers to write short intuitive programs with clear and readable syntax.
 
-*Last updated by [Kais Dukes](https://github.com/kaisdukes) on 22-Jan-2019*.
+*Last updated by* [Kais Dukes](https://github.com/kaisdukes) *on 22-Jan-2019*.
+
+<br>
 
 **Contents**
 
