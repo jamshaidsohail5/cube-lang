@@ -96,7 +96,7 @@ let hashtags =
 let a = [1, 2, 3, 4, 5]
 
 with v = 0
-left reduce a + e from e in a
+left reduce e + v from e in a
 
 v should be 15
 ```
