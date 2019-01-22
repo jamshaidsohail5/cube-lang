@@ -81,7 +81,7 @@ let cities = {
 cities('Tokyo').tags.length should be 2
 ```
 
-### Functional Map
+### Functional map
 
 ```sql
 let hashtags =
@@ -89,7 +89,7 @@ let hashtags =
   from c in cities join tag in c.tags
 ```
 
-### Functional Reduce
+### Functional reduce
 
 ```lua
 let a = [1, 2, 3, 4, 5]
