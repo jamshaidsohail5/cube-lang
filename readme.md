@@ -4,14 +4,13 @@
 
 **Cube** is a modern, high-level language that combines functional and object-oriented programming. The language's core philosophy is to support efficient code, by enabling developers to write short intuitive programs with clear and readable syntax.
 
-## Examples
-
-Although cube isn't publicly available yet as we are still working on the parser, [this repository](https://github.com/cube-projects/cube-lang/tree/master/src/cube) contains examples of Cube source code. To get involved, email us at [info@cube-lang.org](mailto:info@cube-lang.org).
-
 * [Inspiration](#inspiration)
 * [Integrated Language Features](#integrated-language-features)
 * [Algorithms and Pseudocode](#algorithms-and-pseudocode)
 
+## Examples
+
+Although cube isn't publicly available yet as we are still working on the parser, [this repository](https://github.com/cube-projects/cube-lang/tree/master/src/cube) contains examples of Cube source code. To get involved, email us at [info@cube-lang.org](mailto:info@cube-lang.org).
 
 ### Hello world
 
