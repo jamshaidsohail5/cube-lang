@@ -142,7 +142,7 @@ function describe(p as point)
 end
 ```
 
-### Exceptions
+### Exception handling
 
 ```lua
 try
