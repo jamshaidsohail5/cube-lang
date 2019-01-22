@@ -6,9 +6,9 @@
 
 ## Inspiration
 
-Most computer programs describe algorithms, which are sets of instructions that are executed to provide the solution to a specific problem. In software development, clear programs that are simple to modify and test are highly valued by the programming community, compared to more complex programs that may solve the same problem.
-
 Cube is primarily inspired by [pseudocode](https://www.youtube.com/watch?v=gcQMBK53UjI), a fundamental concept in Computer Science for both education and software design, that is used to explain how algorithms work, independently of any specific programming language.
+
+Most computer programs describe algorithms, which are sets of instructions that are executed to provide the solution to a specific problem. In software development, clear programs that are simple to modify and test are highly valued by the programming community, compared to more complex programs that may solve the same problem.
 
 What makes pseudocode so powerful is the idea that any computer program, even a highly complex one, can be described using a combination of simple mathematical notation and basic operations. Programs written in pseudocode are easier to understand because they use conventional words to describe instructions (such as **if**, **while**, **do** and **end**) and avoid complex grammar or unfamiliar symbols.
 
