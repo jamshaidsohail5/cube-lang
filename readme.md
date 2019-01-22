@@ -34,7 +34,7 @@ define temperature(celsius as double)
 end
 ```
 
-### Unit testing
+### Unit testing with negative tests
 
 ```lua
 test 'convert celsius to fahrenheit'
