@@ -128,7 +128,7 @@ end
 ### Functional Reduce
 
 ```lua
-let a = [1,2,3,4,5]
+let a = [1, 2, 3, 4, 5]
 
 with v = 0
 reduce a + e from e in a
