@@ -4,6 +4,120 @@
 
 **Cube** is a modern, high-level language that combines functional and object-oriented programming. The language's core philosophy is to support efficient code, by enabling developers to write short intuitive programs with clear and readable syntax.
 
+Although cube isn't publicly available yet as we are still working on the parser, you can see examples of Cube source code [in this repository](https://github.com/cube-projects/cube-lang/tree/master/src/cube). To get involved, email us at [info@cube-lang.org](mailto:info@cube-lang.org).
+
+## Cube Examples
+
+### Hello world
+
+```lua
+print('hello world')
+```
+
+### Object-oriented programming
+
+```lua
+define temperature(celsius as double)
+  function fahrenheit = celsius * 9 /5 + 32
+
+  function increaseTemperature(amount as double)
+    if amount <= 0 then error '{amount} is not a valid temperature.'
+    else celsius += amount
+  end
+end
+```
+
+### Unit testing
+
+```lua
+test 'convert celsius to fahrenheit'
+  let x = new temperature(celsius = 5)
+  x.fahrenheit should be 41
+  x.increaseTemperature(-5) should error '-5 is not a valid temperature.'
+end
+```
+
+### Metadata for microservices
+
+```lua
+[path('webapp/hello')]
+define restEndpoint
+
+  [get]
+  [produces(mediaType = 'text/plain')]
+  function hello = 'Hello World!'
+
+end
+```
+
+### Data processing over in-memory collections
+
+```sql
+select avg(time), max(time)
+from time in buffer where time > 0
+```
+
+### JSON interoperability
+
+```lua
+let cities = {
+  'Tokyo': {
+      tags: ['Asia', 'Japan' ]
+    },
+    'London': {
+      tags: ['Europe', 'UK' ]
+    }
+}
+```
+
+```sql
+select city, tag
+from city in cities join tag in city.tags
+where tag = 'Japan'
+```
+
+### Recursion and type inference
+
+```lua
+function factorial(n as int) = if n < 1 then 1 else n * factorial(n - 1)
+```
+
+### Pattern matching
+
+```lua
+function describe(p as point)
+  let name =
+    match p
+      when root or leaf then 'already visited'
+      when (x, y) where x > 50 then 'larger than x-bound'
+      when p is graphPoint or treePoint then p.name
+      else 'not classified'
+    end
+
+  output 'Point is {name}.'
+end
+```
+
+### Generics
+
+```lua
+define node[T]
+  field value as T
+  field children = new list[node[T]]
+  function countNodes = sum(c.countNodes) from c in children
+end
+```
+
+### Higher-order functions
+
+```lua
+function benchmark(codeBlock as () -> void) as interval
+  let startTime = now
+  codeBlock
+  output now - startTime
+end
+```
+
 ## Inspiration
 
 Cube is primarily inspired by [pseudocode](https://www.youtube.com/watch?v=gcQMBK53UjI), a fundamental concept in Computer Science for both education and software design, that is used to explain how algorithms work, independently of any specific programming language.
@@ -33,11 +147,11 @@ public static void normalizeLogArray(double[] array) {
     if (d > max) max = d;
   }
 
-  double expSum = 0;
+  double sumExp = 0;
   for (double d: array) {
-    expSum += Math.exp(d - max);
+    sumExp += Math.exp(d - max);
   }
-  double logExpSum = max + Math.log(expSum);
+  double logSumExp = max + Math.log(sumExp);
 
   if (Double.isInfinite(logExpSum)) {
     for (int i = 0; i < array.length; i++) {
@@ -66,3 +180,6 @@ end
 [![pseudocode](https://img.youtube.com/vi/gcQMBK53UjI/0.jpg)](https://www.youtube.com/watch?v=gcQMBK53UjI "pseudocode")
 
 *Introduction to Algorithms*, by Joseph Dugan ([video](https://www.youtube.com/watch?v=gcQMBK53UjI)).
+
+
+Joesph Dugan's introduction to algorithms provides a great basis for understanding how pseudocode is used.
