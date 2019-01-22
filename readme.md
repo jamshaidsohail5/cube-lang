@@ -70,10 +70,10 @@ from time in buffer where time > 0
 let cities = {
   'Tokyo': {
       tags: ['Asia', 'Japan' ]
-    },
-    'London': {
-      tags: ['Europe', 'UK' ]
-    }
+  },
+  'London': {
+    tags: ['Europe', 'UK' ]
+  }
 }
 ```
 
