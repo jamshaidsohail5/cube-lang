@@ -120,7 +120,7 @@ end
 ```lua
 function benchmark(codeBlock as () -> void) as interval
   let startTime = now
-  codeBlock
+  codeBlock()
   output now - startTime
 end
 ```
