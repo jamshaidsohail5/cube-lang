@@ -115,7 +115,7 @@ define node[T]
 end
 ```
 
-### Higher-order functions
+### Higher-order functions with lambdas
 
 ```lua
 function benchmark(codeBlock as () -> void) as interval
