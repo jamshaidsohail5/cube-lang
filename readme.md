@@ -52,7 +52,7 @@ define restEndpoint
 
   [get]
   [produces(mediaType = 'text/plain')]
-  function hello = 'Hello World!'
+  function hello = 'hello world'
 
 end
 ```
