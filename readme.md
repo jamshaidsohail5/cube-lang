@@ -14,7 +14,7 @@ What makes pseudocode so powerful is the idea that any computer program, even a 
 
 Compared to programming languages that have more complex syntax, this is easier for humans to read, but more challenging for machines to process. Cube shares its readable coding style with other similarly-inspired languages, including [Basic](https://en.wikipedia.org/wiki/BASIC), [Lua](https://en.wikipedia.org/wiki/Lua_(programming_language)), [Ruby](https://github.com/ThibaultJanBeyer/cheatsheets/blob/master/Ruby-Cheatsheet.md) and [SQL](https://en.wikipedia.org/wiki/Select_(SQL)).
 
-A second source of inspiration is [dependency grammar](https://en.wikipedia.org/wiki/Dependency_grammar), a flexible framework used in Computational Linguistics research for processing a wide variety of different natural languages. Cube uses a dependency grammar that is easily extensible. This allows the creation of domain specific languages as well as integrating the core features of different programming languages (such as functional programming and SQL) into a single consistent syntax.
+A second source of inspiration is [dependency grammar](https://en.wikipedia.org/wiki/Dependency_grammar), a flexible framework used in Computational Linguistics research for processing a wide variety of different natural languages. Cube uses a dependency grammar that is easily extensible. This allows the creation of domain specific languages as well as integrating the core features of different programming language families (such as functional programming and SQL) into a single consistent syntax.
 
 ## Algorithms and Pseudocode
 
