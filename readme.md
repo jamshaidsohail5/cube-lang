@@ -152,7 +152,7 @@ close each connection in connectionList
 ### Set-based update
 
 ```lua
-update c in collectionList
+update c in connectionList
 set c.timeout = 1000
 where c is not null
 ```
