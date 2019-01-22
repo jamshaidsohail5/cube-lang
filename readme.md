@@ -71,14 +71,15 @@ from time in buffer where time > 0
 ```lua
 let cities = {
   'Tokyo': {
-      tags: ['Asia', 'Japan']
+      'tags': ['Asia', 'Japan']
   },
   'London': {
-    tags: ['Europe', 'UK']
+    'tags': ['Europe', 'UK']
   }
 }
 
-cities('Tokyo').tags.length should be 2
+let city = cities('Tokyo')
+city('tags').length should be 2
 ```
 
 ### Functional map
