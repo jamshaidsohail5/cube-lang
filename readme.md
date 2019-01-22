@@ -16,7 +16,7 @@ Compared to programming languages that have more complex syntax, this is easier 
 
 A second source of inspiration is [dependency grammar](https://en.wikipedia.org/wiki/Dependency_grammar), a framework used in Computational Linguistics research for a wide variety of natural language processing tasks, such as translating one language into another. Cube uses an extensible form of dependency grammar that allows programmers to easily create new keywords or language definitions.
 
-This simplifies the creation of domain specific languages, and enables [polyglot programming](https://www.graalvm.org/docs/reference-manual/polyglot), which combines the best features of different languages (such as functional programming and SQL over collections) into single simple programs.
+This simplifies the creation of domain specific languages, and enables [polyglot programming](https://www.graalvm.org/docs/reference-manual/polyglot), which combines the best features of different languages (such as functional programming and SQL over collections) into single readable programs.
 
 ## Algorithms and Pseudocode
 
