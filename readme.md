@@ -125,6 +125,17 @@ function benchmark(codeBlock as () -> void) as interval
 end
 ```
 
+### Functional Reduce
+
+```lua
+let a = [1,2,3,4,5]
+
+with v = 0
+reduce a + e from e in a
+
+v should be (15)
+```
+
 ## Motivation
 
 Cube is primarily inspired by [pseudocode](https://www.youtube.com/watch?v=gcQMBK53UjI), a fundamental concept in Computer Science for both education and software design, that is used to explain how algorithms work, independently of any specific programming language.
