@@ -148,7 +148,7 @@ end
 try
   loadFile('test/data')
 catch
-  when e DataException then log.warn(e)
+  when e is DataException then log.warn(e)
   else log.error(e)
 finally
   log.info('completed')
