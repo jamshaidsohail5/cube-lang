@@ -204,7 +204,7 @@ end
 
 test('hello agent')
   let group = new agentGroup
-  let agent = group.add[HelloAgent]
+  let agent = group.add[hello]
 
   send 'hello' to agent
   send 'hola!' to agent
