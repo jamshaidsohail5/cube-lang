@@ -179,7 +179,4 @@ end
 
 [![pseudocode](https://img.youtube.com/vi/gcQMBK53UjI/0.jpg)](https://www.youtube.com/watch?v=gcQMBK53UjI "pseudocode")
 
-*Introduction to Algorithms*, by Joseph Dugan ([video](https://www.youtube.com/watch?v=gcQMBK53UjI)).
-
-
-Joesph Dugan's introduction to algorithms provides a great basis for understanding how pseudocode is used.
+Joesph Dugan's *Introduction to Algorithms* provides a great basis for understanding how pseudocode is used ([video](https://www.youtube.com/watch?v=gcQMBK53UjI)).
