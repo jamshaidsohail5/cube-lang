@@ -223,6 +223,8 @@ This simplifies the creation of domain specific languages, and enables [polyglot
 
 Common programming tasks often involve searching or updating data structures such as sets, lists and graphs. However, many programming languages do not include high-level support for both functional programing and the ability to easily modify set-based data structures. To solve these problems, programmers may have to use software libraries outside of their language, or write longer code using loops or lower-level iteration.
 
+### Example
+
 Cube provides language support for frequently occurring operations over basic data structures. For an example of how integrated language features help with code readability, consider trying to write a function that implements a simple mathematical algorithm for vector normalization.
 
 In **Java**, we can use loops to write a function to normalize an array of probabilities in-place.
