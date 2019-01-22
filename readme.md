@@ -192,21 +192,22 @@ function describe(p as point)
 end
 ```
 
-### Concurrent programming with actors
+### Concurrent programming with agents
 
 ```lua
-define hello as actor
+define hello as agent
   function receive 
     match when 'hello' then print('hi!')
     else print('sorry?')
   end
 end 
 
-test('hello actor')
-  let group = new ActorGroup
-  let actor = group.add[HelloActor]
-  send 'hello' to actor
-  send 'hola!' to actor
+test('hello agent')
+  let group = new AgentGroup
+  let actor = group.add[HelloAgent]
+  send 'hello' to agent
+  send 'hola!' to agent
+  wait until group.queue is empty
 end
 ```
 
