@@ -204,7 +204,7 @@ end
 
 test('hello actor')
   let group = new ActorGroup
-  let actor = group.addActor[HelloActor]
+  let actor = group.add[HelloActor]
   send 'hello' to actor
   send 'hola!' to actor
 end
