@@ -116,6 +116,16 @@ end
 function factorial(n as int) = if n < 1 then 1 else n * factorial(n - 1)
 ```
 
+### Generics
+
+```lua
+define node[T]
+  field value as T
+  field children = new list[node[T]]
+  function countNodes = sum(c.countNodes) from c in children
+end
+```
+
 ### Pattern matching
 
 ```lua
@@ -132,13 +142,16 @@ function describe(p as point)
 end
 ```
 
-### Generics
+### Exceptions
 
 ```lua
-define node[T]
-  field value as T
-  field children = new list[node[T]]
-  function countNodes = sum(c.countNodes) from c in children
+try
+  loadFile('test/data')
+catch
+  when e DataException then log.warn(e)
+  else log.error(e)
+finally
+  log.info('completed')
 end
 ```
 
