@@ -60,6 +60,8 @@ end
 ### Data processing over in-memory collections
 
 ```sql
+let buffer = connection.stats
+
 select avg(time), max(time)
 from time in buffer where time > 0
 ```
