@@ -78,7 +78,7 @@ let cities = {
   }
 }
 
-citie('Tokyo').tags.length should be 2
+cities('Tokyo').tags.length should be 2
 ```
 
 ### Functional Map
