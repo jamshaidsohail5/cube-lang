@@ -80,8 +80,12 @@ let cities = {
   }
 }
 
-let city = cities('Tokyo')
-city('tags').length should be 2
+let tags =
+  select c.tags from c in cities
+  where c.key = 'Tokyo'
+
+tags.add('Travel')
+tags.length should be 3
 ```
 
 ### Functional map
