@@ -245,7 +245,7 @@ This simplifies the creation of domain specific languages, and enables [polyglot
 
 ## Integrated Language Features
 
-Common programming tasks often involve searching or updating data structures such as sets, lists and graphs. However, many programming languages do not include high-level support for both functional programing and the ability to easily modify set-based data structures. To solve these problems, programmers may have to use software libraries outside of their language, or write longer code using loops or lower-level iteration.
+Common programming tasks often involve searching or updating data structures such as sets, lists and graphs. However, many programming languages do not include high-level support for both functional programming and the ability to easily modify set-based data structures. To solve these problems, programmers may have to use software libraries outside of their language, or write longer code using loops or lower-level iteration.
 
 ### Example
 
