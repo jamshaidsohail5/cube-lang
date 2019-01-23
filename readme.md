@@ -23,7 +23,7 @@ print('hola!')
 
 ### Object-oriented programming
 
-This example defines a temperature class with a celsius value, that can be increased or converted to Fahrenheit.
+This example defines a temperature class with a Celsius value, that can be increased or converted to Fahrenheit.
 
 ```lua
 define temperature(celsius as double)
