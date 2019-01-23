@@ -1,6 +1,7 @@
 use cube.lang.parser
 use cube.lang.precedence
 use cube.lang.syntax
+use cube.lang.syntax.nodeType
 use cube.lang.tokenizer
 use cube.lang.tokenizer.symbol
 
@@ -19,7 +20,7 @@ define functionExpressionParser[T] as rightDependencyParser[T]
   internal
     function parseArguments(parser as dependencyParser[T], t0 as token) as T
       var tokens as tokenStream = parser.tokens
-      var v as dependencyVisitor[T] = parser.visitor.enter(NodeType.Arguments)
+      var v as dependencyVisitor[T] = parser.visitor.enter(Arguments)
       v.visitLeaf(t0)
       var q0 as token
 

@@ -1,0 +1,16 @@
+use cube.lang.keyword
+use cube.lang.parser
+use cube.lang.syntax
+use cube.lang.syntax.nodeType
+use cube.lang.tokenizer
+
+define blockParser[T] as leftDependencyParser[T]
+  function parse(parser as dependencyParser[T], t0 as token) as T
+    var tokens as tokenStream = parser.tokens
+    var v as dependencyVisitor[T] = parser.visitor.enter(Block)
+    v.visitLeaf(t0)
+    while not tokens.peek(0).isKeyword(`End`) -> v.visitDependency(parser.parse)
+    v.visitLeaf(tokens.next)
+    output v.value
+  end
+end

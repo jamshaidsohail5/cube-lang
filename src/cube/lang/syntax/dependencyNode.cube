@@ -9,6 +9,7 @@ define abstract dependencyNode
 
   abstract
     function write(writer as dependencyWriter, depth as int)
+    function linear as boolean
   end
 
   protected

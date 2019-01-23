@@ -20,6 +20,10 @@ enum nodeType
   Arguments
   ArrayExpression
   MapExpression
+  Block
+  ReturnStatement
+  OutputStatement
+  CheckStatement
 
   function displayName as string = camelCase(name)
 end

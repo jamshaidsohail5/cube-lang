@@ -27,6 +27,10 @@ define cubeParser
       map.leftDependency(LeftSquareBracket, new arrayExpressionParser)
       map.leftDependency(LeftCurlyBracket, new mapExpressionParser)
       map.leftDependency(Keyword.`If`, new ifExpressionParser)
+      map.leftDependency(Keyword.`Do`, new blockParser)
+      map.leftDependency(Keyword.`Return`, new returnStatementParser)
+      map.leftDependency(Keyword.`Output`, new outputStatementParser)
+      map.leftDependency(Keyword.`Check`, new checkStatementParser)
     end
   end
 

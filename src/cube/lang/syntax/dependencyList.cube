@@ -6,24 +6,27 @@ define dependencyList as dependencyNode
     children.add(node)
   end
 
+  function linear as boolean = children.size = 1 and children.get(0).linear
+
   function write(writer as dependencyWriter, depth as int)
     var s as stringBuilder = writer.s
     s.append(nodeType.displayName).append(' {')
-    var length as int = children.size
     var depth2 as int = depth + 1
 
-    if length = 1 then do
+    if linear then do
       s.append(char(' '))
       children.get(0).write(writer, depth2)
       s.append(char(' '))
     end
-    else
+    else do
       for each child in children
         writer.lineBreak(depth2)
         child.write(writer, depth2)
       end
 
-    writer.lineBreak(depth)
+      writer.lineBreak(depth)
+    end
+
     s.append(char('}'))
   end
 

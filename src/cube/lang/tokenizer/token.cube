@@ -10,6 +10,7 @@ define abstract token as dependencyNode
 
   function text as string = text
   function position as textPosition = position
+  function linear = true
   function toString as string = text
 
   abstract
