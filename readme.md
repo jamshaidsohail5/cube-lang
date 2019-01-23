@@ -70,7 +70,7 @@ from time in buffer where time > 0
 
 ### JSON interoperability
 
-```lua
+```sql
 let cities = {
   'Tokyo': {
       'tags': ['Asia', 'Japan']
