@@ -102,7 +102,12 @@ define tokenizer
     function readQuotedString(q as int)
       var start as int = read
       var c as int
-      while c <- peek != -1 and c != q -> skip
+
+      while c <- peek != -1 and c != q
+        if c = char('\') then skip
+        skip
+      end
+
       skip
       tokenText = text.substring(start, offset)
       tokenType = NodeType.QuotedString

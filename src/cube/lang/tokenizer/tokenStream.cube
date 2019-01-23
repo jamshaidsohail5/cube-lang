@@ -49,7 +49,11 @@ define tokenStream
             when Symbol then o = new symbolToken(tokenizer.symbol, text, p)
             when Keyword then o = new keywordToken(tokenizer.keyword, text, p)
             when Identifier then o = new identifierToken(text, p)
-            when Number or Hex or ConstantKeyword or QuotedString then o = new constantToken(t, text, p)
+
+            when Number or Hex or QuotedString or NullKeyword or BooleanKeyword
+              or NumericKeyword then
+              o = new constantToken(t, text, p)
+
             else error new unsupportedOperationException(t.toString)
           end
         end

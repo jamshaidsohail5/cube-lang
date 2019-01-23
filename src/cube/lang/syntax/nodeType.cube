@@ -3,7 +3,9 @@ use cube.text.textFunctions
 enum nodeType
   Symbol
   Keyword
-  ConstantKeyword
+  NullKeyword
+  BooleanKeyword
+  NumericKeyword
   Identifier
   Number
   Hex

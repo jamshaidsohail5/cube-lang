@@ -8,7 +8,15 @@ define constantToken as token
   function key as object = nodeType
 
   function write(writer as dependencyWriter, depth as int) as void =
-    writer.s.append(nodeType.displayName).append(char('('))
-      .append(text).append(
-      char(')'))
+    writer.s.append(displayName).append(char('(')).append(text)
+      .append(char(')'))
+
+  internal
+    function displayName as string =
+      match nodeType
+        when NumericKeyword then output 'number'
+        when NullKeyword or BooleanKeyword then output 'constant'
+        else output nodeType.displayName
+      end
+  end
 end

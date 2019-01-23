@@ -49,7 +49,7 @@ define elementBuilder as dependencyVisitor[element]
     match token.nodeType
       when Identifier then output new identifier(token.text)
       when Number then output new constant(Integer.parseInt(token.text))
-      when ConstantKeyword then output new constant(Boolean.parseBoolean(token.text))
+      when BooleanKeyword then output new constant(Boolean.parseBoolean(token.text))
     end
 
     error new unsupportedOperationException(token.nodeType.toString)

@@ -9,8 +9,11 @@ enum keyword
   And('and', Keyword)
   Or('or', Keyword)
   Not('not', Keyword)
-  True('true', ConstantKeyword)
-  False('false', ConstantKeyword)
+  True('true', BooleanKeyword)
+  False('false', BooleanKeyword)
+  Null('null', NullKeyword)
+  Nan('nan', NumericKeyword)
+  Infinity('infinity', NumericKeyword)
 
   function text as string = text
   function nodeType as nodeType = nodeType
