@@ -6,6 +6,7 @@ enum nodeType
   ConstantKeyword
   Identifier
   Number
+  Hex
   QuotedString
   Assign
   BracketedTerm

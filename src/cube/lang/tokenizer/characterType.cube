@@ -17,5 +17,9 @@ define characterType
     end
 
     function digit(n as int) as boolean = n >= char('0') and n <= char('9')
+
+    function hexDigit(n as int) as boolean =
+      n >= char('0') and n <= char('9') or n >= char('a') and n <= char('f')
+        or n >= char('A') and n <= char('F')
   end
 end

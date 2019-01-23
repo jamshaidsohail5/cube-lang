@@ -19,17 +19,19 @@ define tokenizer
   function next as boolean
     var c as int
 
-    while c <- peek != -1
-      if c = char("'") or c = char('"') then output readQuotedString(c)
-
+    while c <- peek != -1 ->
       match characterType(c)
         when Whitespace then skip
-        when Symbol then output readLeadingSymbol
+
+        when Symbol then do
+          if c = char("'") or c = char('"') then output readQuotedString(c)
+          output readLeadingSymbol
+        end
+
         when Digit then output readNumber
         when Character then output identifierOrKeyword
         else error new unsupportedOperationException
       end
-    end
 
     output false
   end
@@ -53,6 +55,14 @@ define tokenizer
       var start as int = read
       c = readDigits
 
+      if c = char('x') or c = char('X') then do
+        skip
+        readHexDigits
+        tokenText = text.substring(start, offset)
+        tokenType = NodeType.Hex
+        output true
+      end
+
       if c = char('.') then do
         skip
         c = readDigits
@@ -73,12 +83,6 @@ define tokenizer
       tokenText = text.substring(start, offset)
       tokenType = NodeType.Number
       output true
-    end
-
-    function readDigits as int
-      var c as int
-      while digit(c <- peek) -> skip
-      output c
     end
 
     function identifierOrKeyword
@@ -161,6 +165,18 @@ define tokenizer
       output true
     end
 
+    function readDigits as int
+      var c as int
+      while digit(c <- peek) -> skip
+      output c
+    end
+
+    function readHexDigits as int
+      var c as int
+      while hexDigit(c <- peek) -> skip
+      output c
+    end
+
     function startToken
       me.tokenLine = line
       me.tokenColumn = column
@@ -174,8 +190,7 @@ define tokenizer
     end
 
     function reduce2(symbol as symbol)
-      skip
-      skip
+      skip2
       me.tokenType = NodeType.Symbol
       me.tokenText = symbol.text
       me.symbol = symbol
@@ -193,6 +208,13 @@ define tokenizer
         line++
         column = 1
       end else column++
+
+    function skip2 =
+      for i = 0 to i < 2 ->
+        if text.charAt(offset++) = char('\n') then do
+          line++
+          column = 1
+        end else column++
 
     function read as int
       var o as int = offset

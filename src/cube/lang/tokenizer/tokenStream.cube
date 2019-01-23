@@ -23,13 +23,6 @@ define tokenStream
     error expected(k, t)
   end
 
-  function read(s as symbol) as token
-    var q0 as token = peek(0)
-    if not q0.isSymbol(s) then output null
-    next
-    output q0
-  end
-
   function peek(n as int) as token
     fill(n)
     output buffer.get(n)
@@ -56,7 +49,7 @@ define tokenStream
             when Symbol then o = new symbolToken(tokenizer.symbol, text, p)
             when Keyword then o = new keywordToken(tokenizer.keyword, text, p)
             when Identifier then o = new identifierToken(text, p)
-            when Number or ConstantKeyword or QuotedString then o = new constantToken(t, text, p)
+            when Number or Hex or ConstantKeyword or QuotedString then o = new constantToken(t, text, p)
             else error new unsupportedOperationException(t.toString)
           end
         end

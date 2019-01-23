@@ -14,6 +14,7 @@ define cubeParser
     do
       map.leaf(NodeType.Identifier)
       map.leaf(NodeType.Number)
+      map.leaf(NodeType.Hex)
       map.leaf(NodeType.ConstantKeyword)
       map.leaf(NodeType.QuotedString)
       map.operators(Operator.values)
