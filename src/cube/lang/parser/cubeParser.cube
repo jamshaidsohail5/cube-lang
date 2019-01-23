@@ -21,7 +21,7 @@ define cubeParser
       map.leaf(NodeType.QuotedString)
       map.operators(Operator.values)
       map.rightDependency(Dot, new dotExpressionParser)
-      map.rightDependency(Equal, new assignParser)
+      map.rightDependency(EqualSymbol, new assignParser)
       map.leftDependency(LeftParenthesis, new bracketedTermParser)
       map.rightDependency(LeftParenthesis, new functionExpressionParser)
       map.leftDependency(LeftSquareBracket, new arrayExpressionParser)
@@ -31,6 +31,7 @@ define cubeParser
       map.leftDependency(Keyword.`Return`, new returnStatementParser)
       map.leftDependency(Keyword.`Output`, new outputStatementParser)
       map.leftDependency(Keyword.`Check`, new checkStatementParser)
+      map.leftDependency(Keyword.`New`, new newExpressionParser)
     end
   end
 

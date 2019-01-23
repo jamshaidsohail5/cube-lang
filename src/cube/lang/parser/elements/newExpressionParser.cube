@@ -1,0 +1,14 @@
+use cube.lang.parser
+use cube.lang.syntax
+use cube.lang.tokenizer
+
+define newExpressionParser[T] as leftDependencyParser[T]
+  function parse(parser as dependencyParser[T], t0 as token) as T
+    var value as T = parser.parse
+    var v as dependencyVisitor[T] = parser.visitor
+    v.visit(NodeType.NewExpression)
+    v.visitLeaf(t0)
+    v.visitDependency(value)
+    output v.value
+  end
+end

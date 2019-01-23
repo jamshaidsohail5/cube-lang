@@ -4,6 +4,8 @@ use cube.lang.tokenizer
 use cube.lang.tokenizer.symbol
 
 enum operator
+  Is(Keyword.`Is`, NotAssociative, TypePrecedence)
+  As(Keyword.`As`, NotAssociative, TypePrecedence)
   LogicalAnd(Keyword.`And`, LeftAssociative, LogicalAndPrecedence)
   LogicalOr(Keyword.`Or`, LeftAssociative, LogicalOrPrecedence)
   BinaryAnd(Keyword.`And`, LeftAssociative, BinaryAndPrecedence)
@@ -21,11 +23,14 @@ enum operator
   Divide(ForwardSlash, LeftAssociative, MultiplicativePrecedence)
   Add(Plus, LeftAssociative, AdditivePrecedence)
   Subtract(Minus, LeftAssociative, AdditivePrecedence)
+  Equal(EqualEqual, LeftAssociative, EqualityPrecedence)
+  NotEqual(ExclamationEqual, LeftAssociative, EqualityPrecedence)
   Less(LessSymbol, NotAssociative, RelationalPrecedence)
   LessOrEqual(LessEqual, NotAssociative, RelationalPrecedence)
   Greater(GreaterSymbol, NotAssociative, RelationalPrecedence)
   GreaterOrEqual(GreaterEqual, NotAssociative, RelationalPrecedence)
-  AssignEqual(Equal, RightAssociative, AssignmentPrecedence)
+  AssignEqual(EqualSymbol, RightAssociative, AssignmentPrecedence)
+  AssignModulo(PercentEqual, RightAssociative, AssignmentPrecedence)
   LeftArrow(LeftArrowSymbol, RightAssociative, AssignmentPrecedence)
 
   function operatorType as operatorType = operatorType

@@ -24,6 +24,7 @@ enum nodeType
   ReturnStatement
   OutputStatement
   CheckStatement
+  NewExpression
 
   function displayName as string = camelCase(name)
 end

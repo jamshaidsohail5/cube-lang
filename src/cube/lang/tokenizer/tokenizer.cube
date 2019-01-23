@@ -128,7 +128,7 @@ define tokenizer
         when char('[') then reduce(LeftSquareBracket)
         when char(']') then reduce(RightSquareBracket)
         when char(',') then reduce(Comma)
-        when char('=') then if c2 = char('=') then reduce2(EqualEqual) else reduce(Equal)
+        when char('=') then if c2 = char('=') then reduce2(EqualEqual) else reduce(EqualSymbol)
 
         when char('+') then
           match c2
@@ -162,7 +162,7 @@ define tokenizer
         when char('!') then
           if c2 = char('=') then reduce2(ExclamationEqual) else reduce(Exclamation)
 
-        when char('%') then if c2 = char('%') then reduce2(PercentEqual) else reduce(Percent)
+        when char('%') then if c2 = char('=') then reduce2(PercentEqual) else reduce(Percent)
         else error new unsupportedOperationException(
           "Unrecognized character '" + c1 as char + "' unicode " + c1 + '.')
       end

@@ -11,7 +11,7 @@ define verify
 
     for each path in r1.sources
       if not verify(r1, r2, path, false) then do
-        var length as int = r2.read(path).length
+        var length as int = r1.read(path).length
 
         if minLength = 0 or length < minLength then do
           minLength = length

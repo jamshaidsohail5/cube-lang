@@ -7,7 +7,7 @@ enum symbol
   LeftSquareBracket('[')
   RightSquareBracket(']')
   Comma(',')
-  Equal('=')
+  EqualSymbol('=')
   EqualEqual('==')
   Plus('+')
   PlusPlus('++')
@@ -28,7 +28,6 @@ enum symbol
   GreaterSymbol('>')
   GreaterEqual('>=')
   LeftArrowSymbol('<-')
-  RightArrowSymbol('->')
 
   function text as string = text
 
