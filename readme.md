@@ -13,7 +13,7 @@
 
 ## Examples
 
-Although Cube isn't publicly available yet as we are still working on the compiler, this repository contains examples of Cube programs. Another example is the [Cube parser](https://github.com/cube-projects/cube-lang/tree/master/src/cube), also written in Cube. To get involved, email us at [info@cube-lang.org](mailto:info@cube-lang.org).
+Although Cube isn't publicly available yet as we are still working on the compiler, this repository contains code examples. Another example is the [Cube parser](https://github.com/cube-projects/cube-lang/tree/master/src/cube), also written in Cube. To get involved, email us at [info@cube-lang.org](mailto:info@cube-lang.org).
 
 ### Hello world
 
