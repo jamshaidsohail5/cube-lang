@@ -92,7 +92,7 @@ let hashtags =
   from c in cities join tag in c.tags
 ```
 
-### Functional map
+### Map
 
 A `select` query can be used to apply a mapping function to transform datasets. In this example, we define a function that accepts a single value, and then apply this function to a list, to map each number to its square.
 
@@ -102,7 +102,7 @@ function square(v as int) = v * v
 select square(x) from x in [1, 2, 3, 4, 5]
 ```
 
-### Functional reduce
+### Reduce
 
 Transforming or aggregating data are common operations. Many transformation problems are solved using temporary variables to hold intermediate state, for each step of a calculation. For example, using a temporary sum variable to compute the total value of a dataset.
 
