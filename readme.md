@@ -86,21 +86,30 @@ let tags =
 
 tags.add('Travel')
 tags.length should be 3
-```
 
-### Functional map
-
-```sql
 let hashtags =
   select '#' + lowercase(tag)
   from c in cities join tag in c.tags
 ```
 
-### Functional reduce
+### Functional map
+
+A `select` query can be used to apply a mapping function to a dataset such as an array. In this example, we define a mapping function `square` that accepts a single value, and then apply this function to map each integer to its square.
 
 ```lua
--- sum the values in an array using a left fold
-let a = [1, 2, 3, 4, 5]
+function square(v as int) = v * v
+
+select square(x) from x in [1, 2, 3, 4, 5]
+```
+
+### Functional reduce
+
+Transforming or aggregating data are common operations. Many transformation problems are solved using temporary variables to hold intermediate state, for each step of a calculation. For example, using a temporary sum variable to compute the total value of a dataset.
+
+In functional programming, the [reduce](https://en.wikipedia.org/wiki/Fold_(higher-order_function)) operation is a higher-order function that applies a combining operation recursively over a data structure. Cube provides operation for fold operations that may also include intermediate state. A simple example of a fold operation is using addition as the combining operation to sum a list.
+
+```lua
+let a = (1, 2, 3, 4, 5)
 
 with v = 0
 left reduce e + v from e in a
