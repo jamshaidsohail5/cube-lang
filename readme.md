@@ -72,6 +72,7 @@ In Cube, both functions and lambdas are strongly typed and can be assigned to va
 ```lua
 -- load and transform data
 let temperatures = load('test/data')
+
 transform(temperatures, data -> data.clean)
 
 -- a transformation function that accepts a lambda
