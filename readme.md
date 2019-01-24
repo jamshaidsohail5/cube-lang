@@ -27,7 +27,7 @@ print('hola!')
 
 ### Variables
 
-Cube has a strong type system with compile-time type checking and type inference. Both objects and functions are first-class citizens within the type system. Variables types and function return types are inferred by the compiler if not specified.
+Cube has a strong type system with compile-time type checking, and both objects and functions are first-class citizens in the type system. Cube also supports type inference, so that variables types and function return types can be inferred by the compiler if not specified.
 
 ```lua
 -- mutable
