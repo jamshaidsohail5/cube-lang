@@ -126,7 +126,7 @@ define temperature(celsius as double)
   function fahrenheit = celsius * 9 / 5 + 32
 
   function increaseTemperature(value as double)
-    if amount <= 0 then error '{value} is not a valid amount.'
+    if value <= 0 then error '{value} is not a valid amount.'
     else celsius += value
   end
 end
