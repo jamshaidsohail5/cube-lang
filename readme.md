@@ -137,9 +137,9 @@ select square(x) from x in [1, 2, 3, 4, 5]
 
 ### Reduce
 
-`reduce` operations are often used to solve data transform problems. These are higher-order functions that use a combining function. Cube provides both recursive (*stateless*) and iterative (*stateful*) forms of reduction. 
+`reduce` operations can be used to solve many data transform problems. These are higher-order functions that use a combining operation to transform or aggregate a data. Cube provides both recursive (*stateless*) and iterative (*stateful*) forms of reduction. 
 
-In pure-functional programming, [reduce](https://en.wikipedia.org/wiki/Fold_(higher-order_function)) is a stateless function that applies a combining operation recursively to a data structure. A simple example of this is using the addition operator to reduce a list to its sum.
+In pure-functional programming, [reduce](https://en.wikipedia.org/wiki/Fold_(higher-order_function)) is a stateless function that applies a combining operation recursively. A simple example of this is using addition to reduce a list to its sum.
 
 ```lua
 let a = (1, 2, 3, 4, 5)
@@ -148,7 +148,7 @@ let v = reduce a with +
 v should be 15
 ```
 
-Cube also provides a stateful form of reduction for applying a combining operation. Using intermediate state can be useful when reducing over consequtive elements of a data structure, such as computing the gap in days between dates in a list, or performing a compounding calculation.
+Cube also provides a stateful form of reduction. Using intermediate state can be useful when processing consecutive elements of a data set, such as calculating the gap in days between dates in a list, or performing a compounding calculation.
 
 The example code below compounds the positive values in an array, starts at an initial value of 1. The elements in the array are reduced to a single value by multiplying each element with the result of the previous step.
 
