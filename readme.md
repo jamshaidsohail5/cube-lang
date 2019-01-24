@@ -33,6 +33,7 @@ let y = new array[double](50)
 ```lua
 let names = ('Alice', 'Bob')
 names.add('Eve')
+
 names.length should be 3
 ```
 
