@@ -111,6 +111,7 @@ In pure-functional programming, [reduce](https://en.wikipedia.org/wiki/Fold_(hig
 ```lua
 let a = (1, 2, 3, 4, 5)
 let v = reduce a with +
+
 v should be 15
 ```
 
