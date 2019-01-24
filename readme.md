@@ -79,6 +79,8 @@ end
 
 ### Metadata
 
+A simple [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) endpoint using metadata annotations.
+
 ```lua
 [path('webapp/hello')]
 define restEndpoint
