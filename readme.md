@@ -94,17 +94,23 @@ let hashtags =
 
 ### Map
 
-A `select` query can be used to apply a mapping function when transforming datasets. In this example, we first define a function that accepts a single value, and then apply this function to map each number in a list to its square.
+`map` is a higher-order function that transforms data using a mapping function. In the example below, we first define a function that accepts a single value, and then apply this function to map each number in a list to its square. 
 
 ```lua
 function square(v as int) = v * v
 
+map [1, 2, 3, 4, 5] to square
+```
+
+If a higher-order function is not required, a `select` query can also be used to directly apply the mapping function to the array.
+
+```lua
 select square(x) from x in [1, 2, 3, 4, 5]
 ```
 
 ### Reduce
 
-Reduce operations are often used to solve data transform problems. These are high-order functions that use a combining function. Cube provides both recursive (*stateless*) and iterative (*stateful*) forms of reduction. 
+Reduce operations are often used to solve data transform problems. These are higher-order functions that use a combining function. Cube provides both recursive (*stateless*) and iterative (*stateful*) forms of reduction. 
 
 In pure-functional programming, [reduce](https://en.wikipedia.org/wiki/Fold_(higher-order_function)) is a stateless function that applies a combining operation recursively to a data structure. A simple example of this is using the addition operator to reduce a list to its sum.
 
