@@ -9,7 +9,6 @@
 * [Examples](#examples)
 * [Motivation](#motivation)
 * [Integrated Language Features](#integrated-language-features)
-* [Algorithms and Pseudocode](#algorithms-and-pseudocode)
 
 ## Examples
 
