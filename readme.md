@@ -107,13 +107,16 @@ let cities = {
   }
 }
 
+-- find tags for Tokyo
 let tags =
   select c.tags from c in cities
   where c.key = 'Tokyo'
 
+-- add travel
 tags.add('Travel')
 tags.length should be 3
 
+-- convert to hashtags
 let hashtags =
   select '#' + lowercase(tag)
   from c in cities join tag in c.tags
