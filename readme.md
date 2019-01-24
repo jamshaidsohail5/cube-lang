@@ -30,7 +30,7 @@ print('hola!')
 ```lua
 -- mutable
 var y = 3
-y = 5
+y = 5 -- updated
 
 -- immutable
 let x = 3
