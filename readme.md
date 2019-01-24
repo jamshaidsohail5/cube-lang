@@ -32,7 +32,7 @@ let y = new array[double](50)
 
 ```lua
 let names = ('Alice', 'Bob', 'Eve')
-numbers.length should be 3
+names.length should be 3
 ```
 
 ### Maps
