@@ -37,7 +37,7 @@ let x = 3
 print(x)
 x = 2 -- won't compile
 
--- typed
+-- type-safe
 let z as double = 3.5
 ```
 
