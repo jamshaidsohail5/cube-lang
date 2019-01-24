@@ -35,18 +35,16 @@ function square(x as int) = x * x
 print(square(5))
 ```
 
-### Higher-order functions with lambdas
+### Higher-order functions and lambdas
 
-Cube supports higher-order functions which accept other functions as parameters. Cube uses arrow-syntax for function types. For example, the variable `f` below references a function that adds integers.
+Anonymous functions are first-class citizens and can be assigned to variables or passed as arguments to other functions. Cube uses arrow-syntax for lambda functions. For example, the variable `f` below references a function that adds integers.
 
 ```lua
-function scale(x as int) = 2 * x + 4
-
-let f as (int, int) -> int = scale
+let f as (x as int) -> int = 2 * x + 4
 f(3) should be 10
-```lua
+```
 
-The `output` keyword is used to return function output. For example, the higher-order function below executes a block of code and outputs a timing benchmark.
+Cube also supports higher-order functions which accept other functions as parameters. The `output` keyword is used to return function output. For example, the higher-order function below executes a block of code and outputs a timing benchmark.
 
 ```lua
 function benchmark(codeBlock as () -> void) as interval
