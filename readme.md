@@ -57,6 +57,8 @@ let z as double = 3.5
 
 ### Functions
 
+Functions can be defined as single expressions or as longer code blocks.
+
 ```lua
 function square(x as int) = x * x
 
