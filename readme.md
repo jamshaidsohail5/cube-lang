@@ -15,6 +15,10 @@
 
 Although Cube isn't publicly available yet as we are still working on the compiler, this repository contains example Cube programs. Another example is the [Cube parser](https://github.com/cube-projects/cube-lang/tree/master/src/cube), also written in Cube. To get involved, email us at [info@cube-lang.org](mailto:info@cube-lang.org).
 
+### Whitespace
+
+The Cube parser is designed to ignore most whitespace characters. Like [Lisp](https://en.wikipedia.org/wiki/Lisp_(programming_language), a complete program will still parse correctly if formatted onto a single line. Cube does not require new lines or tabs to delimit blocks. Although Cube code does have a recommended layout style, programmers have the flexibility to layout code without being restricted by whitespace.
+
 ### Hello world
 
 ```lua
@@ -23,6 +27,7 @@ print('hola!')
 
 ### Variables
 
+```lua
 -- mutable
 var y = 3
 y = 5
@@ -34,6 +39,7 @@ x = 2 -- won't compile
 
 -- typed
 let z as double = 3.5
+```
 
 ### Arrays
 
