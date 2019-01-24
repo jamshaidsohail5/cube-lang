@@ -35,7 +35,12 @@ print(square(5))
 
 ### Unit tests
 
-square(1, 2, 3) should be (1, 4, 9)
+```lua
+map [1, 2, 3] to square
+should be (1, 4, 9)
+
+square(10) should be 100
+```
 
 ### Variables
 
