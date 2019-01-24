@@ -27,9 +27,11 @@ print('hola!')
 
 ### Functions
 
+```lua
 function square(x as int) = x * x
 
 print(square(5))
+```
 
 ### Unit tests
 
