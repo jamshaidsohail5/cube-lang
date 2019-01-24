@@ -41,7 +41,6 @@ Cube provides a domain-specific language (DSL) for test-driven development. In t
 map (1, 2, 3) to square
 should be (1, 4, 9)
 
-square(10) should be 100
 square(50) should be between 2000 and 3000
 ```
 
