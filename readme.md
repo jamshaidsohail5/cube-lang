@@ -21,6 +21,20 @@ Although Cube isn't publicly available yet as we are still working on the compil
 print('hola!')
 ```
 
+### Variables
+
+-- mutable
+var y = 3
+y = 5
+
+-- immutable
+let x = 3
+print(x)
+x = 2 -- won't compile
+
+-- typed
+let z as double = 3.5
+
 ### Arrays
 
 ```lua
