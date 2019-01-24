@@ -320,7 +320,7 @@ Common programming tasks often involve searching or updating data structures suc
 
 Cube provides language support for frequently occurring operations over basic data structures. For an example of how integrated language features help with code readability, consider trying to write a function that implements a simple mathematical algorithm for vector normalization.
 
-In **Java**, we can use loops to write a function to normalize an array of probabilities in-place.
+In **Java**, we can use loops to write a function to normalise an array of probabilities in-place.
 
 ```java
 public static void normalizeLogArray(double[] array) {
