@@ -69,8 +69,8 @@ In Cube, functions and lambdas can be assigned to variables and passed to other 
 
 ```lua
 -- load and transform data
-let data = load('test/data')
-transform(data, dataset -> dataset.clean)
+let temperatures = load('test/data')
+transform(temperatures, data -> data.clean)
 
 -- a transformation function that accepts a lambda
 transform(data as dataset, processor as dataset -> boolean)
