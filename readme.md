@@ -94,7 +94,7 @@ let hashtags =
 
 ### Map
 
-A `select` query can be used to apply a mapping function to transform datasets. In this example, we define a function that accepts a single value, and then apply this function to a list, to map each number to its square.
+A `select` query can be used to apply a mapping function to transform datasets. In this example, we first define a function that accepts a single value, and then apply this function to map each number in a list to its square.
 
 ```lua
 function square(v as int) = v * v
@@ -104,17 +104,28 @@ select square(x) from x in [1, 2, 3, 4, 5]
 
 ### Reduce
 
-Transforming or aggregating data are common operations. Many transformation problems are solved using temporary variables to hold intermediate state, for each step of a calculation. For example, using a temporary sum variable to compute the total value of a dataset.
+Many data transform problems can be used using reduce operations. Cube provides both recursive (stateless) and iterative (stateful) forms of reduction. 
 
-In functional programming, the [reduce](https://en.wikipedia.org/wiki/Fold_(higher-order_function)) operation is a higher-order function that applies a combining operation recursively over a data structure. Cube provides operation for fold operations that may also include intermediate state. A simple example of a fold operation is using addition as the combining operation to sum a list.
+In pure-functional programming, [reduce](https://en.wikipedia.org/wiki/Fold_(higher-order_function)) is a *stateless* function that applies a combining operation to recursively to a data structure. A simple example of this is using the addition operator to reduce a list to its sum.
 
 ```lua
 let a = (1, 2, 3, 4, 5)
-
-with v = 0
-left reduce e + v from e in a
-
+let v = reduce a with +
 v should be 15
+```
+
+For performance and readability, Cube also supports a *stateful* form of reduction. Using intermediate state can be useful when reducing over consequtive elements of a data structure, such as computing the gap in days between a list of dates, or performing a compounding calculation.
+
+The example code below compounds the positive values in an array, starts at an initial value of 1. The elements in the array are reduced to a single value by multiplying each element with the result of the previous step.
+
+```lua
+let a = [1, 2, 3, -4, 5]
+
+with v = 1
+reduce v * e from e in a
+where e > 0
+
+v should be 30
 ```
 
 ### Higher-order functions with lambdas
