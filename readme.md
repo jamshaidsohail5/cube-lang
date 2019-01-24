@@ -47,7 +47,7 @@ square(50) should be between 2000 and 3000
 
 ### Variables
 
-Cube has a strong type system with compile-time checking, and both objects and functions are first-class citizens in the type system. Cube also supports type inference to improve readability. Variable and function types can be inferred by the compiler if not specified.
+Cube has a strong type system that enables early error-detection, and both objects and functions are first-class citizens in the type system. Cube also supports type inference to improve readability. Variable and function types can be inferred by the compiler if not specified.
 
 ```lua
 -- mutable
