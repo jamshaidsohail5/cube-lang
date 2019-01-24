@@ -24,8 +24,6 @@ print('hola!')
 ### Arrays
 
 ```lua
-
--- an array of ints
 let x = [1, 2, 3, 4, 5]
 
 -- create a new array
