@@ -35,7 +35,7 @@ print(square(5))
 
 ### Unit tests
 
-Cube provides a domain-specific language for test-driven development. In this example, a `map` operation is used to make a unit test over a list more readable.
+Cube provides a domain-specific language (DSL) for test-driven development. In this example, a `map` operation is used to make a unit test over a list more readable.
 
 ```lua
 map (1, 2, 3) to square
