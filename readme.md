@@ -17,7 +17,7 @@ Although Cube isn't publicly available yet as we are still working on the compil
 
 ### Whitespace
 
-The Cube parser is designed to ignore most whitespace characters. Like [Lisp](https://en.wikipedia.org/wiki/Lisp_(programming_language)), a complete program will still parse correctly if formatted onto a single line. Cube does not require new lines or tabs to delimit blocks. Although Cube code does have a recommended layout style, programmers have the flexibility to layout code without being restricted by whitespace.
+Cube does not require new lines or tabs to delimit blocks. The Cube parser is designed to ignore most whitespace characters, and like [Lisp](https://en.wikipedia.org/wiki/Lisp_(programming_language)), a complete program will still parse correctly if formatted onto a single line. Although Cube code does have a recommended layout style, programmers have the flexibility to layout code without being restricted by whitespace.
 
 ### Hello world
 
