@@ -159,7 +159,7 @@ v should be 15
 
 Cube also provides a stateful form of reduction. Using intermediate state can be useful when processing consecutive elements of a data set, such as calculating the gap in days between dates in a list, or performing a compounding calculation.
 
-The example code below compounds the positive values in an array, starting with an initial value of 1. The elements in the array are reduced to a single value by multiplying each element with the result of the previous step.
+The example code below compounds the positive values in an array, starting with an initial value of 1. In this reduce operation, the elements in the array are combined into a single value by multiplying each element with the result of the previous step.
 
 ```lua
 let a = [1, 2, 3, -4, 5]
