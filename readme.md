@@ -75,7 +75,7 @@ f(3) should be 10
 f(4) should be 20
 ```
 
-Cube also supports higher-order functions which accept other functions as parameters. The `output` keyword is used to return function output. For example, the higher-order function below executes a block of code and outputs a timing benchmark.
+In longer functions, the `output` keyword is used to return an output a value. The higher-order function below executes a block of code and outputs a timing benchmark.
 
 ```lua
 function benchmark(codeBlock as () -> void) as interval
