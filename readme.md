@@ -2,7 +2,7 @@
 
 # The Cube Programming Language
 
-**Cube** is a modern, [polyglot](#dependency-grammar) language that combines functional and object-oriented programming with type safety. The language's core philosophy is to support efficient code, by enabling developers to write short intuitive programs with clear and readable syntax.
+**Cube** is a modern, high-level language that combines functional and object-oriented programming with type safety. The language's core philosophy is to support efficient code, by enabling developers to write short intuitive programs with clear and readable syntax.
 
 The first release aims to target the [JVM](https://en.wikipedia.org/wiki/Java_virtual_machine), followed by [LLVM](https://en.wikipedia.org/wiki/LLVM) and [WebAssembly](https://en.wikipedia.org/wiki/WebAssembly).
 
