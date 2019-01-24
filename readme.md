@@ -68,9 +68,11 @@ print(square(5))
 In Cube, functions and lambdas can be assigned to variables and passed to other functions as arguments. Cube uses arrow-syntax for typed lambda expressions.
 
 ```lua
+-- load and transform data using a lambda expression
 let data = load('test/data')
 transform(data, dataset -> dataset.clean)
 
+-- a transformation function that accepts a lambda
 transform(data as dataset, processor as dataset -> boolean)
   let result = processor(data)
   result should be true
