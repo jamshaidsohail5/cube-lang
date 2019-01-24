@@ -21,6 +21,31 @@ Although Cube isn't publicly available yet as we are still working on the compil
 print('hola!')
 ```
 
+### Arrays
+
+```lua
+let x = [1, 2, 3, 4, 5]
+let y = new array[double](50)
+```
+
+### Lists
+
+```lua
+let names = ('Alice', 'Bob', 'Eve')
+numbers.length should be 3
+```
+
+### Maps
+
+```lua
+let food = {
+  'Monday' -> 'chicken',
+  'Tuesday' -> 'pasta'
+}
+
+print(food('Monday'))
+```
+
 ### Object-oriented programming
 
 This example defines a temperature class with a Celsius value that can be increased, or converted to Fahrenheit.
