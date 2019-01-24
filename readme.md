@@ -35,6 +35,8 @@ print(square(5))
 
 ### Unit tests
 
+In this example, a `map` operation is used to make a simple unit test more readable. 
+
 ```lua
 map [1, 2, 3] to square
 should be (1, 4, 9)
