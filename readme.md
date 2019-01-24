@@ -35,6 +35,27 @@ function square(x as int) = x * x
 print(square(5))
 ```
 
+### Higher-order functions with lambdas
+
+Cube supports higher-order functions which accept other functions as parameters. Cube uses arrow-syntax for function types. For example, the variable `f` below references a function that adds integers.
+
+```lua
+function scale(x as int) = 2 * x + 4
+
+let f as (int, int) -> int = scale
+f(3) should be 10
+```lua
+
+The `output` keyword is used to return function output. For example, the higher-order function below executes a block of code and outputs a timing benchmark.
+
+```lua
+function benchmark(codeBlock as () -> void) as interval
+  let startTime = now
+  codeBlock()
+  output now - startTime
+end
+```
+
 ### Unit tests
 
 Cube provides a domain-specific language (DSL) for test-driven development. In this example, a `map` operation is used to make a unit test over a list more readable.
@@ -97,15 +118,17 @@ print(food('Monday'))
 
 ### Objects
 
-This program defines a temperature class with a Celsius value that can be increased, or converted to Fahrenheit.
+The `define` keyword is used for class definitions. Similar to C#, objects in cube can have auto-generated properties with getters and setters.
+
+A simple example of object-oriented programming is a temperature class with a Celsius value that can be increased, or converted to Fahrenheit.
 
 ```lua
 define temperature(celsius as double)
   function fahrenheit = celsius * 9 / 5 + 32
 
-  function increaseTemperature(amount as double)
-    if amount <= 0 then error '{amount} is not a valid temperature.'
-    else celsius += amount
+  function increaseTemperature(value as double)
+    if amount <= 0 then error '{value} is not a valid amount.'
+    else celsius += value
   end
 end
 ```
@@ -114,9 +137,13 @@ end
 
 ```lua
 test 'convert celsius to fahrenheit'
+  
+  -- positive 
   let x = new temperature(celsius = 5)
   x.fahrenheit should be 41
-  x.increaseTemperature(-5) should error '-5 is not a valid temperature.'
+  
+  -- negative 
+  x.increaseTemperature(-5) should error '-5 is not a valid amount.'
 end
 ```
 
@@ -180,7 +207,8 @@ let hashtags =
 ```lua
 function square(v as int) = v * v
 
-map [1, 2, 3, 4, 5] to square
+let result = map [1, 2, 3, 4, 5] to square
+result should be [1, 4, 9, 16, 25]
 ```
 
 If a higher-order function is not required, a `select` query can also be used to apply a mapping function directly to a data structure.
@@ -204,7 +232,7 @@ v should be 15
 
 Cube also provides a stateful form of reduction. Using intermediate state can be useful when processing consecutive elements of a data set, such as calculating the gap in days between dates in a list, or performing a compounding calculation.
 
-The example code below compounds the positive values in an array, starting with an initial value of 1. In this reduce operation, the elements in the array are combined into a single value by multiplying each element with the result of the previous step.
+The example code below compounds the values in an array, starting with an initial value of 1. The `where` keyword is used to filter on positive values. In this reduce operation, the elements in the array are combined into a single value by multiplying each element with the result of the previous step. 
 
 ```lua
 let a = [1, 2, 3, -4, 5]
@@ -214,16 +242,6 @@ reduce v * e from e in a
 where e > 0
 
 v should be 30
-```
-
-### Higher-order functions with lambdas
-
-```lua
-function benchmark(codeBlock as () -> void) as interval
-  let startTime = now
-  codeBlock()
-  output now - startTime
-end
 ```
 
 ### Recursion and type inference
@@ -355,6 +373,10 @@ What makes pseudocode so powerful is the idea that any computer program, even a 
 
 Compared to programming languages that have more complex syntax, this is easier for humans to read, but more challenging for machines to process. Cube shares its readable coding style with other similarly-inspired languages, including [Basic](https://en.wikipedia.org/wiki/BASIC), [Lua](https://en.wikipedia.org/wiki/Lua_(programming_language)), [Ruby](https://github.com/ThibaultJanBeyer/cheatsheets/blob/master/Ruby-Cheatsheet.md) and [SQL](https://en.wikipedia.org/wiki/Select_(SQL)).
 
+Joesph Dugan's *Introduction to Algorithms* provides a great basis for understanding how pseudocode is used ([video](https://www.youtube.com/watch?v=gcQMBK53UjI)).
+
+[![pseudocode](https://img.youtube.com/vi/gcQMBK53UjI/0.jpg)](https://www.youtube.com/watch?v=gcQMBK53UjI "pseudocode")
+
 ### Dependency grammar
 
 A second source of inspiration is [dependency grammar](https://en.wikipedia.org/wiki/Dependency_grammar), a framework used in Computational Linguistics research for a wide variety of natural language processing tasks, such as translating one language into another. Cube uses an extensible form of dependency grammar that allows programmers to easily create new keywords or language definitions.
@@ -401,13 +423,8 @@ In **Cube**, the same function can be written in a more readable way, using inte
 ```lua
 function normalize(d as array[double])
   let v = max(d) + log(sum(exp(a - max(d)))) from a in d
+  
   update a in d
   set a = if v is infinite then 1.0 / d.length else exp(a - v)
 end
 ```
-
-## Algorithms and Pseudocode
-
-Joesph Dugan's *Introduction to Algorithms* provides a great basis for understanding how pseudocode is used ([video](https://www.youtube.com/watch?v=gcQMBK53UjI)).
-
-[![pseudocode](https://img.youtube.com/vi/gcQMBK53UjI/0.jpg)](https://www.youtube.com/watch?v=gcQMBK53UjI "pseudocode")
