@@ -38,8 +38,8 @@ print(square(5))
 Cube provides a domain-specific language (DSL) for test-driven development. In this example, a `map` operation is used to make a unit test over a list more readable.
 
 ```lua
-map (1, 2, 3) to square
-should be (1, 4, 9)
+map (1, 2, 3, 4, 5) to square
+should be (1, 4, 9, 16, 25)
 
 square(50) should be between 2000 and 3000
 ```
