@@ -308,7 +308,7 @@ end
 
 ### Concurrent programming with agents
 
-Parallel computing algorithms using low-level threads are challenging to implement and difficult to test. To simplify concurrent and distributed programming, Cube provides an intuitive agent-based framework for message and stream processing.
+Parallel computing using low-level threads are challenging to implement and difficult to test. To simplify concurrent and distributed programming, Cube provides an intuitive agent-based framework for message and stream processing.
 
 ```lua
 define hello as agent
