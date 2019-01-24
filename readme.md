@@ -30,12 +30,12 @@ print('hola!')
 ```lua
 -- mutable
 var y = 3
-y = 5 -- updated
+y = 5   -- updated
 
 -- immutable
 let x = 3
 print(x)
-x = 2 -- won't compile
+x = 2   -- won't compile
 
 -- type-safe
 let z as double = 3.5
