@@ -65,7 +65,7 @@ print(square(5))
 
 ### Higher-order functions and lambdas
 
-In Cube, functions and lambdas can be assigned to variables and passed to other functions as arguments. Cube uses arrow syntax for typed lambda expressions. For example, `string -> int` denotes a function type that maps strings to integers.
+In Cube, functions and lambdas can be assigned to variables and passed to other functions as arguments. Cube uses arrow syntax for typed lambda expressions, such as `string -> int` for functions that map strings to integers. In the following example, `transform` is a higher-order function that accepts a `dataset -> boolean` parameter.
 
 ```lua
 -- load and transform data
