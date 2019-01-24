@@ -146,6 +146,8 @@ from time in buffer where time > 0
 
 ### JSON interoperability
 
+Cube provides integrated language support for JSON data types.
+
 ```sql
 let cities = {
   'Tokyo': {
