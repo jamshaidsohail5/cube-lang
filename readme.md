@@ -46,7 +46,7 @@ let food = {
 print(food('Monday'))
 ```
 
-### Object-oriented programming
+### Objects
 
 This example defines a temperature class with a Celsius value that can be increased, or converted to Fahrenheit.
 
@@ -84,7 +84,7 @@ define restEndpoint
 end
 ```
 
-### Data processing over in-memory collections
+### In-memory data transformations
 
 ```sql
 let buffer = connection.stats
