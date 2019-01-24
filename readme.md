@@ -79,7 +79,7 @@ function transform(data as dataset, processor as dataset -> boolean)
 end
 ```
 
-In longer functions, the `output` keyword can be used to return an output a value. The example higher-order function below accepts a block of code as input, then executes the lambda to output a timing benchmark.
+In longer functions, the `output` keyword can be used to return an output value. The example higher-order function below accepts a block of code as input, then executes the lambda to output a timing benchmark.
 
 ```lua
 function benchmark(codeBlock as () -> void) as interval
