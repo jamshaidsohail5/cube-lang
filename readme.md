@@ -138,7 +138,7 @@ function square(v as int) = v * v
 map [1, 2, 3, 4, 5] to square
 ```
 
-If a higher-order function is not required, a `select` query can also be used to directly apply a mapping function to a data structure.
+If a higher-order function is not required, a `select` query can also be used to apply a mapping function directly to a data structure.
 
 ```lua
 select square(x) from x in [1, 2, 3, 4, 5]
