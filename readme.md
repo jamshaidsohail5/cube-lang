@@ -14,7 +14,7 @@
 
 Although Cube isn't publicly available yet as we are still working on the compiler, this repository contains example Cube programs. Another example is the [Cube parser](https://github.com/cube-projects/cube-lang/tree/master/src/cube), also written in Cube. To get involved, email us at [info@cube-lang.org](mailto:info@cube-lang.org).
 
-### Whitespace
+### Code Layout
 
 Cube is a polyglot language, combining the best features of several programming languages into single programs. Because embedded languages like [SQL](https://en.wikipedia.org/wiki/Select_(SQL)) have flexible layout, Cube does not require line breaks or tabs to delimit blocks.
 
