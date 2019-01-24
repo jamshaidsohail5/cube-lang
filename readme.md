@@ -73,7 +73,7 @@ let temperatures = load('test/data')
 transform(temperatures, data -> data.clean)
 
 -- a transformation function that accepts a lambda
-transform(data as dataset, processor as dataset -> boolean)
+function transform(data as dataset, processor as dataset -> boolean)
   let result = processor(data)
   result should be true
 end
