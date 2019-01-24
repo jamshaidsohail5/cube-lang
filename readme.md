@@ -84,7 +84,7 @@ define restEndpoint
 end
 ```
 
-### In-memory data transformations
+### In-memory data transformation
 
 ```sql
 let buffer = connection.stats
