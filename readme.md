@@ -124,7 +124,7 @@ print(food('Monday'))
 
 ### Objects
 
-The `define` keyword is used for class definitions. Similar to C#, objects in cube can have auto-generated properties with getters and setters.
+The `define` keyword is used for class definitions. Similar to C#, objects in cube have auto-generated properties with getters and setters.
 
 An example of object-oriented programming is a temperature class with a Celsius value that can be increased, or converted to Fahrenheit.
 
