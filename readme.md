@@ -52,12 +52,12 @@ Cube has a strong type system that enables early error-detection, and both objec
 ```lua
 -- mutable
 var y = 3
-y = 5   -- updated
+y = 5         // updated
 
 -- immutable
-let x = 3
+let x = 'red'
 print(x)
-x = 2   -- won't compile
+x = 'green'   // won't compile
 
 -- strongly-typed
 let z as double = 3.5
