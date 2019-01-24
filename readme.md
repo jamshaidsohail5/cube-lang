@@ -27,6 +27,8 @@ print('hola!')
 
 ### Variables
 
+Cube has a strong type system with compile-time type checking and type inference. Type annotations on variables are optional.
+
 ```lua
 -- mutable
 var y = 3
