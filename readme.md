@@ -94,7 +94,7 @@ let hashtags =
 
 ### Map
 
-A `select` query can be used to apply a mapping function to transform datasets. In this example, we first define a function that accepts a single value, and then apply this function to map each number in a list to its square.
+A `select` query can be used to apply a mapping function when transforming datasets. In this example, we first define a function that accepts a single value, and then apply this function to map each number in a list to its square.
 
 ```lua
 function square(v as int) = v * v
