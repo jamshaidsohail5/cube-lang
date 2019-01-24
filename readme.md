@@ -27,33 +27,6 @@ The Cube parser ignores whitespace, and like [Lisp](https://en.wikipedia.org/wik
 print('hola!')
 ```
 
-### Functions
-
-```lua
-function square(x as int) = x * x
-
-print(square(5))
-```
-
-### Higher-order functions and lambdas
-
-Anonymous functions are first-class citizens and can be assigned to variables or passed as arguments to other functions. Cube uses arrow-syntax for lambda functions. For example, the variable `f` below references a function that adds integers.
-
-```lua
-let f as (x as int) -> int = 2 * x + 4
-f(3) should be 10
-```
-
-Cube also supports higher-order functions which accept other functions as parameters. The `output` keyword is used to return function output. For example, the higher-order function below executes a block of code and outputs a timing benchmark.
-
-```lua
-function benchmark(codeBlock as () -> void) as interval
-  let startTime = now
-  codeBlock()
-  output now - startTime
-end
-```
-
 ### Unit tests
 
 Cube provides a domain-specific language (DSL) for test-driven development. In this example, a `map` operation is used to make a unit test over a list more readable.
@@ -81,6 +54,35 @@ x = 'green'   -- won't compile
 
 -- strongly-typed
 let z as double = 3.5
+```
+
+### Functions
+
+```lua
+function square(x as int) = x * x
+
+print(square(5))
+```
+
+### Higher-order functions and lambdas
+
+In Cube, functions and lambda expressions can be assigned to variables or passed to other functions as arguments. Cube uses arrow-syntax for typed lambda functions. For example, the variable `f` is assigned to a function that adds integers.
+
+```lua
+let f as (x as int) -> int = 2 * x + 4
+
+f(3) should be 10
+f(4) should be 20
+```
+
+Cube also supports higher-order functions which accept other functions as parameters. The `output` keyword is used to return function output. For example, the higher-order function below executes a block of code and outputs a timing benchmark.
+
+```lua
+function benchmark(codeBlock as () -> void) as interval
+  let startTime = now
+  codeBlock()
+  output now - startTime
+end
 ```
 
 ### Arrays
