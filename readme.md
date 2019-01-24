@@ -226,7 +226,7 @@ for each c in connectionList -> print(c.timeout)
 
 ### Interfaces
 
-Cube supports object-oriented programming, including interfaces, inheritance, polymorphism and abstract types.
+Cube supports object-oriented programming, with interfaces, polymorphism and abstract types.
 
 ```lua
 interface IConnection
