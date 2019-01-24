@@ -104,7 +104,7 @@ select square(x) from x in [1, 2, 3, 4, 5]
 
 ### Reduce
 
-Many data transform problems can be used using reduce operations. Cube provides both recursive (stateless) and iterative (stateful) forms of reduction. 
+Reduce operations are often used to solve data transform problems. Cube provides both recursive (stateless) and iterative (stateful) forms of reduction. 
 
 In pure-functional programming, [reduce](https://en.wikipedia.org/wiki/Fold_(higher-order_function)) is a *stateless* function that applies a combining operation to recursively to a data structure. A simple example of this is using the addition operator to reduce a list to its sum.
 
