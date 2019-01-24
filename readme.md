@@ -66,7 +66,7 @@ print(square(5))
 
 ### Higher-order functions and lambdas
 
-In Cube, functions and lambda expressions can be assigned to variables or passed to other functions as arguments. Cube uses arrow-syntax for typed lambda functions. For example, the variable `f` is assigned to a function that adds integers.
+In Cube, functions and lambda expressions can be assigned to variables or passed to other functions as arguments. Cube uses arrow-syntax for typed lambdas. For example, the variable `f` is assigned to a function that adds integers.
 
 ```lua
 let f as (x as int) -> int = 2 * x + 4
