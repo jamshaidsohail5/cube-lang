@@ -121,7 +121,7 @@ let hashtags =
 
 ### Map
 
-`map` is a higher-order function that transforms data using a mapping function. In the example below, we first define a function that accepts a single value, and then apply this function to map each number in a list to its square. 
+`map` is a higher-order function that transforms data using a mapping function. In the example below, we first define a function that accepts a single value, and then apply this function to map each number to its square. 
 
 ```lua
 function square(v as int) = v * v
