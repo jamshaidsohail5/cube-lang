@@ -65,16 +65,19 @@ print(square(5))
 
 ### Higher-order functions and lambdas
 
-In Cube, functions and lambda expressions can be assigned to variables or passed to other functions as arguments. Cube uses arrow-syntax for typed lambdas. For example, the variable `f` below is assigned to a function that outputs an integer.
+In Cube, functions and lambdas can be assigned to variables and passed to other functions as arguments. Cube uses arrow-syntax for typed lambda expressions.
 
 ```lua
-let f as (x as int) -> int = 2 * x + 4
+let data = load('test/data')
+transform(data, dataset -> dataset.clean)
 
-f(3) should be 10
-f(4) should be 20
+transform(data as dataset, processor as dataset -> boolean)
+  let result = processor(data)
+  result should be true
+end
 ```
 
-In longer functions, the `output` keyword is used to return an output a value. The higher-order function below executes a block of code and outputs a timing benchmark.
+In Cube functions, the `output` keyword can be used to return an output a value. The example higher-order function below accepts a block of code as input, then executes the code block and outputs a timing benchmark.
 
 ```lua
 function benchmark(codeBlock as () -> void) as interval
