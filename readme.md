@@ -17,7 +17,9 @@ Although Cube isn't publicly available yet as we are still working on the compil
 
 ### Whitespace
 
-Cube does not require new lines or tabs to delimit blocks. The Cube parser ignores whitespace, and like [Lisp](https://en.wikipedia.org/wiki/Lisp_(programming_language)), a complete program will still parse correctly if formatted onto a single line. Although Cube does have a recommended  coding style, programmers have the flexibility to format code without being restricted by layout.
+Cube is a polygot language that combines the best features of several model programming languages, such as embedding and extending SQL. For this reason, Cube uses flexible whitespace layout, and does not require new lines or tabs to delimit blocks.
+
+The Cube parser ignores whitespace, and like [Lisp](https://en.wikipedia.org/wiki/Lisp_(programming_language)), a complete program will still parse correctly if formatted onto a single line. Although Cube does have a recommended  coding style, programmers have the flexibility to format code without being restricted by layout.
 
 ### Hello world
 
