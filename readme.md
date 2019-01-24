@@ -79,7 +79,7 @@ transform(data as dataset, processor as dataset -> boolean)
 end
 ```
 
-In Cube functions, the `output` keyword can be used to return an output a value. The example higher-order function below accepts a block of code as input, then executes the code block and outputs a timing benchmark.
+In Cube, the `output` keyword can be used to return an output a value. The example higher-order function below accepts a block of code as input, then executes the code block to output a timing benchmark.
 
 ```lua
 function benchmark(codeBlock as () -> void) as interval
