@@ -25,6 +25,16 @@ Cube does not require new lines or tabs to delimit blocks. The Cube parser ignor
 print('hola!')
 ```
 
+### Functions
+
+function square(x as int) = x * x
+
+print(square(5))
+
+### Unit tests
+
+square(1, 2, 3) should be (1, 4, 9)
+
 ### Variables
 
 Cube has a strong type system with compile-time type checking, and both objects and functions are first-class citizens in the type system. Cube also supports type inference, so that variables types and function return types can be inferred by the compiler if not specified.
@@ -89,7 +99,7 @@ define temperature(celsius as double)
 end
 ```
 
-### Unit testing with negative tests
+### Negative unit testing
 
 ```lua
 test 'convert celsius to fahrenheit'
